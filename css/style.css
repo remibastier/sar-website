@@ -1,0 +1,595 @@
+/* ==========================================================================
+   SAR Doppler Tomography Research Whitepaper - Academic Design System
+   Inspired by Academic Journal Publications, arXiv, and University Press
+   ========================================================================== */
+
+:root {
+  /* Archival Paper Color Palette */
+  --paper-bg: #fcfcfd;
+  --paper-surface: #ffffff;
+  --paper-elevated: #f8fafc;
+  --paper-muted-bg: #f1f5f9;
+  
+  /* Academic Inks & Typography */
+  --ink-primary: #0f172a;       /* Deep slate/black */
+  --ink-secondary: #334155;     /* Body slate */
+  --ink-muted: #64748b;         /* Captions, footnotes */
+  --ink-dim: #94a3b8;           /* Subtle metadata */
+
+  /* Hairline Borders */
+  --border-subtle: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-dark: #334155;
+
+  /* Epistemic Badges (Separation of Facts, Data, Hypotheses) */
+  --fact-bg: #f1f5f9;
+  --fact-text: #0f172a;
+  --fact-border: #94a3b8;
+
+  --data-bg: #ecfdf5;
+  --data-text: #065f46;
+  --data-border: #6ee7b7;
+
+  --hypo-bg: #fffbeb;
+  --hypo-text: #92400e;
+  --hypo-border: #fcd34d;
+
+  /* Accent Ink */
+  --accent-navy: #1e3a8a;
+  --accent-blue: #0284c7;
+  --accent-teal: #0f766e;
+  --accent-amber: #d97706;
+  --accent-rose: #be123c;
+
+  /* Academic Typography */
+  --font-serif: 'Newsreader', 'Georgia', 'Cambria', 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Dimensions */
+  --sidebar-w: 280px;
+  --content-w: 920px;
+  --nav-h: 56px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 32px;
+}
+
+body {
+  background-color: var(--paper-bg);
+  color: var(--ink-secondary);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  font-size: 15.5px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Academic Header Elements */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-serif);
+  color: var(--ink-primary);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h1 { font-size: 34px; letter-spacing: -0.01em; margin-bottom: 16px; font-weight: 700; }
+h2 { font-size: 26px; margin-top: 48px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1.5px solid var(--border-subtle); }
+h3 { font-size: 20px; margin-top: 32px; margin-bottom: 12px; }
+h4 { font-size: 16px; margin-top: 20px; margin-bottom: 8px; font-family: var(--font-sans); font-weight: 600; }
+
+p {
+  margin-bottom: 18px;
+}
+
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(2, 132, 199, 0.4);
+  transition: all 0.15s ease;
+}
+
+a:hover {
+  color: var(--accent-navy);
+  border-bottom-style: solid;
+}
+
+code, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--paper-muted-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border-subtle);
+  color: var(--ink-primary);
+}
+
+/* ==========================================================================
+   EPISTEMIC TRI-TAG SYSTEM
+   ========================================================================== */
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+  margin-right: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.tag-fact {
+  background: var(--fact-bg);
+  color: var(--fact-text);
+  border: 1px solid var(--fact-border);
+}
+
+.tag-data {
+  background: var(--data-bg);
+  color: var(--data-text);
+  border: 1px solid var(--data-border);
+}
+
+.tag-hypothesis {
+  background: var(--hypo-bg);
+  color: var(--hypo-text);
+  border: 1px solid var(--hypo-border);
+}
+
+/* Callout Boxes */
+.academic-callout {
+  padding: 18px 22px;
+  border-radius: var(--radius-md);
+  margin: 24px 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  border-left: 4px solid;
+}
+
+.academic-callout.fact-box {
+  background: #f8fafc;
+  border-left-color: var(--fact-border);
+  border: 1px solid var(--border-subtle);
+  border-left-width: 4px;
+}
+
+.academic-callout.data-box {
+  background: #f0fdf4;
+  border-left-color: var(--accent-teal);
+  border: 1px solid #bbf7d0;
+  border-left-width: 4px;
+}
+
+.academic-callout.hypothesis-box {
+  background: #fefce8;
+  border-left-color: var(--accent-amber);
+  border: 1px solid #fef08a;
+  border-left-width: 4px;
+}
+
+.callout-header {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 13.5px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   ACADEMIC LAYOUT WITH LEFT STICKY NAVIGATION PANE
+   ========================================================================== */
+.paper-wrapper {
+  display: flex;
+  max-width: 1380px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* Sticky Left Navigation Pane */
+.paper-sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 32px 24px;
+  border-right: 1px solid var(--border-subtle);
+  background: var(--paper-surface);
+  font-size: 13.5px;
+}
+
+.sidebar-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink-primary);
+  margin-bottom: 4px;
+}
+
+.sidebar-meta {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  margin-bottom: 24px;
+  line-height: 1.4;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sidebar-toc {
+  list-style: none;
+}
+
+.sidebar-toc li {
+  margin-bottom: 6px;
+}
+
+.sidebar-toc a {
+  display: block;
+  padding: 5px 8px;
+  color: var(--ink-secondary);
+  border-radius: var(--radius-sm);
+  border-bottom: none;
+  font-size: 13px;
+  transition: all 0.15s ease;
+}
+
+.sidebar-toc a:hover,
+.sidebar-toc a.active {
+  background: var(--paper-muted-bg);
+  color: var(--accent-navy);
+  font-weight: 600;
+  padding-left: 12px;
+}
+
+.sidebar-toc .toc-sub {
+  padding-left: 16px;
+  margin-top: 4px;
+  font-size: 12px;
+  list-style: none;
+}
+
+.sidebar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 24px;
+  padding: 9px 12px;
+  background: var(--accent-navy);
+  color: #ffffff !important;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sidebar-btn:hover {
+  background: var(--accent-blue);
+  color: #ffffff;
+}
+
+/* Main Paper Content Column */
+.paper-content {
+  flex: 1;
+  max-width: var(--content-w);
+  padding: 48px 56px 96px 56px;
+  background: var(--paper-bg);
+}
+
+/* Paper Header / Metadata Block */
+.paper-header {
+  margin-bottom: 40px;
+  padding-bottom: 28px;
+  border-bottom: 2px solid var(--ink-primary);
+}
+
+.paper-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-navy);
+  background: rgba(30, 58, 138, 0.08);
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 12px;
+}
+
+.paper-authors {
+  font-size: 14.5px;
+  color: var(--ink-primary);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.paper-affiliation {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.paper-abstract {
+  background: var(--paper-surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--accent-navy);
+  padding: 20px 24px;
+  border-radius: var(--radius-sm);
+  margin-top: 20px;
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+.abstract-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-navy);
+  margin-bottom: 8px;
+}
+
+/* Stat Grid - Academic Clean */
+.academic-stats-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.academic-stat-box {
+  background: var(--paper-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  text-align: center;
+}
+
+.stat-number {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ink-primary);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--ink-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   MONUMENT ILLUSTRATIONS & OPEN SOURCE FIGURES
+   ========================================================================== */
+.monument-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.figure-card {
+  background: var(--paper-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.figure-img-wrap {
+  width: 100%;
+  height: 220px;
+  background: #f1f5f9;
+  position: relative;
+  overflow: hidden;
+}
+
+.figure-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.figure-card:hover .figure-img {
+  transform: scale(1.02);
+}
+
+.figure-body {
+  padding: 16px 18px;
+}
+
+.figure-title {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--ink-primary);
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.figure-desc {
+  font-size: 13px;
+  color: var(--ink-secondary);
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+
+.figure-credit {
+  font-size: 11px;
+  color: var(--ink-dim);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 8px;
+}
+
+/* Full Width Figure (e.g. Zawyet T-Trench Barsanti 1904) */
+.figure-full {
+  background: var(--paper-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin: 32px 0;
+}
+
+.figure-full img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   ACADEMIC TABLES (Detection Matrix & Epoch Comparison)
+   ========================================================================== */
+.table-wrapper {
+  overflow-x: auto;
+  margin: 28px 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--paper-surface);
+}
+
+.paper-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+.paper-table thead th {
+  background: var(--paper-muted-bg);
+  color: var(--ink-primary);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 12px 14px;
+  border-bottom: 1.5px solid var(--border-strong);
+  white-space: nowrap;
+}
+
+.paper-table tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+  color: var(--ink-secondary);
+}
+
+.paper-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.paper-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* Table Precision & Status Badges */
+.status-pill {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-detected {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.status-partial {
+  background: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.status-missed {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.precision-dots {
+  color: #0284c7;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Embedded Map Frame */
+.map-frame-box {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  height: 540px;
+  margin: 32px 0;
+  position: relative;
+  background: #090d16;
+}
+
+.map-frame-box iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Paper Footer & References */
+.paper-references {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1.5px solid var(--border-strong);
+  font-size: 13.5px;
+}
+
+.ref-item {
+  margin-bottom: 12px;
+  padding-left: 28px;
+  text-indent: -28px;
+  line-height: 1.5;
+  color: var(--ink-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1080px) {
+  .academic-stats-row { grid-template-columns: repeat(3, 1fr); }
+  .monument-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 860px) {
+  .paper-wrapper { flex-direction: column; }
+  .paper-sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-subtle); }
+  .paper-content { padding: 32px 20px; }
+  .academic-stats-row { grid-template-columns: 1fr 1fr; }
+}

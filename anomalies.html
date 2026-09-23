@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subsurface Anomaly Catalog — SAR Doppler Tomography</title>
+  <meta name="description" content="Academic geospatial catalog of 30 unsupervised blind discoveries and regional anomalies detected by Sentinel-1 C-Band Doppler Tomography along Egypt's pyramid corridor.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .catalog-search-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .catalog-input {
+      flex: 1;
+      min-width: 240px;
+      background: #ffffff;
+      border: 1.5px solid var(--border-strong);
+      color: var(--ink-primary);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-family: var(--font-sans);
+      outline: none;
+    }
+    .catalog-input:focus {
+      border-color: var(--accent-navy);
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+    }
+    .catalog-select {
+      background: #ffffff;
+      border: 1.5px solid var(--border-strong);
+      color: var(--ink-primary);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      outline: none;
+      cursor: pointer;
+    }
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .academic-anomaly-card {
+      background: var(--paper-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .academic-anomaly-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    @media (max-width: 860px) {
+      .catalog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="paper-wrapper">
+    <!-- Sticky Left Navigation Pane -->
+    <aside class="paper-sidebar">
+      <div class="sidebar-title">Research Whitepaper</div>
+      <div class="sidebar-meta">
+        <strong>SAR-EGYPT-2026</strong><br>
+        Anomaly Catalog &bull; 30 Discoveries
+      </div>
+
+      <nav>
+        <ul class="sidebar-toc">
+          <li><a href="index.html">&larr; Return to Main Paper</a></li>
+          <li><a href="index.html#sec-5">5.0 Pyramid Detection Matrix</a></li>
+          <li><a href="index.html#sec-7">7.0 Zawyet el-Aryan Spotlight</a></li>
+          <li><a href="index.html#sec-8">8.0 Structural Typology Matrix</a></li>
+          <li><a href="interactive_radar_map.html" target="_blank">10.0 Interactive Map &nearr;</a></li>
+        </ul>
+      </nav>
+
+      <a href="interactive_radar_map.html" class="sidebar-btn" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15 8 12 12 9 8 12 2"/></svg>
+        Launch Radar Map &nearr;
+      </a>
+    </aside>
+
+    <!-- Main Content Column -->
+    <main class="paper-content">
+      <header class="paper-header" style="margin-bottom: 32px; padding-bottom: 20px;">
+        <div class="paper-badge">Appendix B &bull; Geospatial Catalog</div>
+        <h1 style="font-size: 30px;">Catalog of 30 Unsupervised Subsurface Discoveries</h1>
+        <p style="font-size: 14.5px; color: var(--ink-secondary); margin-bottom: 0;">
+          Statistical anomalies detected by multi-temporal Sentinel-1 C-band Doppler Tomography outside known monumental boundaries.
+        </p>
+      </header>
+
+      <!-- Search & Filters -->
+      <div class="catalog-search-bar">
+        <input type="text" id="catalog-search" class="catalog-input" placeholder="Search by region, category, or coordinates (e.g. Zawyet, Meidum, 29.92)...">
+        
+        <select id="category-filter" class="catalog-select">
+          <option value="all">All Categories</option>
+          <option value="resonant">Resonant Cavities (16–20m depth)</option>
+          <option value="spike">Bedrock / Megalithic Spikes (&lt;1m)</option>
+          <option value="dip">Buried Nile Silt Channels</option>
+        </select>
+
+        <select id="region-filter" class="catalog-select">
+          <option value="all">All Regions</option>
+          <option value="Zawyet">Zawyet el-Aryan</option>
+          <option value="Meidum">Meidum Bench</option>
+          <option value="Saqqara">Saqqara West</option>
+          <option value="Dahshur">Dahshur Basin</option>
+          <option value="Giza">Giza West Plateau</option>
+          <option value="Hawara">Hawara Plateau</option>
+          <option value="Abu Rawash">Abu Rawash</option>
+          <option value="Lisht">Lisht &amp; Mazghuna</option>
+        </select>
+
+        <select id="sort-filter" class="catalog-select">
+          <option value="rank">Sort: Rank (1 to 30)</option>
+          <option value="coherence">Highest Coherence (&gamma;)</option>
+          <option value="depth">Estimated Depth</option>
+          <option value="amp">Backscatter Amplitude (dB)</option>
+        </select>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; font-size:13px; color:var(--ink-muted);">
+        <div>Displaying <strong id="match-count" style="color:var(--accent-navy);">30</strong> anomaly candidates</div>
+        <div class="mono" style="font-size:11.5px;">6-EPOCH ORBIT 58 &bull; &gamma; &ge; 0.15</div>
+      </div>
+
+      <!-- Anomaly Cards Grid -->
+      <div id="full-catalog-container" class="catalog-grid"></div>
+    </main>
+  </div>
+
+  <script src="js/anomalies-data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('full-catalog-container');
+      const searchInput = document.getElementById('catalog-search');
+      const catSelect = document.getElementById('category-filter');
+      const regSelect = document.getElementById('region-filter');
+      const sortSelect = document.getElementById('sort-filter');
+      const countEl = document.getElementById('match-count');
+
+      const data = (window.SAR_DATA && window.SAR_DATA.blindDiscoveries) ? window.SAR_DATA.blindDiscoveries : [];
+
+      function render() {
+        const query = searchInput.value.toLowerCase().trim();
+        const cat = catSelect.value;
+        const reg = regSelect.value;
+        const sort = sortSelect.value;
+
+        let filtered = data.filter(item => {
+          if (cat !== 'all' && item.category !== cat) return false;
+          if (reg !== 'all' && !item.region.toLowerCase().includes(reg.toLowerCase())) return false;
+          if (query) {
+            const matchStr = `${item.name} ${item.region} ${item.location_desc} ${item.lat} ${item.lon} ${item.radar_diagnosis}`.toLowerCase();
+            if (!matchStr.includes(query)) return false;
+          }
+          return true;
+        });
+
+        filtered.sort((a, b) => {
+          if (sort === 'rank') return a.rank - b.rank;
+          if (sort === 'coherence') return (b.coherence || 0) - (a.coherence || 0);
+          if (sort === 'depth') return (b.depth_m || 0) - (a.depth_m || 0);
+          if (sort === 'amp') return b.amp_db - a.amp_db;
+          return 0;
+        });
+
+        countEl.innerText = filtered.length;
+        container.innerHTML = '';
+
+        if (filtered.length === 0) {
+          container.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:48px 0; color:var(--ink-muted);">
+            No anomalies matched your search criteria.
+          </div>`;
+          return;
+        }
+
+        filtered.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'academic-anomaly-card';
+
+          let catBadge = '<span class="tag-badge tag-hypothesis">RESONANT CAVITY</span>';
+          if (item.category === 'spike') {
+            catBadge = '<span class="tag-badge tag-data">BEDROCK / MEGALITH</span>';
+          } else if (item.category === 'dip') {
+            catBadge = '<span class="tag-badge tag-fact">BURIED SILT / CANAL</span>';
+          }
+
+          card.innerHTML = `
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+                ${catBadge}
+                <span class="mono" style="font-size:11px; color:var(--ink-muted);">RANK #${item.rank.toString().padStart(2, '0')}</span>
+              </div>
+              <h4 style="font-size:15px; margin-bottom:6px; color:var(--ink-primary);">${item.name}</h4>
+              <div style="font-size:12px; color:var(--accent-navy); margin-bottom:10px; font-weight:600;">
+                Region: ${item.region}
+              </div>
+              <p style="font-size:12.5px; color:var(--ink-secondary); line-height:1.55; margin-bottom:14px;">${item.location_desc}</p>
+            </div>
+
+            <div style="border-top:1px solid var(--border-subtle); padding-top:12px; font-size:12px;">
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:10px;" class="mono">
+                <div><strong>Est. Depth:</strong> ${item.depth_m ? item.depth_m + ' m' : 'Surface (<1m)'}</div>
+                <div><strong>Coherence:</strong> ${item.coherence ? item.coherence.toFixed(2) : 'N/A'}</div>
+                <div><strong>Frequency:</strong> ${item.freq_hz ? item.freq_hz + ' Hz' : 'Static (DC)'}</div>
+                <div><strong>Amplitude:</strong> ${item.amp_db.toFixed(1)} dB</div>
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span class="mono" style="font-size:11.5px; color:var(--ink-muted);">${item.lat.toFixed(4)}&deg;N, ${item.lon.toFixed(4)}&deg;E</span>
+                <a href="interactive_radar_map.html#sector=${encodeURIComponent(item.region)}" class="mono" style="font-size:12px; font-weight:600;" target="_blank">
+                  Locate on Map &nearr;
+                </a>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      searchInput.addEventListener('input', render);
+      catSelect.addEventListener('change', render);
+      regSelect.addEventListener('change', render);
+      sortSelect.addEventListener('change', render);
+
+      render();
+    });
+  </script>
+</body>
+</html>

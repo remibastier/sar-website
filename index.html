@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spaceborne SAR Doppler Tomography Across the Memphite Necropolis: An Empirical Validation</title>
+  <meta name="description" content="Academic whitepaper presenting a multi-temporal Sentinel-1 C-band SAR Doppler Tomography investigation across the 80 km Egyptian pyramid corridor. Testing subterranean cavity claims, verifying bedrock stability, and classifying architectural typology.">
+  
+  <!-- Academic Fonts: Newsreader (Serif) + Inter (Sans) + JetBrains Mono (Code/Math) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="paper-wrapper">
+    <!-- Sticky Left Navigation Pane (Paper Style) -->
+    <aside class="paper-sidebar">
+      <div class="sidebar-title">Research Whitepaper</div>
+      <div class="sidebar-meta">
+        <strong>SAR-EGYPT-2026-V2</strong><br>
+        Published: Sept 2026<br>
+        Author: Remi Bastier<br>
+        Copernicus Sentinel-1 Data
+      </div>
+
+      <nav>
+        <ul class="sidebar-toc">
+          <li><a href="#sec-1" class="active">1.0 Abstract &amp; Key Metrics</a></li>
+          <li><a href="#sec-2">2.0 Origin &amp; The Biondi Benchmark</a></li>
+          <li><a href="#sec-3">3.0 Sentinel-1 Physics &amp; InSAR</a></li>
+          <li><a href="#sec-4">4.0 3-Epoch vs 6-Epoch Stack</a>
+            <ul class="toc-sub">
+              <li><a href="#sec-4-1">4.1 Did 6 Epochs Break Results?</a></li>
+              <li><a href="#sec-4-2">4.2 Noise Elimination Table</a></li>
+            </ul>
+          </li>
+          <li><a href="#sec-5">5.0 Pyramid Detection Matrix</a></li>
+          <li><a href="#sec-6">6.0 Monument Geological Survey</a>
+            <ul class="toc-sub">
+              <li><a href="#mon-giza">6.1 Giza Plateau Complex</a></li>
+              <li><a href="#mon-saqqara">6.2 Saqqara &amp; Abusir</a></li>
+              <li><a href="#mon-dahshur">6.3 Dahshur &amp; Meidum</a></li>
+              <li><a href="#mon-hawara">6.4 Hawara &amp; Abu Rawash</a></li>
+            </ul>
+          </li>
+          <li><a href="#sec-7">7.0 Case Study: Zawyet el-Aryan</a></li>
+          <li><a href="#sec-8">8.0 Pyramid Typology vs Radar</a></li>
+          <li><a href="#sec-9">9.0 30 Blind Discoveries</a></li>
+          <li><a href="#sec-10">10.0 Interactive Radar Map</a></li>
+          <li><a href="#sec-11">11.0 Hypotheses on Limitations</a></li>
+          <li><a href="#sec-12">12.0 Pending Roadmap (L-Band)</a></li>
+          <li><a href="#sec-13">13.0 References</a></li>
+        </ul>
+      </nav>
+
+      <a href="interactive_radar_map.html" class="sidebar-btn" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15 8 12 12 9 8 12 2"/></svg>
+        Launch Radar Map &nearr;
+      </a>
+      <a href="anomalies.html" class="sidebar-btn" style="background:#475569; margin-top:8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Anomaly Catalog &rarr;
+      </a>
+    </aside>
+
+    <!-- Main Academic Document Column -->
+    <main class="paper-content">
+      
+      <!-- Paper Header -->
+      <header class="paper-header">
+        <div class="paper-badge">Academic Geophysics Whitepaper &bull; Peer Review Draft</div>
+        <h1>Spaceborne SAR Doppler Tomography Across the Memphite Necropolis: Empirical Validation of Subterranean Micro-Motion and Bedrock Competence</h1>
+        
+        <div class="paper-authors">
+          <strong>Remi Bastier</strong> &bull; Independent Satellite Geophysics Research Initiative
+        </div>
+        <div class="paper-affiliation">
+          Dataset: European Space Agency (ESA) Copernicus Sentinel-1 Constellation (Relative Orbit 58)
+        </div>
+
+        <div class="paper-abstract">
+          <div class="abstract-title">Abstract</div>
+          <p>
+            This paper presents a multi-temporal Synthetic Aperture Radar (SAR) Doppler Tomography investigation spanning the 80 km pyramid corridor from Abu Rawash to Hawara, Egypt. Initiated to independently validate sensational published claims (Biondi, 2022/2025) of massive subterranean caverns and 600-meter deep shafts beneath the Giza Plateau, the investigation demonstrates through 6-epoch repeat-pass interferometry (48 Doppler sub-apertures) that single-pass cavity detections are artifacts of radar speckle noise. By temporally stacking six discrete orbital passes across a 30-day temporal baseline, spurious cavity false alarms were reduced by <strong>96.3%</strong> across the corridor, definitively confirming the structural competence and seismic stillness of the Giza limestone bedrock. The research subsequently pivots to classifying genuine surface lithology, exposed megalithic foundations, and shallow near-subsurface wadi beds, producing a comprehensive radar survey of 21 major royal pyramids and 30 unsupervised blind discoveries.
+          </p>
+        </div>
+      </header>
+
+      <!-- Section 1.0: Executive Metrics -->
+      <section id="sec-1">
+        <h2>1.0 Executive Metrics &amp; Dataset Scope</h2>
+        <p>
+          <span class="tag-badge tag-fact">FACT</span> All radar data utilized in this study were acquired by the European Space Agency's Sentinel-1 constellation in Single-Look Complex (SLC) Interferometric Wide (IW) swath mode, operating at C-band (5.405 GHz, &lambda; &approx; 5.5 cm) on an ascending orbital track.
+        </p>
+
+        <div class="academic-stats-row">
+          <div class="academic-stat-box">
+            <div class="stat-number">80 km</div>
+            <div class="stat-label">Nile Corridor Length</div>
+          </div>
+          <div class="academic-stat-box">
+            <div class="stat-number">10</div>
+            <div class="stat-label">Surveyed Sectors</div>
+          </div>
+          <div class="academic-stat-box">
+            <div class="stat-number">6 Epochs</div>
+            <div class="stat-label">48 Sub-Apertures</div>
+          </div>
+          <div class="academic-stat-box">
+            <div class="stat-number" style="color:var(--accent-teal);">-96.3%</div>
+            <div class="stat-label">Noise Eradication</div>
+          </div>
+          <div class="academic-stat-box">
+            <div class="stat-number" style="color:var(--accent-navy);">0 px</div>
+            <div class="stat-label">Deep Voids at Giza</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2.0: Historical Motivation & The Biondi Benchmark -->
+      <section id="sec-2">
+        <h2>2.0 Research Origin &amp; The Biondi Benchmark</h2>
+        <p>
+          <span class="tag-badge tag-fact">FACT</span> In 2022 and 2025, publications by Filippo Biondi claimed the discovery of monumental, deep subterranean chambers and vertical shafts extending up to 600 meters beneath the Giza Plateau, utilizing single-pass satellite SAR Doppler phase analysis.
+        </p>
+        <p>
+          Our project was established to determine whether an independent, transparent pipeline could reproduce these findings. 
+        </p>
+
+        <div class="academic-callout data-box">
+          <div class="callout-header">
+            <span class="tag-badge tag-data">DATA RESULT</span> Single-Pass Noise Illusion
+          </div>
+          <p>
+            When processing a single Sentinel-1 acquisition without multi-temporal stacking, our pipeline initially flagged <strong>4,269 pixels (~0.14 km&sup2;)</strong> across the Giza Plateau as suspected "voids". However, the mean spatial coherence of this single pass was critically low (<span class="mono">&gamma; = 0.098</span>), well below the minimum threshold (<span class="mono">&gamma; &ge; 0.15</span>) required for phase reliability.
+          </p>
+        </div>
+
+        <p>
+          <span class="tag-badge tag-data">DATA RESULT</span> When multi-temporal interferometric stacking was applied (first across 4 epochs, then 6 epochs), <strong>100% of the suspected cavity signatures within 500 meters of the Great Pyramids collapsed to zero</strong>. Furthermore, direct tomographic probing of the exact Western Cemetery coordinate claimed by Biondi (<span class="mono">29.980&deg;N, 31.126&deg;E</span>) revealed absolute bedrock stability with a flat DC power spectrum.
+        </p>
+
+        <div class="academic-callout hypothesis-box">
+          <div class="callout-header">
+            <span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Physical Cause of the Divergence
+          </div>
+          <p>
+            We hypothesize that earlier published detections were mathematical artifacts caused by radar speckle noise and local surface phase decorrelation. Without multi-temporal temporal cross-correlation across identical repeat orbits, normal microscopic surface roughness produces phase fluctuations that an unconstrained inversion algorithm erroneously interprets as deep resonant cavities.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 3.0: Physics & Methodology -->
+      <section id="sec-3">
+        <h2>3.0 Sentinel-1 Constellation &amp; Radar Physics</h2>
+        <p>
+          To maintain scientific integrity, the physical boundaries of satellite C-band radar must be clearly stated:
+        </p>
+        <ul>
+          <li style="margin-bottom:10px;">
+            <span class="tag-badge tag-fact">FACT</span> <strong>Microwave Penetration Limits:</strong> Unlike low-frequency Ground Penetrating Radar (GPR, 10–500 MHz), Sentinel-1 C-band microwaves (5.5 cm) cannot penetrate dense crystalline Mokattam limestone. Direct radar penetration is restricted to dry, low-loss surface sand sheets to a depth of roughly 0.5 to 2.0 meters.
+          </li>
+          <li style="margin-bottom:10px;">
+            <span class="tag-badge tag-fact">FACT</span> <strong>Resolution Cell Geometry:</strong> Sentinel-1 IW mode has a ground range &times; azimuth resolution of approximately 5 &times; 20 meters (~100 m&sup2; cell). Features significantly smaller than this cell cannot dominate the backscatter return.
+          </li>
+          <li style="margin-bottom:10px;">
+            <span class="tag-badge tag-data">DATA RESULT</span> <strong>The "Drum-Skin" Micro-Motion Principle:</strong> Doppler Tomography does not rely on direct microwave penetration to detect underground cavities. Instead, it measures surface micro-vibrations. A wide, shallow cavern with a flexible roof responds to environmental ambient noise (wind shear, micro-seisms) like a drum skin, creating phase shifts across Doppler sub-apertures.
+          </li>
+        </ul>
+      </section>
+
+      <!-- Section 4.0: 3-Epoch vs 6-Epoch Stack Comparison -->
+      <section id="sec-4">
+        <h2>4.0 Multi-Temporal Analysis: 3-Epoch vs 6-Epoch Extension</h2>
+        
+        <h3 id="sec-4-1">4.1 Did Extending from 3 to 6 Epochs Break Our Results?</h3>
+        <p>
+          A central question in interferometric remote sensing is whether expanding the temporal baseline introduces temporal decorrelation that breaks previous findings, or if it stabilizes true physical features.
+        </p>
+
+        <div class="academic-callout data-box">
+          <div class="callout-header">
+            <span class="tag-badge tag-data">DATA RESULT</span> Direct Finding: 6 Epochs Fortified the Science
+          </div>
+          <p>
+            <strong>Extending the stack from 3 to 6 discrete epochs did NOT break our results—it decisively fortified them.</strong> 
+            In the 3-epoch baseline (24 sub-apertures), transient canal moisture and shifting topsoil had generated <strong>1,690 spurious "void" pixels</strong> across the 10 regional scans. 
+            When expanded to 6 epochs (48 independent looks across a 30-day baseline, August 20 – September 19, 2026), <strong>1,628 of those 1,690 false pixels vanished completely (-96.3% noise elimination)</strong>.
+          </p>
+        </div>
+
+        <p>
+          <span class="tag-badge tag-data">DATA RESULT</span> The bedrock plateaus (Giza, Saqqara, Dahshur, Zawyet el-Aryan, and Meidum) maintained high repeat-pass coherence (<span class="mono">&gamma; = 0.37 to 0.55</span>), proving that genuine bedrock monuments remain motionless and phase-coherent over monthly baselines.
+        </p>
+
+        <h3 id="sec-4-2">4.2 Regional Quantitative Noise Collapse Table</h3>
+        <div class="table-wrapper">
+          <table class="paper-table">
+            <thead>
+              <tr>
+                <th>Archaeological Sector</th>
+                <th>3-Epoch Coherence (&gamma;)</th>
+                <th>6-Epoch Coherence (&gamma;)</th>
+                <th>Coherence Delta (&Delta;&gamma;)</th>
+                <th>3-Epoch Voids</th>
+                <th>6-Epoch Voids</th>
+                <th>False Positive Reduction</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Giza Plateau</strong></td>
+                <td>0.476</td>
+                <td><strong>0.547</strong></td>
+                <td><span class="mono" style="color:var(--accent-teal);">+14.8%</span></td>
+                <td>1 px</td>
+                <td><strong>0 px</strong></td>
+                <td><span class="status-pill status-detected">100% Solid Bedrock</span></td>
+              </tr>
+              <tr>
+                <td><strong>Abu Rawash</strong></td>
+                <td>0.119</td>
+                <td>0.070</td>
+                <td><span class="mono" style="color:var(--accent-rose);">-40.8%</span></td>
+                <td>906 px</td>
+                <td><strong>53 px</strong></td>
+                <td><span class="status-pill status-detected">-94.2% Noise Drop</span></td>
+              </tr>
+              <tr>
+                <td><strong>Zawyet el-Aryan</strong></td>
+                <td>0.566</td>
+                <td><strong>0.529</strong></td>
+                <td><span class="mono">-6.4%</span></td>
+                <td>0 px</td>
+                <td><strong>0 px</strong></td>
+                <td><span class="status-pill status-detected">100% Solid Bedrock</span></td>
+              </tr>
+              <tr>
+                <td><strong>Abusir</strong></td>
+                <td>0.287</td>
+                <td>0.189</td>
+                <td><span class="mono">-33.9%</span></td>
+                <td>1 px</td>
+                <td><strong>0 px</strong></td>
+                <td><span class="status-pill status-detected">100% Solid Bedrock</span></td>
+              </tr>
+              <tr>
+                <td><strong>Saqqara</strong></td>
+                <td>0.482</td>
+                <td><strong>0.462</strong></td>
+                <td><span class="mono">-4.2%</span></td>
+                <td>0 px</td>
+                <td><strong>0 px</strong></td>
+                <td><span class="status-pill status-detected">100% Solid Bedrock</span></td>
+              </tr>
+              <tr>
+                <td><strong>Dahshur</strong></td>
+                <td>0.465</td>
+                <td><strong>0.374</strong></td>
+                <td><span class="mono">-19.5%</span></td>
+                <td>0 px</td>
+                <td><strong>0 px</strong></td>
+                <td><span class="status-pill status-detected">100% Solid Bedrock</span></td>
+              </tr>
+              <tr>
+                <td><strong>Meidum</strong></td>
+                <td>0.435</td>
+                <td><strong>0.365</strong></td>
+                <td><span class="mono">-16.2%</span></td>
+                <td>0 px</td>
+                <td><strong>0 px</strong></td>
+                <td><span class="status-pill status-detected">100% Solid Bedrock</span></td>
+              </tr>
+              <tr>
+                <td><strong>Hawara Oasis</strong></td>
+                <td>0.100</td>
+                <td><strong>0.313</strong></td>
+                <td><span class="mono" style="color:var(--accent-teal);">+211.7%</span></td>
+                <td>360 px</td>
+                <td><strong>2 px</strong></td>
+                <td><span class="status-pill status-detected">-99.4% Noise Drop</span></td>
+              </tr>
+              <tr>
+                <td><strong>Lake Qarun</strong></td>
+                <td>0.151</td>
+                <td>0.146</td>
+                <td><span class="mono">-3.6%</span></td>
+                <td>249 px</td>
+                <td><strong>0 px</strong></td>
+                <td><span class="status-pill status-detected">100% Eliminated</span></td>
+              </tr>
+              <tr>
+                <td><strong>Lisht &amp; Mazghuna</strong></td>
+                <td>0.161</td>
+                <td>0.158</td>
+                <td><span class="mono">-2.1%</span></td>
+                <td>173 px</td>
+                <td><strong>7 px</strong></td>
+                <td><span class="status-pill status-detected">-96.0% Noise Drop</span></td>
+              </tr>
+              <tr style="background:#f1f5f9; font-weight:700;">
+                <td>CORRIDOR TOTAL</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>1,690 px</td>
+                <td><strong>62 px</strong></td>
+                <td><span class="status-pill status-detected">-96.3% Noise Drop</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 5.0: Pyramid Detection Matrix -->
+      <section id="sec-5">
+        <h2>5.0 Comprehensive Pyramid Detection Matrix</h2>
+        <p>
+          We systematically evaluated all 21 royal pyramids across the 10 surveyed sectors. Each monument is classified by its radar detection status, precision score (1 to 5), diagnostic backscatter signature, and an explicit hypothesis explaining any missed or weak returns.
+        </p>
+
+        <div class="table-wrapper">
+          <table class="paper-table">
+            <thead>
+              <tr>
+                <th>Monument &amp; Dynasty</th>
+                <th>Sector</th>
+                <th>Status</th>
+                <th>Precision</th>
+                <th>Key Radar Signature</th>
+                <th>Cause / [HYPOTHESIS] if Missed or Weak</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Great Pyramid of Khufu (G1)</strong></td>
+                <td>Giza</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
+                <td>Apex corner reflector (+74.7 dB, &gamma;=0.76)</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Stripped pyramidion leaves flat platform creating acute dihedral retro-reflection.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Khafre (G2)</strong></td>
+                <td>Giza</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
+                <td>Specular casing cap vs stepped base</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Intact casing limestone scatters forward; corner base produces high return.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Menkaure (G3)</strong></td>
+                <td>Giza</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
+                <td>Granite casing scarp + core stepped tiers</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Dense Aswan granite base creates high dielectric backscatter contrast.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Djedefre</strong></td>
+                <td>Abu Rawash</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&omicron;&omicron;</span> 3/5</td>
+                <td>Promontory bedrock crest (+35.2 dB)</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Perched on 150m cliff; core heavily quarried down to central rock pit.</td>
+              </tr>
+              <tr>
+                <td><strong>Unfinished Pyramid of Nebka</strong></td>
+                <td>Zawyet el-Aryan</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
+                <td>Specular bedrock floor spike (+64.4 dB)</td>
+                <td><span class="tag-badge tag-fact">FACT</span> 21m T-trench induces shadow/layover and intense floor retro-reflection.</td>
+              </tr>
+              <tr>
+                <td><strong>Layer Pyramid (Khaba)</strong></td>
+                <td>Zawyet el-Aryan</td>
+                <td><span class="status-pill status-partial">PARTIAL</span></td>
+                <td><span class="precision-dots">&bull;&bull;&omicron;&omicron;&omicron;</span> 2/5</td>
+                <td>Diffuse rubble mound</td>
+                <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Rounded rubble envelope diffuses microwave return into background.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Sahure</strong></td>
+                <td>Abusir</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&omicron;&omicron;</span> 3/5</td>
+                <td>Stepped core blocks vs desert sand</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Rough limestone masonry core contrasts against low-scattering desert sand.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Neferirkare</strong></td>
+                <td>Abusir</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&bull;&omicron;</span> 4/5</td>
+                <td>Prominent elevated core tower</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Tallest monument in Abusir; steep limestone tiers generate high backscatter.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Nyuserre</strong></td>
+                <td>Abusir</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&omicron;&omicron;</span> 3/5</td>
+                <td>Foundation platform &amp; mortuary core</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Visible in dual-pol CPR due to volume-surface scattering transition.</td>
+              </tr>
+              <tr>
+                <td><strong>Step Pyramid of Djoser</strong></td>
+                <td>Saqqara</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
+                <td>6-tier stepped corner reflectors (&gamma;=0.68)</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Horizontal limestone step ledges act as continuous dihedral corner reflectors.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Userkaf</strong></td>
+                <td>Saqqara</td>
+                <td><span class="status-pill status-partial">PARTIAL</span></td>
+                <td><span class="precision-dots">&bull;&bull;&omicron;&omicron;&omicron;</span> 2/5</td>
+                <td>Low-amplitude rubble mound</td>
+                <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Loose core rubble stripped of outer casing blends into desert gravel.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Unas</strong></td>
+                <td>Saqqara</td>
+                <td><span class="status-pill status-partial">PARTIAL</span></td>
+                <td><span class="precision-dots">&bull;&bull;&omicron;&omicron;&omicron;</span> 2/5</td>
+                <td>Modest elevation scarp</td>
+                <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Severely ruined core cone; aeolian sand drifts smooth corner reflections.</td>
+              </tr>
+              <tr>
+                <td><strong>Buried Pyramid (Sekhemkhet)</strong></td>
+                <td>Saqqara</td>
+                <td><span class="status-pill status-missed">NOT DETECTED</span></td>
+                <td><span class="precision-dots">&omicron;&omicron;&omicron;&omicron;&omicron;</span> 0/5</td>
+                <td>Indistinguishable from sand sheet</td>
+                <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Subterranean unfinished foundation completely sealed under deep desert sand.</td>
+              </tr>
+              <tr>
+                <td><strong>Red Pyramid of Sneferu</strong></td>
+                <td>Dahshur</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
+                <td>Uniform limestone backscatter (&sigma;&sub0;=52 dB)</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Shallow 43&deg; slope generates stable, uniform specular backscatter.</td>
+              </tr>
+              <tr>
+                <td><strong>Bent Pyramid of Sneferu</strong></td>
+                <td>Dahshur</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
+                <td>Casing slope transition retro-reflection</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Slope inflection (54&deg; to 43&deg;) and intact casing create distinct radar lineament.</td>
+              </tr>
+              <tr>
+                <td><strong>Black Pyramid (Amenemhat III)</strong></td>
+                <td>Dahshur</td>
+                <td><span class="status-pill status-partial">PARTIAL</span></td>
+                <td><span class="precision-dots">&bull;&bull;&omicron;&omicron;&omicron;</span> 2/5</td>
+                <td>Weak absorption mound</td>
+                <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Sun-dried mudbrick core suffers high dielectric absorption and erosion.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Amenemhat I</strong></td>
+                <td>Lisht</td>
+                <td><span class="status-pill status-missed">NOT DETECTED</span></td>
+                <td><span class="precision-dots">&omicron;&omicron;&omicron;&omicron;&omicron;</span> 0/5</td>
+                <td>Blends into wadi alluvium</td>
+                <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Collapsed core of loose sand, mudbrick, and limestone chips lacks structural relief.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Senusret I</strong></td>
+                <td>Lisht</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&omicron;&omicron;</span> 3/5</td>
+                <td>Limestone skeleton cross-walls</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Unique grid of radiating limestone skeleton walls provides structural radar contrast.</td>
+              </tr>
+              <tr>
+                <td><strong>South &amp; North Mazghuna Pyramids</strong></td>
+                <td>Mazghuna</td>
+                <td><span class="status-pill status-missed">NOT DETECTED</span></td>
+                <td><span class="precision-dots">&omicron;&omicron;&omicron;&omicron;&omicron;</span> 0/5</td>
+                <td>Flat desert alluvial wash</td>
+                <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Superstructures never raised above ground level; subterranean pits silted over.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Meidum (Sneferu)</strong></td>
+                <td>Meidum</td>
+                <td><span class="status-pill status-detected">DETECTED</span></td>
+                <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
+                <td>Core tower (+50.8 dB) above debris skirt</td>
+                <td><span class="tag-badge tag-fact">FACT</span> Dramatic vertical core tower masonry produces massive dihedral corner returns.</td>
+              </tr>
+              <tr>
+                <td><strong>Pyramid of Hawara (Labyrinth)</strong></td>
+                <td>Hawara</td>
+                <td><span class="status-pill status-partial">PARTIAL</span></td>
+                <td><span class="precision-dots">&bull;&bull;&omicron;&omicron;&omicron;</span> 2/5</td>
+                <td>Mudbrick core mound with canal damping</td>
+                <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Mudbrick weathering plus Bahr Wahbi canal moisture dampen radar return.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 6.0: Monument Geophysics & Illustrated Archaeological Survey -->
+      <section id="sec-6">
+        <h2>6.0 Monument Geophysics &amp; Open-Source Archaeological Illustrations</h2>
+        <p>
+          To correlate spaceborne microwave scattering with actual ground architecture, each major monument was cross-referenced with public-domain ground photography from Wikimedia Commons.
+        </p>
+
+        <!-- Sub-section 6.1: Giza Plateau -->
+        <h3 id="mon-giza">6.1 Giza Plateau Complex</h3>
+        <div class="monument-grid">
+          <div class="figure-card">
+            <div class="figure-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Kheops-Pyramid.jpg/800px-Kheops-Pyramid.jpg" alt="Great Pyramid of Khufu Giza" class="figure-img" loading="lazy">
+            </div>
+            <div class="figure-body">
+              <div class="figure-title">
+                <span>Great Pyramid of Khufu (G1)</span>
+                <span class="status-pill status-detected">DETECTED (5/5)</span>
+              </div>
+              <p class="figure-desc">
+                <span class="tag-badge tag-data">DATA RESULT</span> Summit backscatter reaches <strong>+74.7 dB</strong> (+36.6 dB above baseline). The stripped missing pyramidion creates a flat summit platform that acts as an acute dihedral corner reflector.
+              </p>
+              <div class="figure-credit">Photo: Wikimedia Commons (Public Domain / CC BY-SA)</div>
+            </div>
+          </div>
+
+          <div class="figure-card">
+            <div class="figure-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Gizeh_Chephren_BW_1.jpg/800px-Gizeh_Chephren_BW_1.jpg" alt="Pyramid of Khafre Giza" class="figure-img" loading="lazy">
+            </div>
+            <div class="figure-body">
+              <div class="figure-title">
+                <span>Pyramid of Khafre (G2)</span>
+                <span class="status-pill status-detected">DETECTED (5/5)</span>
+              </div>
+              <p class="figure-desc">
+                <span class="tag-badge tag-data">DATA RESULT</span> Demonstrates the dielectric difference between smooth Tura casing stones (which scatter microwaves away) and the stepped core base.
+              </p>
+              <div class="figure-credit">Photo: Berthold Werner / Wikimedia Commons (CC BY-SA 3.0)</div>
+            </div>
+          </div>
+
+          <div class="figure-card">
+            <div class="figure-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Pyramid_of_Menkaure_front.jpg/800px-Pyramid_of_Menkaure_front.jpg" alt="Pyramid of Menkaure Giza" class="figure-img" loading="lazy">
+            </div>
+            <div class="figure-body">
+              <div class="figure-title">
+                <span>Pyramid of Menkaure (G3)</span>
+                <span class="status-pill status-detected">DETECTED (5/5)</span>
+              </div>
+              <p class="figure-desc">
+                <span class="tag-badge tag-data">DATA RESULT</span> High backscatter response along the base caused by the exposed, rough-faced Aswan red granite casing courses and surrounding mastaba fields.
+              </p>
+              <div class="figure-credit">Photo: Wikimedia Commons (CC BY-SA 2.5)</div>
+            </div>
+          </div>
+
+          <div class="figure-card">
+            <div class="figure-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Great_Sphinx_of_Giza_-_20080502a.jpg/800px-Great_Sphinx_of_Giza_-_20080502a.jpg" alt="Great Sphinx of Giza" class="figure-img" loading="lazy">
+            </div>
+            <div class="figure-body">
+              <div class="figure-title">
+                <span>Great Sphinx &amp; Central Field</span>
+                <span class="status-pill status-detected">DETECTED (4/5)</span>
+              </div>
+              <p class="figure-desc">
+                <span class="tag-badge tag-data">DATA RESULT</span> The vertical U-shaped quarry enclosure around the Sphinx acts as a dihedral corner reflector (+66.0 dB), with zero resonant cavity micro-vibration in the underlying rock.
+              </p>
+              <div class="figure-credit">Photo: Hajor / Wikimedia Commons (CC BY-SA 1.0)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub-section 6.2: Saqqara & Abusir -->
+        <h3 id="mon-saqqara">6.2 Saqqara &amp; Abusir Necropolises</h3>
+        <div class="monument-grid">
+          <div class="figure-card">
+            <div class="figure-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Pyramid_of_Djoser.jpg/800px-Pyramid_of_Djoser.jpg" alt="Step Pyramid of Djoser Saqqara" class="figure-img" loading="lazy">
+            </div>
+            <div class="figure-body">
+              <div class="figure-title">
+                <span>Step Pyramid of Djoser (Saqqara)</span>
+                <span class="status-pill status-detected">DETECTED (5/5)</span>
+              </div>
+              <p class="figure-desc">
+                <span class="tag-badge tag-data">DATA RESULT</span> Six monumental limestone mastaba tiers produce multi-path corner reflection steps with exceptional multi-epoch phase stability (<span class="mono">&gamma; = 0.68</span>).
+              </p>
+              <div class="figure-credit">Photo: Charles J. Sharp / Wikimedia Commons (CC BY-SA 4.0)</div>
+            </div>
+          </div>
+
+          <div class="figure-card">
+            <div class="figure-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Abusir_pyramids.jpg/800px-Abusir_pyramids.jpg" alt="Abusir Pyramids" class="figure-img" loading="lazy">
+            </div>
+            <div class="figure-body">
+              <div class="figure-title">
+                <span>Pyramids of Abusir (5th Dynasty)</span>
+                <span class="status-pill status-detected">DETECTED (4/5)</span>
+              </div>
+              <p class="figure-desc">
+                <span class="tag-badge tag-data">DATA RESULT</span> Sahure, Neferirkare, and Nyuserre stand out clearly against low-scattering desert sand sheets, though their stripped limestone cores exhibit lower backscatter than Giza.
+              </p>
+              <div class="figure-credit">Photo: Vyacheslav Argenberg / Wikimedia Commons (CC BY 4.0)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub-section 6.3: Dahshur & Meidum -->
+        <h3 id="mon-dahshur">6.3 Dahshur &amp; Meidum Monuments</h3>
+        <div class="monument-grid">
+          <div class="figure-card">
+            <div class="figure-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Snefru%27s_Bent_Pyramid_in_Dahshur.jpg/800px-Snefru%27s_Bent_Pyramid_in_Dahshur.jpg" alt="Bent Pyramid of Sneferu Dahshur" class="figure-img" loading="lazy">
+            </div>
+            <div class="figure-body">
+              <div class="figure-title">
+                <span>Bent Pyramid of Sneferu (Dahshur)</span>
+                <span class="status-pill status-detected">DETECTED (5/5)</span>
+              </div>
+              <p class="figure-desc">
+                <span class="tag-badge tag-data">DATA RESULT</span> The 54&deg; to 43&deg; angle inflection point and preserved polished casing produce a distinct radar backscatter signature and high coherence (<span class="mono">&gamma; = 0.52</span>).
+              </p>
+              <div class="figure-credit">Photo: Ivrienen / Wikimedia Commons (CC BY 3.0)</div>
+            </div>
+          </div>
+
+          <div class="figure-card">
+            <div class="figure-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Meidum_Pyramid_Egypt.jpg/800px-Meidum_Pyramid_Egypt.jpg" alt="Pyramid of Meidum" class="figure-img" loading="lazy">
+            </div>
+            <div class="figure-body">
+              <div class="figure-title">
+                <span>Pyramid of Meidum (Sneferu / Huni)</span>
+                <span class="status-pill status-detected">DETECTED (5/5)</span>
+              </div>
+              <p class="figure-desc">
+                <span class="tag-badge tag-data">DATA RESULT</span> The exposed central 3-tier masonry tower (+50.8 dB) forms massive retro-reflection corners directly rising above its surrounding talus debris apron.
+              </p>
+              <div class="figure-credit">Photo: Wikimedia Commons (Public Domain)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub-section 6.4: Hawara & Abu Rawash -->
+        <h3 id="mon-hawara">6.4 Hawara Mudbrick &amp; Abu Rawash Promontory</h3>
+        <div class="monument-grid">
+          <div class="figure-card">
+            <div class="figure-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Hawara_Pyramid_Egypt.jpg/800px-Hawara_Pyramid_Egypt.jpg" alt="Hawara Pyramid of Amenemhat III" class="figure-img" loading="lazy">
+            </div>
+            <div class="figure-body">
+              <div class="figure-title">
+                <span>Pyramid of Hawara (Amenemhat III)</span>
+                <span class="status-pill status-partial">PARTIAL (2/5)</span>
+              </div>
+              <p class="figure-desc">
+                <span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Sun-dried mudbrick absorbs microwave energy, and agricultural moisture from the adjacent Bahr Wahbi canal suppressed coherence in 3 epochs until 6-epoch filtering stabilized the rock bench.
+              </p>
+              <div class="figure-credit">Photo: Roland Unger / Wikimedia Commons (CC BY-SA 3.0)</div>
+            </div>
+          </div>
+
+          <div class="figure-card">
+            <div class="figure-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Abu_Rawash_Pyramid.jpg/800px-Abu_Rawash_Pyramid.jpg" alt="Pyramid of Djedefre Abu Rawash" class="figure-img" loading="lazy">
+            </div>
+            <div class="figure-body">
+              <div class="figure-title">
+                <span>Pyramid of Djedefre (Abu Rawash)</span>
+                <span class="status-pill status-detected">DETECTED (3/5)</span>
+              </div>
+              <p class="figure-desc">
+                <span class="tag-badge tag-fact">FACT</span> Perched on a dramatic 150m limestone bluff. The quarried core reveals a deep rock-cut descending passage and boat pit detected in dual-pol radar amplitude.
+              </p>
+              <div class="figure-credit">Photo: Wikimedia Commons (CC BY-SA 3.0)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7.0: Special Case Study — Zawyet el-Aryan -->
+      <section id="sec-7">
+        <h2>7.0 Case Study: Zawyet el-Aryan &amp; The Restricted Military Zone</h2>
+        <p>
+          <span class="tag-badge tag-fact">FACT</span> Located between Giza and Abusir, the 4th Dynasty <strong>Unfinished Northern Pyramid of Zawyet el-Aryan (Nebka/Bikka)</strong> has been enclosed inside an active Egyptian military base since the 1960s, completely inaccessible to tourists and independent academic geophysics.
+        </p>
+
+        <!-- Historical Barsanti Excavation Photo -->
+        <div class="figure-full">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Barsanti_Zawyet_el-Aryan_02.jpg/800px-Barsanti_Zawyet_el-Aryan_02.jpg" alt="Alexandre Barsanti Excavation 1904 Zawyet el-Aryan Great Pit" loading="lazy">
+          <div style="font-size:13.5px; line-height:1.6; color:var(--ink-secondary);">
+            <strong>Figure 7.1: The Great T-Shaped Trench of Zawyet el-Aryan during Alexandre Barsanti's 1904 Excavation.</strong><br>
+            A 21-meter deep open trench cut directly into bedrock, revealing massive pink granite pavement blocks and an oval granite sarcophagus at its base.
+            <div class="figure-credit" style="margin-top:6px;">Photo: Alexandre Barsanti (Annales du Service des Antiquités de l'Égypte, Vol. 7, 1906) &bull; Public Domain</div>
+          </div>
+        </div>
+
+        <div class="academic-callout data-box">
+          <div class="callout-header">
+            <span class="tag-badge tag-data">DATA RESULT</span> Spaceborne Radar Detection of the T-Trench
+          </div>
+          <p>
+            Our multi-temporal satellite scan detected a massive specular backscatter spike at coordinates <span class="mono">29.9536&deg;N, 31.1498&deg;E</span> reaching <strong>+64.4 dB (+28.4 dB above regional baseline)</strong> with a megalithic cross-polarization ratio (<span class="mono">CPR = -27.6 dB</span>). 
+            This matches the flat granite pavement blocks and vertical rock cuts documented by Barsanti, proving spaceborne radar can map monumental features inside restricted military zones without ground access.
+          </p>
+        </div>
+
+        <div class="academic-callout hypothesis-box">
+          <div class="callout-header">
+            <span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Discovery #01: Unexcavated Crypt on Western Bench
+          </div>
+          <p>
+            On the virgin desert plateau 3.5 km southwest of the military trench (<span class="mono">29.9203&deg;N, 31.1628&deg;E</span>), the pipeline identified a pristine acoustic micro-motion resonance: 
+            dominant frequency <span class="mono">f&sub0; = 3.60 Hz</span> with exceptionally low damping (<span class="mono">&zeta; = 0.27</span>) and high coherence (<span class="mono">&gamma; = 0.75</span>), inverting to an estimated chamber depth of <strong>~19.4 meters</strong>. We hypothesize this represents an undisturbed rock-cut tomb shaft or natural cavern.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 8.0: Structural Typology Matrix -->
+      <section id="sec-8">
+        <h2>8.0 Pyramid Structural Typology vs Radar Response</h2>
+        <p>
+          Comparative analysis demonstrates that radar microwave scattering is strongly determined by monumental architectural typology:
+        </p>
+
+        <div class="table-wrapper">
+          <table class="paper-table">
+            <thead>
+              <tr>
+                <th>Structural Typology</th>
+                <th>Exemplar Monument</th>
+                <th>Dominant Scattering Mechanism</th>
+                <th>Observed Radar Characteristics</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Smooth Casing Stones</strong></td>
+                <td>Khafre Summit Cap</td>
+                <td>Forward Specular Scattering</td>
+                <td>Low direct backscatter except at perpendicular view angles; very low cross-polarization (CPR &lt; -25 dB).</td>
+              </tr>
+              <tr>
+                <td><strong>Stepped Limestone Core</strong></td>
+                <td>Khufu, Djoser, Meidum</td>
+                <td>Dihedral Corner Reflection</td>
+                <td>Intense retro-reflection spikes (+74.7 dB on Khufu apex) where step tiers meet horizontal terraces.</td>
+              </tr>
+              <tr>
+                <td><strong>Weathered Mudbrick</strong></td>
+                <td>Hawara, Dahshur Black Pyramid</td>
+                <td>Volumetric Absorption &amp; Attenuation</td>
+                <td>Diffuse return; easily dampened by moisture; blends into surrounding wadi alluvial silt.</td>
+              </tr>
+              <tr>
+                <td><strong>Rock-Cut Open Trenches</strong></td>
+                <td>Zawyet el-Aryan, Abu Rawash</td>
+                <td>Radar Shadow &amp; Floor Retro-Reflection</td>
+                <td>Sharp contrast between vertical wall shadows and specular floor returns (+64.4 dB).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 9.0: Blind Discoveries -->
+      <section id="sec-9">
+        <h2>9.0 Unsupervised Subsurface Discoveries (Top 30 Anomalies)</h2>
+        <p>
+          The pipeline performed an unsupervised statistical scan across all 10 sectors outside known monumental coordinates. 30 high-confidence candidate features were extracted and categorized into three distinct physical classes:
+        </p>
+        <ul>
+          <li><strong>Resonant Cavities (Rank 1–10):</strong> Stable infrasonic micro-motion frequencies (<span class="mono">f&sub0; = 3.6 to 4.3 Hz</span>), inverting to depths of <strong>16.3 to 19.4 meters</strong>.</li>
+          <li><strong>Megalithic / Bedrock Spikes (Rank 11–20):</strong> Massive isolated specular returns (+14.6 to +28.4 dB above baseline) with <span class="mono">CPR &lt; -20 dB</span>, indicative of shallow buried masonry or rock knolls at &lt;1m depth.</li>
+          <li><strong>Buried Nile Silt Channels (Rank 21–30):</strong> Strong volumetric depolarization (<span class="mono">CPR &gt; +4.0 dB</span>) and negative backscatter dips (-12 to -20 dB), tracking extinct ancient Nile canals and wadi drainage beds under sand.</li>
+        </ul>
+
+        <div style="margin: 28px 0; text-align: center;">
+          <a href="anomalies.html" class="sidebar-btn" style="display:inline-flex; width:auto; padding:12px 28px; font-size:14px;">
+            Open Searchable 30 Anomaly Catalog with Coordinates &amp; Inversion Profiles &rarr;
+          </a>
+        </div>
+      </section>
+
+      <!-- Section 10.0: Interactive Radar Map Portal -->
+      <section id="sec-10">
+        <h2>10.0 Interactive Multi-Region Radar Portal</h2>
+        <p>
+          The complete multi-region dataset has been integrated into a full-screen geospatial Leaflet viewer with dual-mode continuous dB heatmaps, 4-class discrete classification rasters, and anomaly markers across all 10 sectors.
+        </p>
+
+        <div class="map-frame-box">
+          <iframe src="interactive_radar_map.html" title="Interactive Radar Map Preview"></iframe>
+        </div>
+        <p style="text-align:right; font-size:13px;">
+          <a href="interactive_radar_map.html" target="_blank" style="font-weight:600;">Launch Fullscreen Radar Explorer in New Tab &nearr;</a>
+        </p>
+      </section>
+
+      <!-- Section 11.0: Hypotheses on Limitations & Non-Detections -->
+      <section id="sec-11">
+        <h2>11.0 Scientific Hypotheses for Non-Detections &amp; Physical Limitations</h2>
+        <p>
+          A rigorous scientific paper must explain why certain known archaeological features were <em>not</em> detected by the satellite pipeline:
+        </p>
+
+        <div class="academic-callout hypothesis-box">
+          <div class="callout-header">
+            <span class="tag-badge tag-hypothesis">HYPOTHESIS 1</span> Why the Osiris Shaft (30m Deep, Giza) Was Undetected
+          </div>
+          <p>
+            The Osiris Shaft consists of three vertical rock-cut levels reaching ~30m depth. It was not detected because: (a) The shaft opening (~2&times;2m) occupies less than 4% of a Sentinel-1 resolution cell (~100 m&sup2;); and (b) A narrow vertical shaft carved into solid limestone does not create a flexible surface roof membrane required for acoustic "drum-skin" micro-vibrations. Narrow shafts are physically invisible to spaceborne C-band Doppler Tomography.
+          </p>
+        </div>
+
+        <div class="academic-callout hypothesis-box">
+          <div class="callout-header">
+            <span class="tag-badge tag-hypothesis">HYPOTHESIS 2</span> Why Mudbrick Pyramids Show Weak Radar Contrast
+          </div>
+          <p>
+            Middle Kingdom mudbrick pyramids (Hawara, Dahshur Black Pyramid) suffer from high microwave attenuation. Sun-dried Nile alluvium possesses higher moisture retention and porous clay structures that absorb microwave energy, resulting in low backscatter that blends into desert wadi washes.
+          </p>
+        </div>
+
+        <div class="academic-callout hypothesis-box">
+          <div class="callout-header">
+            <span class="tag-badge tag-hypothesis">HYPOTHESIS 3</span> Agricultural Decorrelation Along the Floodplain Edge
+          </div>
+          <p>
+            C-band radar (5.5 cm) scatters off crop canopies and moist cultivated soils. Temporal changes between 6-day satellite passes scramble the radar phase, creating extreme decorrelation (<span class="mono">&gamma; &lt; 0.10</span>). This prevents micro-motion phase analysis along the modern Nile floodplain interface.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 12.0: Roadmap & Pending Next Work -->
+      <section id="sec-12">
+        <h2>12.0 Pending Research Roadmap</h2>
+        <p>
+          To address the physical constraints identified during this C-band campaign, future work will focus on:
+        </p>
+        <ol style="padding-left:24px; line-height:1.7;">
+          <li style="margin-bottom:12px;">
+            <strong>Transition to L-Band SAR (JAXA ALOS-2 &amp; NASA-ISRO NISAR):</strong> With a longer wavelength (&lambda; &approx; 24 cm), L-band radar penetrates dry desert sand sheets up to 2–5 meters and passes through agricultural crop canopies to reach ground level.
+          </li>
+          <li style="margin-bottom:12px;">
+            <strong>Sub-Meter X-Band Tasking (TerraSAR-X / COSMO-SkyMed):</strong> 1-meter spotlight resolution will be deployed over Zawyet el-Aryan and Giza Western Cemetery to detect narrow shafts and mastaba masonry boundaries.
+          </li>
+          <li style="margin-bottom:12px;">
+            <strong>Ascending &amp; Descending Orbit Fusion:</strong> Merging east-looking and west-looking acquisitions to eliminate radar shadow on western pyramid slopes.
+          </li>
+          <li style="margin-bottom:12px;">
+            <strong>Ground Truth Fieldwork Collaboration:</strong> Cross-verifying the 30 blind discoveries with ground-penetrating radar (GPR) and electrical resistivity tomography (ERT) alongside academic institutions.
+          </li>
+        </ol>
+      </section>
+
+      <!-- Section 13.0: References -->
+      <section id="sec-13" class="paper-references">
+        <h2>13.0 References &amp; Data Sources</h2>
+        <div class="ref-item">
+          [1] <strong>Biondi, F.</strong> (2022). "Synthetic Aperture Radar Doppler Tomography for Subsurface Cavity Detection." <em>IEEE Geoscience and Remote Sensing Letters</em>, 19, 1–5.
+        </div>
+        <div class="ref-item">
+          [2] <strong>Barsanti, A.</strong> (1906). "Fouilles autour de la pyramide d'Ounash et découverte de la grande cuve de Zaouiét el-Aryân." <em>Annales du Service des Antiquités de l'Égypte</em>, Vol. 7, pp. 260–286.
+        </div>
+        <div class="ref-item">
+          [3] <strong>European Space Agency (ESA)</strong>. Copernicus Sentinel-1 Single-Look Complex (SLC) SAR Data. Relative Orbit 58, Ascending, August–September 2026.
+        </div>
+        <div class="ref-item">
+          [4] <strong>Bamler, R., &amp; Hartl, P.</strong> (1998). "Synthetic Aperture Radar Interferometry." <em>Inverse Problems</em>, 14(4), R1–R54.
+        </div>
+        <div class="ref-item">
+          [5] <strong>Bastier, R.</strong> (2026). "SAR Doppler Tomography Open-Source Pipeline." GitHub Repository: <a href="https://github.com/remibastier/sar" target="_blank">github.com/remibastier/sar</a>.
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/anomalies-data.js"></script>
+</body>
+</html>
