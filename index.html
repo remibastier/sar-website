@@ -607,30 +607,52 @@
             </tbody>
           </table>
         </div>
-        <!-- Detection Breakdown Chart -->
-                <div class="chart-box-container">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-            <div style="flex:1; min-width:240px;">
+        <!-- Detection Breakdown Chart with Status Donut / Pie Chart -->
+        <div class="chart-box-container" style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:20px 24px; margin-top:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
+            <div style="flex:1; min-width:260px;">
               <h4 style="margin:0 0 8px 0; font-size:15px; color:var(--ink-primary);">Pyramid Structural Detection Distribution (N = 21)</h4>
               <p style="font-size:13px; color:var(--ink-secondary); margin-bottom:14px; line-height:1.5;">
-                Categorical breakdown of radar detection outcomes across all 21 surveyed Old and Middle Kingdom pyramids:
+                Categorical breakdown of spaceborne radar detection outcomes across all 21 surveyed Old and Middle Kingdom royal pyramids:
               </p>
-              <div style="display:flex; flex-direction:column; gap:8px; font-size:12.5px;">
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="display:inline-block; width:12px; height:12px; background:#10b981; border-radius:2px;"></span>
-                  <strong>Detected (5/5 or 4/5 Precision):</strong> 13 / 21 (61.9%)
+              <div style="display:flex; flex-direction:column; gap:9px; font-size:12.5px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="display:inline-block; width:12px; height:12px; background:#10b981; border-radius:3px;"></span>
+                  <span><strong>Detected (5/5 or 4/5 Precision):</strong> 13 / 21 (<strong style="color:#10b981;">61.9%</strong>)</span>
                 </div>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="display:inline-block; width:12px; height:12px; background:#f59e0b; border-radius:2px;"></span>
-                  <strong>Partial / Casing Scatter Shift:</strong> 5 / 21 (23.8%)
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="display:inline-block; width:12px; height:12px; background:#f59e0b; border-radius:3px;"></span>
+                  <span><strong>Partial / Casing Scatter Shift:</strong> 5 / 21 (<strong style="color:#f59e0b;">23.8%</strong>)</span>
                 </div>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="display:inline-block; width:12px; height:12px; background:#ef4444; border-radius:2px;"></span>
-                  <strong>Not Detected (Mudbrick Attenuation):</strong> 3 / 21 (14.3%)
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="display:inline-block; width:12px; height:12px; background:#ef4444; border-radius:3px;"></span>
+                  <span><strong>Not Detected (Mudbrick Attenuation):</strong> 3 / 21 (<strong style="color:#ef4444;">14.3%</strong>)</span>
                 </div>
               </div>
             </div>
-            
+
+            <!-- Vector Pie/Donut Chart -->
+            <div style="flex:0 0 200px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+              <svg width="150" height="150" viewBox="0 0 160 160" style="transform: rotate(-90deg); filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));">
+                <!-- Background track -->
+                <circle cx="80" cy="80" r="54" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="24" />
+                <!-- 1. Detected (13/21 = 61.9%): Circumference = 2 * PI * 54 = 339.29. Arc = 0.61905 * 339.29 = 210.04 -->
+                <circle cx="80" cy="80" r="54" fill="none" stroke="#10b981" stroke-width="24"
+                        stroke-dasharray="210.04 339.29" stroke-dashoffset="0" />
+                <!-- 2. Partial (5/21 = 23.8%): Arc = 0.23810 * 339.29 = 80.78 -->
+                <circle cx="80" cy="80" r="54" fill="none" stroke="#f59e0b" stroke-width="24"
+                        stroke-dasharray="80.78 339.29" stroke-dashoffset="-210.04" />
+                <!-- 3. Not Detected (3/21 = 14.3%): Arc = 0.14285 * 339.29 = 48.47 -->
+                <circle cx="80" cy="80" r="54" fill="none" stroke="#ef4444" stroke-width="24"
+                        stroke-dasharray="48.47 339.29" stroke-dashoffset="-290.82" />
+              </svg>
+              <!-- Center stats overlay -->
+              <div style="margin-top:-96px; margin-bottom:40px; text-align:center; transform: rotate(0deg); pointer-events:none;">
+                <div style="font-size:20px; font-weight:800; color:var(--ink-primary); line-height:1;">13 / 21</div>
+                <div style="font-size:9.5px; font-weight:700; color:#10b981; letter-spacing:0.5px; text-transform:uppercase; margin-top:3px;">61.9% Confirmed</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1064,9 +1086,12 @@
         <div class="figure-full" style="margin: 24px 0;">
           <img src="assets/img/widan_road.jpg" alt="Scientific Satellite Remote Sensing Map of Widan el-Faras Basalt Quarry Paved Road" loading="lazy" style="width:100%; border-radius:4px; max-height:480px; object-fit:cover;">
           <div style="font-size:13px; line-height:1.55; color:var(--ink-secondary); margin-top:8px;">
-            <strong>Figure 9.1: Remote Sensing &amp; Landscape Archaeology Plate: Widan el-Faras Paved Basalt Transport Road.</strong><br>
-            Cartographic satellite reconstruction of the northern Gebel Qatrani escarpment. Synthetic aperture radar backscatter overlay highlights the 12 km paved stone roadway constructed in the 4th Dynasty to transport dark basalt blocks from the northern quarries to Lake Moeris quays, alongside ancient fossil strandlines (+12m, +22m, +42m ASL).
-            <div class="figure-credit">SAR Doppler Tomography Geospatial Plate &bull; Copernicus DEM GLO-30 &bull; Sept 2026</div>
+            <strong>Figure 9.1: Multi-Temporal SAR Remote Sensing Plate: Widan el-Faras Ancient Basalt Transport Corridor (Tile -3,-5).</strong><br>
+            Empirical Sentinel-1 C-band Doppler tomography inversion data across the northern Gebel Qatrani escarpment. 
+            <strong>Panel A:</strong> Multi-temporal calibrated radar backscatter (&sigma;&sub0; dB) resolving the ancient basalt extraction terraces. 
+            <strong>Panel B:</strong> Multi-epoch InSAR phase coherence (&gamma;) highlighting the compacted, erosion-resistant limestone and basalt roadbed alignment. 
+            <strong>Panel C:</strong> Dual-polarization Cross-Polarization Ratio (CPR = VH / VV dB) distinguishing surface specular bedrock blocks from fine desert sand and paleo-lake margin alluvium.
+            <div class="figure-credit">Multi-Temporal Sentinel-1 C-Band Inversion Data Plate (Tile -3,-5) &bull; Spatial Resolution: 10m &bull; Sept 2026</div>
           </div>
         </div>
 
