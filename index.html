@@ -175,6 +175,16 @@
           <div class="callout-header">
             <span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Physical Cause of the Divergence
           </div>
+
+        <div class="academic-callout note-box" style="border-left: 4px solid var(--accent-navy); background: #f8fafc; padding: 16px 20px; margin: 20px 0; border-radius: 4px;">
+          <div class="callout-header" style="font-weight:700; color:var(--accent-navy); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+            <span class="tag-badge" style="background:var(--accent-navy); color:#fff;">METHODOLOGICAL NOTE</span>
+            Academic Perspective on the Biondi Benchmark
+          </div>
+          <p style="font-size:13.5px; line-height:1.6; color:var(--ink-secondary); margin:0;">
+            Our findings do not represent an absolute or hostile refutation of Dr. Filippo Biondi's broader theoretical framework. Differences in acquisition geometry, alternate satellite datasets (e.g. Italian COSMO-SkyMed X-band or ALOS-2 PALSAR L-band), or proprietary mathematical inversion transforms may have contributed to his original observations. Our conclusion is empirical and strictly bounded: under standardized multi-temporal Sentinel-1 C-band interferometry across a 30-day baseline (Relative Orbit 58, 6 epochs, 48 sub-aperture looks), the claimed deep void signatures do not replicate, collapsing by 96.3% into systemic speckle noise and atmospheric phase artifacts.
+          </p>
+        </div>
           <p>
             We hypothesize that earlier published detections were mathematical artifacts caused by radar speckle noise and local surface phase decorrelation. Without multi-temporal temporal cross-correlation across identical repeat orbits, normal microscopic surface roughness produces phase fluctuations that an unconstrained inversion algorithm erroneously interprets as deep resonant cavities.
           </p>
@@ -211,69 +221,69 @@
           <table class="paper-table">
             <thead>
               <tr>
-                <th>Epoch</th>
+                <th style="white-space:nowrap;">Epoch</th>
                 <th>Sentinel-1 SAFE Product Identifier</th>
                 <th>Satellite</th>
-                <th>Acquisition UTC</th>
-                <th>Orbit / Track</th>
+                <th style="white-space:nowrap;">Acquisition UTC</th>
+                <th style="white-space:nowrap;">Orbit / Track</th>
                 <th>Polarization</th>
                 <th>Size</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Epoch 1</strong></td>
-                <td class="mono" style="font-size:10px;">S1C_IW_SLC__1SDV_20260820T155545_20260820T155613_009081_0120FD_9EE3.SAFE</td>
-                <td><span class="tag-badge" style="background:#0284c7; color:#fff;">S1C</span></td>
-                <td>2026-08-20 15:55:47</td>
-                <td>Track 58 (Ascending)</td>
+                <td style="white-space:nowrap;"><strong>Epoch 1</strong></td>
+                <td><span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-primary); letter-spacing:-0.2px;">S1C_IW_SLC__1SDV_20260820T155545_20260820T155613_009081_0120FD_9EE3.SAFE</span></td>
+                <td><span class="status-pill status-detected" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd; font-weight:700;">S1C</span></td>
+                <td style="white-space:nowrap;">2026-08-20 15:55:47</td>
+                <td style="white-space:nowrap;">Track 58 (Ascending)</td>
                 <td>Dual (VV + VH)</td>
-                <td>8.23 GB</td>
+                <td><strong>8.23 GB</strong></td>
               </tr>
               <tr>
-                <td><strong>Epoch 2</strong></td>
-                <td class="mono" style="font-size:10px;">S1D_IW_SLC__1SDV_20260826T155559_20260826T155626_004299_007E12_F210.SAFE</td>
-                <td><span class="tag-badge" style="background:#0d9488; color:#fff;">S1D</span></td>
-                <td>2026-08-26 15:56:00</td>
-                <td>Track 58 (Ascending)</td>
+                <td style="white-space:nowrap;"><strong>Epoch 2</strong></td>
+                <td><span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-primary); letter-spacing:-0.2px;">S1D_IW_SLC__1SDV_20260826T155559_20260826T155626_004299_007E12_F210.SAFE</span></td>
+                <td><span class="status-pill status-detected" style="background:#ccfbf1; color:#0f766e; border-color:#99f6e4; font-weight:700;">S1D</span></td>
+                <td style="white-space:nowrap;">2026-08-26 15:56:00</td>
+                <td style="white-space:nowrap;">Track 58 (Ascending)</td>
                 <td>Dual (VV + VH)</td>
-                <td>7.89 GB</td>
+                <td><strong>7.89 GB</strong></td>
               </tr>
               <tr>
-                <td><strong>Epoch 3</strong></td>
-                <td class="mono" style="font-size:10px;">S1C_IW_SLC__1SDV_20260901T155546_20260901T155614_009256_01268E_765E.SAFE</td>
-                <td><span class="tag-badge" style="background:#0284c7; color:#fff;">S1C</span></td>
-                <td>2026-09-01 15:55:47</td>
-                <td>Track 58 (Ascending)</td>
+                <td style="white-space:nowrap;"><strong>Epoch 3</strong></td>
+                <td><span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-primary); letter-spacing:-0.2px;">S1C_IW_SLC__1SDV_20260901T155546_20260901T155614_009256_01268E_765E.SAFE</span></td>
+                <td><span class="status-pill status-detected" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd; font-weight:700;">S1C</span></td>
+                <td style="white-space:nowrap;">2026-09-01 15:55:47</td>
+                <td style="white-space:nowrap;">Track 58 (Ascending)</td>
                 <td>Dual (VV + VH)</td>
-                <td>8.23 GB</td>
+                <td><strong>8.23 GB</strong></td>
               </tr>
               <tr>
-                <td><strong>Epoch 4</strong></td>
-                <td class="mono" style="font-size:10px;">S1D_IW_SLC__1SDV_20260907T155559_20260907T155626_004474_00840A_058B.SAFE</td>
-                <td><span class="tag-badge" style="background:#0d9488; color:#fff;">S1D</span></td>
-                <td>2026-09-07 15:56:01</td>
-                <td>Track 58 (Ascending)</td>
+                <td style="white-space:nowrap;"><strong>Epoch 4</strong></td>
+                <td><span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-primary); letter-spacing:-0.2px;">S1D_IW_SLC__1SDV_20260907T155559_20260907T155626_004474_00840A_058B.SAFE</span></td>
+                <td><span class="status-pill status-detected" style="background:#ccfbf1; color:#0f766e; border-color:#99f6e4; font-weight:700;">S1D</span></td>
+                <td style="white-space:nowrap;">2026-09-07 15:56:01</td>
+                <td style="white-space:nowrap;">Track 58 (Ascending)</td>
                 <td>Dual (VV + VH)</td>
-                <td>7.89 GB</td>
+                <td><strong>7.89 GB</strong></td>
               </tr>
               <tr>
-                <td><strong>Epoch 5</strong></td>
-                <td class="mono" style="font-size:10px;">S1C_IW_SLC__1SDV_20260913T155546_20260913T155614_009431_012C1F_C4D1.SAFE</td>
-                <td><span class="tag-badge" style="background:#0284c7; color:#fff;">S1C</span></td>
-                <td>2026-09-13 15:55:48</td>
-                <td>Track 58 (Ascending)</td>
+                <td style="white-space:nowrap;"><strong>Epoch 5</strong></td>
+                <td><span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-primary); letter-spacing:-0.2px;">S1C_IW_SLC__1SDV_20260913T155546_20260913T155614_009431_012C1F_C4D1.SAFE</span></td>
+                <td><span class="status-pill status-detected" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd; font-weight:700;">S1C</span></td>
+                <td style="white-space:nowrap;">2026-09-13 15:55:48</td>
+                <td style="white-space:nowrap;">Track 58 (Ascending)</td>
                 <td>Dual (VV + VH)</td>
-                <td>8.23 GB</td>
+                <td><strong>8.23 GB</strong></td>
               </tr>
               <tr>
-                <td><strong>Epoch 6</strong></td>
-                <td class="mono" style="font-size:10px;">S1D_IW_SLC__1SDV_20260919T155559_20260919T155626_004649_008A1B_5D42.SAFE</td>
-                <td><span class="tag-badge" style="background:#0d9488; color:#fff;">S1D</span></td>
-                <td>2026-09-19 15:56:01</td>
-                <td>Track 58 (Ascending)</td>
+                <td style="white-space:nowrap;"><strong>Epoch 6</strong></td>
+                <td><span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-primary); letter-spacing:-0.2px;">S1D_IW_SLC__1SDV_20260919T155559_20260919T155626_004649_008A1B_5D42.SAFE</span></td>
+                <td><span class="status-pill status-detected" style="background:#ccfbf1; color:#0f766e; border-color:#99f6e4; font-weight:700;">S1D</span></td>
+                <td style="white-space:nowrap;">2026-09-19 15:56:01</td>
+                <td style="white-space:nowrap;">Track 58 (Ascending)</td>
                 <td>Dual (VV + VH)</td>
-                <td>7.89 GB</td>
+                <td><strong>7.89 GB</strong></td>
               </tr>
             </tbody>
           </table>
@@ -284,7 +294,18 @@
       </section>
 
       <!-- Section 3.2: Technical Architecture & Execution Profile -->
-      <section id="sec-3-2">
+      <section         <!-- Methodological Exclusion Scope -->
+        <div class="academic-callout note-box" style="border-left: 4px solid var(--accent-navy); background: #f8fafc; padding: 16px 20px; margin: 24px 0; border-radius: 4px;">
+          <div class="callout-header" style="font-weight:700; color:var(--accent-navy); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+            <span class="tag-badge" style="background:var(--accent-navy); color:#fff;">METHODOLOGICAL SCOPE</span>
+            Archaeological Domain Focus: Exclusion of Modern Urban &amp; Cultivation Zones
+          </div>
+          <p style="font-size:13.5px; line-height:1.6; color:var(--ink-secondary); margin:0;">
+            To ensure rigorous archaeological fidelity and eliminate anthropogenic clutter, <strong>this research whitepaper focuses strictly on monumental and subsurface bedrock features situated on desert plateaus, arid limestone pediments, and hyper-arid margins</strong>. Candidate anomaly markers detected within modern urban sprawl (e.g. Greater Cairo metropolitan fringes, Helwan, modern Giza settlements) and active Nile alluvial cultivation zones were systematically <strong>excluded from this formal written report</strong> due to overwhelming anthropogenic microwave interference (multi-path building corner reflections, cellular transmission towers, power grids, and variable irrigation canal soil moisture). However, all these detections—across both desert and urban/cultivation zones—are preserved without suppression and remain fully accessible for independent exploration in our interactive <a href="result_map.html" target="_blank" style="color:var(--accent-teal); font-weight:700;">83-Cell Radar Map Portal &nearr;</a> and <a href="anomalies.html" target="_blank" style="color:var(--accent-teal); font-weight:700;">Anomaly Catalog &nearr;</a>.
+          </p>
+        </div>
+
+        id="sec-3-2">
         <h2>3.2 Technical Implementation &amp; Hardware Execution Profile</h2>
         <p>
           All data processing routines were engineered as a high-throughput, standalone Python 3.11 scientific pipeline without heavy GIS software dependencies. The pipeline directly parses raw Sentinel-1 SLC XML manifests and binary TIFF sub-swaths, performing sub-aperture Doppler filtering, Range-Doppler terrain correction via Copernicus GLO-30 DEM, and continuous GRI heatmap rendering:
@@ -343,16 +364,7 @@
             <span class="tag-badge tag-data">DATA RESULT</span> Direct Finding: 6 Epochs Fortified the Science
           </div>
 
-        <div class="academic-callout note-box" style="border-left: 4px solid var(--accent-navy); background: #f8fafc; padding: 16px 20px; margin: 20px 0; border-radius: 4px;">
-          <div class="callout-header" style="font-weight:700; color:var(--accent-navy); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
-            <span class="tag-badge" style="background:var(--accent-navy); color:#fff;">METHODOLOGICAL NOTE</span>
-            Academic Perspective on the Biondi Benchmark
-          </div>
-          <p style="font-size:13.5px; line-height:1.6; color:var(--ink-secondary); margin:0;">
-            Our findings do not represent an absolute or hostile refutation of Dr. Filippo Biondi's broader theoretical framework. Differences in acquisition geometry, alternate satellite datasets (e.g. Italian COSMO-SkyMed X-band or ALOS-2 PALSAR L-band), or proprietary mathematical inversion transforms may have contributed to his original observations. Our conclusion is empirical and strictly bounded: under standardized multi-temporal Sentinel-1 C-band interferometry across a 30-day baseline (Relative Orbit 58, 6 epochs, 48 sub-aperture looks), the claimed deep void signatures do not replicate, collapsing by 96.3% into systemic speckle noise and atmospheric phase artifacts.
-          </p>
-        </div>
-          <p>
+        <p>
             <strong>Extending the stack from 3 to 6 discrete epochs did NOT break our results—it decisively fortified them.</strong> 
             In the 3-epoch baseline (24 sub-apertures), transient canal moisture and shifting topsoil had generated <strong>1,690 spurious "void" pixels</strong> across the 10 regional scans. 
             When expanded to 6 epochs (48 independent looks across a 30-day baseline, August 20 – September 19, 2026), <strong>1,628 of those 1,690 false pixels vanished completely (-96.3% noise elimination)</strong>.
@@ -668,21 +680,23 @@
             Categorical breakdown of spaceborne radar detection outcomes across all 21 surveyed royal pyramids, stratified by physical building typology and corresponding microwave scattering physics:
           </p>
 
-          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px; align-items:stretch;">
             
             <!-- Chart 1: Solid Megalithic Stone Pyramids -->
-            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:20px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
-              <div>
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
-                  <div>
-                    <h5 style="margin:0 0 4px 0; font-size:14px; font-weight:700; color:var(--ink-primary);">1. Solid Megalithic Stone</h5>
-                    <span style="font-size:11px; color:var(--ink-secondary);">Smooth Tura Casing &amp; Massive Stone Cores (N = 8)</span>
-                  </div>
-                  <span class="status-pill status-detected" style="font-size:10.5px;">100% DETECTED</span>
+            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:20px; display:flex; flex-direction:column; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+              <div style="min-height:50px; margin-bottom:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                  <h5 style="margin:0; font-size:14px; font-weight:700; color:var(--ink-primary); line-height:1.3;">1. Solid Megalithic Stone</h5>
+                  <span class="status-pill status-detected" style="font-size:10px; padding:2px 7px; white-space:nowrap; flex-shrink:0;">100% DETECTED</span>
                 </div>
+                <div style="font-size:11px; color:var(--ink-secondary); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                  Smooth Casing &amp; Core Blocks &bull; N = 8
+                </div>
+              </div>
 
-                <!-- Donut SVG -->
-                <div style="position:relative; width:130px; height:130px; margin:0 auto 16px auto; display:flex; align-items:center; justify-content:center;">
+              <!-- Donut SVG -->
+              <div style="height:130px; display:flex; align-items:center; justify-content:center; margin:8px 0 16px 0;">
+                <div style="position:relative; width:130px; height:130px; display:flex; align-items:center; justify-content:center;">
                   <svg width="130" height="130" viewBox="0 0 140 140" style="position:absolute; top:0; left:0; transform:rotate(-90deg); filter:drop-shadow(0 2px 6px rgba(0,0,0,0.1));">
                     <circle cx="70" cy="70" r="44" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="18" />
                     <!-- 100% Detected (8/8): Arc = 276.46 -->
@@ -694,43 +708,47 @@
                     <div style="font-size:10px; font-weight:700; color:var(--ink-secondary); text-transform:uppercase; margin-top:2px;">Detected</div>
                   </div>
                 </div>
+              </div>
 
-                <!-- Legend & Counts -->
-                <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; margin-bottom:14px;">
-                  <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#10b981; border-radius:2px;"></span> Detected (5/5 or 4/5):</span>
-                    <strong style="color:#10b981;">8 / 8 (100.0%)</strong>
-                  </div>
-                  <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#f59e0b; border-radius:2px;"></span> Partial / Shift:</span>
-                    <span style="color:var(--ink-secondary);">0 / 8 (0.0%)</span>
-                  </div>
-                  <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#ef4444; border-radius:2px;"></span> Not Detected:</span>
-                    <span style="color:var(--ink-secondary);">0 / 8 (0.0%)</span>
-                  </div>
+              <!-- Legend & Counts -->
+              <div style="min-height:68px; display:flex; flex-direction:column; justify-content:center; gap:6px; font-size:12px; margin-bottom:14px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#10b981; border-radius:2px; flex-shrink:0;"></span> Detected (5/5 or 4/5):</span>
+                  <strong style="color:#10b981;">8 / 8 (100.0%)</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#f59e0b; border-radius:2px; flex-shrink:0;"></span> Partial / Shift:</span>
+                  <span style="color:var(--ink-secondary);">0 / 8 (0.0%)</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#ef4444; border-radius:2px; flex-shrink:0;"></span> Not Detected:</span>
+                  <span style="color:var(--ink-secondary);">0 / 8 (0.0%)</span>
                 </div>
               </div>
 
               <!-- Radar Physics Caption -->
-              <p style="font-size:11.5px; line-height:1.5; color:var(--ink-secondary); margin:0; padding-top:10px; border-top:1px dashed var(--border-subtle);">
-                <strong>Scattering Physics:</strong> Khufu, Khafre, Menkaure, Djedefre, Nebka, Red, Bent, Senusret I. Massive limestone casing facets and preserved dihedral corners create acute retro-reflections (+62 to +75 dB), maintaining multi-temporal phase coherence (&gamma;&ge;0.65&ndash;0.76).
-              </p>
+              <div style="margin-top:auto; min-height:82px; padding-top:10px; border-top:1px dashed var(--border-subtle);">
+                <p style="font-size:11.5px; line-height:1.5; color:var(--ink-secondary); margin:0;">
+                  <strong>Scattering Physics:</strong> Khufu, Khafre, Menkaure, Djedefre, Nebka, Red, Bent, Senusret I. Massive limestone casing facets and preserved dihedral corners create acute retro-reflections (+62 to +75 dB), maintaining multi-temporal phase coherence (&gamma;&ge;0.65&ndash;0.76).
+                </p>
+              </div>
             </div>
 
             <!-- Chart 2: Stepped Accretion Cores -->
-            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:20px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
-              <div>
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
-                  <div>
-                    <h5 style="margin:0 0 4px 0; font-size:14px; font-weight:700; color:var(--ink-primary);">2. Stepped Accretion Cores</h5>
-                    <span style="font-size:11px; color:var(--ink-secondary);">Stepped Mastaba Tiers &amp; Rubble Infill (N = 9)</span>
-                  </div>
-                  <span class="status-pill status-detected" style="font-size:10.5px; background:rgba(14,165,233,0.12); color:#0284c7; border:1px solid rgba(14,165,233,0.25);">88.9% POSITIVE</span>
+            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:20px; display:flex; flex-direction:column; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+              <div style="min-height:50px; margin-bottom:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                  <h5 style="margin:0; font-size:14px; font-weight:700; color:var(--ink-primary); line-height:1.3;">2. Stepped Accretion Cores</h5>
+                  <span class="status-pill status-detected" style="font-size:10px; padding:2px 7px; background:rgba(14,165,233,0.12); color:#0284c7; border:1px solid rgba(14,165,233,0.25); white-space:nowrap; flex-shrink:0;">88.9% POSITIVE</span>
                 </div>
+                <div style="font-size:11px; color:var(--ink-secondary); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                  Stepped Tiers &amp; Rubble Infill &bull; N = 9
+                </div>
+              </div>
 
-                <!-- Donut SVG -->
-                <div style="position:relative; width:130px; height:130px; margin:0 auto 16px auto; display:flex; align-items:center; justify-content:center;">
+              <!-- Donut SVG -->
+              <div style="height:130px; display:flex; align-items:center; justify-content:center; margin:8px 0 16px 0;">
+                <div style="position:relative; width:130px; height:130px; display:flex; align-items:center; justify-content:center;">
                   <svg width="130" height="130" viewBox="0 0 140 140" style="position:absolute; top:0; left:0; transform:rotate(-90deg); filter:drop-shadow(0 2px 6px rgba(0,0,0,0.1));">
                     <circle cx="70" cy="70" r="44" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="18" />
                     <!-- 1. Detected (5/9 = 55.56%): Arc = 153.59 -->
@@ -748,43 +766,47 @@
                     <div style="font-size:10px; font-weight:700; color:var(--accent-teal); text-transform:uppercase; margin-top:2px;">Footprint</div>
                   </div>
                 </div>
+              </div>
 
-                <!-- Legend & Counts -->
-                <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; margin-bottom:14px;">
-                  <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#10b981; border-radius:2px;"></span> Detected (Djoser, Abusir, Meidum):</span>
-                    <strong style="color:#10b981;">5 / 9 (55.6%)</strong>
-                  </div>
-                  <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#f59e0b; border-radius:2px;"></span> Partial (Khaba, Userkaf, Unas):</span>
-                    <strong style="color:#f59e0b;">3 / 9 (33.3%)</strong>
-                  </div>
-                  <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#ef4444; border-radius:2px;"></span> Buried under Sand (Sekhemkhet):</span>
-                    <strong style="color:#ef4444;">1 / 9 (11.1%)</strong>
-                  </div>
+              <!-- Legend & Counts -->
+              <div style="min-height:68px; display:flex; flex-direction:column; justify-content:center; gap:6px; font-size:12px; margin-bottom:14px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#10b981; border-radius:2px; flex-shrink:0;"></span> Detected (Djoser, Abusir, Meidum):</span>
+                  <strong style="color:#10b981;">5 / 9 (55.6%)</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#f59e0b; border-radius:2px; flex-shrink:0;"></span> Partial (Khaba, Userkaf, Unas):</span>
+                  <strong style="color:#f59e0b;">3 / 9 (33.3%)</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#ef4444; border-radius:2px; flex-shrink:0;"></span> Buried under Sand (Sekhemkhet):</span>
+                  <strong style="color:#ef4444;">1 / 9 (11.1%)</strong>
                 </div>
               </div>
 
               <!-- Radar Physics Caption -->
-              <p style="font-size:11.5px; line-height:1.5; color:var(--ink-secondary); margin:0; padding-top:10px; border-top:1px dashed var(--border-subtle);">
-                <strong>Scattering Physics:</strong> Stepped mastaba tiers produce acute multi-level edge diffraction; stripped casing leaves loose rubble cores creating diffuse scatter rather than specular spikes. Only Sekhemkhet remained hidden due to deep sand overburden.
-              </p>
+              <div style="margin-top:auto; min-height:82px; padding-top:10px; border-top:1px dashed var(--border-subtle);">
+                <p style="font-size:11.5px; line-height:1.5; color:var(--ink-secondary); margin:0;">
+                  <strong>Scattering Physics:</strong> Stepped mastaba tiers produce acute multi-level edge diffraction; stripped casing leaves loose rubble cores creating diffuse scatter rather than specular spikes. Only Sekhemkhet remained hidden due to deep sand overburden.
+                </p>
+              </div>
             </div>
 
             <!-- Chart 3: Mudbrick Superstructures -->
-            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:20px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
-              <div>
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
-                  <div>
-                    <h5 style="margin:0 0 4px 0; font-size:14px; font-weight:700; color:var(--ink-primary);">3. Mudbrick Superstructures</h5>
-                    <span style="font-size:11px; color:var(--ink-secondary);">Middle Kingdom Nile Silt &amp; Alluvium (N = 4)</span>
-                  </div>
-                  <span class="status-pill status-partial" style="font-size:10.5px;">50.0% BOUNDARY</span>
+            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:20px; display:flex; flex-direction:column; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+              <div style="min-height:50px; margin-bottom:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                  <h5 style="margin:0; font-size:14px; font-weight:700; color:var(--ink-primary); line-height:1.3;">3. Mudbrick Superstructures</h5>
+                  <span class="status-pill status-partial" style="font-size:10px; padding:2px 7px; white-space:nowrap; flex-shrink:0;">50.0% BOUNDARY</span>
                 </div>
+                <div style="font-size:11px; color:var(--ink-secondary); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                  Middle Kingdom Alluvium &bull; N = 4
+                </div>
+              </div>
 
-                <!-- Donut SVG -->
-                <div style="position:relative; width:130px; height:130px; margin:0 auto 16px auto; display:flex; align-items:center; justify-content:center;">
+              <!-- Donut SVG -->
+              <div style="height:130px; display:flex; align-items:center; justify-content:center; margin:8px 0 16px 0;">
+                <div style="position:relative; width:130px; height:130px; display:flex; align-items:center; justify-content:center;">
                   <svg width="130" height="130" viewBox="0 0 140 140" style="position:absolute; top:0; left:0; transform:rotate(-90deg); filter:drop-shadow(0 2px 6px rgba(0,0,0,0.1));">
                     <circle cx="70" cy="70" r="44" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="18" />
                     <!-- 1. Partial / Perimeter (2/4 = 50.0%): Arc = 138.23 -->
@@ -799,28 +821,30 @@
                     <div style="font-size:10px; font-weight:700; color:var(--ink-secondary); text-transform:uppercase; margin-top:2px;">Perimeter</div>
                   </div>
                 </div>
+              </div>
 
-                <!-- Legend & Counts -->
-                <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; margin-bottom:14px;">
-                  <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#10b981; border-radius:2px;"></span> Detected Core:</span>
-                    <span style="color:var(--ink-secondary);">0 / 4 (0.0%)</span>
-                  </div>
-                  <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#f59e0b; border-radius:2px;"></span> Perimeter Foundation (Hawara, Black):</span>
-                    <strong style="color:#f59e0b;">2 / 4 (50.0%)</strong>
-                  </div>
-                  <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#ef4444; border-radius:2px;"></span> Mudbrick Attenuation (Lisht, Mazghuna):</span>
-                    <strong style="color:#ef4444;">2 / 4 (50.0%)</strong>
-                  </div>
+              <!-- Legend & Counts -->
+              <div style="min-height:68px; display:flex; flex-direction:column; justify-content:center; gap:6px; font-size:12px; margin-bottom:14px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#10b981; border-radius:2px; flex-shrink:0;"></span> Detected Core:</span>
+                  <span style="color:var(--ink-secondary);">0 / 4 (0.0%)</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#f59e0b; border-radius:2px; flex-shrink:0;"></span> Perimeter Trench (Hawara, Black):</span>
+                  <strong style="color:#f59e0b;">2 / 4 (50.0%)</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#ef4444; border-radius:2px; flex-shrink:0;"></span> Attenuation (Lisht, Mazghuna):</span>
+                  <strong style="color:#ef4444;">2 / 4 (50.0%)</strong>
                 </div>
               </div>
 
               <!-- Radar Physics Caption -->
-              <p style="font-size:11.5px; line-height:1.5; color:var(--ink-secondary); margin:0; padding-top:10px; border-top:1px dashed var(--border-subtle);">
-                <strong>Scattering Physics:</strong> Low-density unfired Nile mudbrick has high dielectric permittivity (&epsilon;<sub>r</sub>&approx;4&ndash;6), absorbing microwave energy. While mudbrick cores yield low backscatter, stone revetments and foundation trenches remain resolvable.
-              </p>
+              <div style="margin-top:auto; min-height:82px; padding-top:10px; border-top:1px dashed var(--border-subtle);">
+                <p style="font-size:11.5px; line-height:1.5; color:var(--ink-secondary); margin:0;">
+                  <strong>Scattering Physics:</strong> Low-density unfired Nile mudbrick has high dielectric permittivity (&epsilon;<sub>r</sub>&approx;4&ndash;6), absorbing microwave energy. While mudbrick cores yield low backscatter, stone revetments and foundation trenches remain resolvable.
+                </p>
+              </div>
             </div>
 
           </div>
