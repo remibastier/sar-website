@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -58,10 +58,11 @@
       flex-direction: column;
       justify-content: space-between;
       box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      transition: all 0.2s ease;
     }
     .academic-anomaly-card:hover {
       border-color: var(--border-strong);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
     }
     @media (max-width: 860px) {
       .catalog-grid { grid-template-columns: 1fr; }
@@ -73,9 +74,12 @@
   <div class="paper-wrapper">
     <!-- Sticky Left Navigation Pane -->
     <aside class="paper-sidebar" id="main-sidebar">
-      <button class="sidebar-collapse-btn" id="sidebar-toggle-btn" onclick="toggleSidebar()" title="Toggle sidebar">
-        &#9664; <span>Collapse</span>
-      </button>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <button class="sidebar-collapse-btn" id="sidebar-toggle-btn" onclick="toggleSidebar()" title="Collapse / Expand Navigation Pane">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Collapse</span>
+        </button>
+      </div>
 
       <div class="sidebar-title">Research Whitepaper</div>
       <div class="sidebar-meta">
@@ -87,9 +91,12 @@
         <ul class="sidebar-toc">
           <li><a href="index.html#sec-9" style="font-weight:700; color:var(--accent-navy);">&larr; Return to Paper (&sect;9.0)</a></li>
           <li><a href="index.html#sec-1">1.0 Executive Metrics</a></li>
+          <li><a href="index.html#sec-3">3.0 Radar Physics &amp; Georeferencing</a></li>
+          <li><a href="index.html#sec-4">4.0 Multi-Temporal Noise Collapse</a></li>
           <li><a href="index.html#sec-5">5.0 Pyramid Detection Matrix</a></li>
-          <li><a href="index.html#sec-7">7.0 Zawyet el-Aryan Spotlight</a></li>
+          <li><a href="index.html#sec-7">7.0 Case Studies &amp; Discoveries</a></li>
           <li><a href="index.html#sec-8">8.0 Structural Typology Matrix</a></li>
+          <li><a href="index.html#sec-9">9.0 40 Blind Discoveries</a></li>
           <li><a href="result_map.html" target="_blank" style="color:var(--accent-teal); font-weight:700;">10.0 Interactive Map &nearr;</a></li>
         </ul>
       </nav>
@@ -108,7 +115,7 @@
         <div class="paper-badge">Appendix B &bull; Geospatial Catalog</div>
         <h1 style="font-size: 30px;">Catalog of 40 Unsupervised Subsurface Discoveries</h1>
         <p style="font-size: 14.5px; color: var(--ink-secondary); margin-bottom: 0;">
-          Statistical anomalies detected by multi-temporal Sentinel-1 C-band Doppler Tomography outside known monumental boundaries.
+          Statistical anomalies detected by multi-temporal Sentinel-1 C-band Doppler Tomography outside known monumental boundaries across the 8,300 km&sup2; survey corridor.
         </p>
       </header>
 
@@ -139,7 +146,7 @@
         </select>
 
         <select id="sort-filter" class="catalog-select">
-          <option value="rank">Sort: Rank (1 to 30)</option>
+          <option value="rank">Sort: Rank (1 to 40)</option>
           <option value="coherence">Highest Coherence (&gamma;)</option>
           <option value="depth">Estimated Depth</option>
           <option value="amp">Backscatter Amplitude (dB)</option>
@@ -147,13 +154,14 @@
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; font-size:13px; color:var(--ink-muted);">
-        <div>Displaying <strong id="match-count" style="color:var(--accent-navy);">30</strong> anomaly candidates</div>
+        <div>Displaying <strong id="match-count" style="color:var(--accent-navy);">40</strong> anomaly candidates</div>
         <div class="mono" style="font-size:11.5px;">6-EPOCH ORBIT 58 &bull; &gamma; &ge; 0.15</div>
       </div>
 
       <!-- Anomaly Cards Grid -->
       <div id="full-catalog-container" class="catalog-grid"></div>
-    <!-- Academic Footer & Copyright -->
+
+      <!-- Academic Footer & Copyright -->
       <footer style="margin-top: 56px; padding: 24px 0; border-top: 1px solid var(--border-subtle); font-size: 12px; color: var(--ink-muted); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
         <div>
           &copy; 2026 Remi Bastier &bull; SAR Doppler Tomography Project. All Rights Reserved. Version 0.0.1.
@@ -170,12 +178,140 @@
     function toggleSidebar() {
       const sb = document.getElementById('main-sidebar');
       if (!sb) return;
-      sb.classList.toggle('collapsed');
+      const isCollapsed = sb.classList.toggle('collapsed');
       const btn = document.getElementById('sidebar-toggle-btn');
       if (btn) {
-        btn.innerHTML = sb.classList.contains('collapsed') ? '&#9654;' : '&#9664; <span>Collapse</span>';
+        if (isCollapsed) {
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+          btn.title = 'Expand Navigation Pane';
+        } else {
+          btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg> <span>Collapse</span>';
+          btn.title = 'Collapse Navigation Pane';
+        }
       }
     }
+
+    function getSectorKey(region) {
+      const r = (region || '').toLowerCase();
+      if (r.includes('rawash')) return 'aburawash';
+      if (r.includes('giza')) return 'giza';
+      if (r.includes('zawyet')) return 'zawyet';
+      if (r.includes('abusir')) return 'abusir';
+      if (r.includes('saqqara')) return 'saqqara';
+      if (r.includes('dahshur')) return 'dahshur';
+      if (r.includes('mazghuna')) return 'mazghuna';
+      if (r.includes('lisht')) return 'lisht';
+      if (r.includes('gerzeh')) return 'gerzeh';
+      if (r.includes('meidum')) return 'meidum';
+      if (r.includes('hawara')) return 'hawara';
+      if (r.includes('biahmu')) return 'biahmu';
+      if (r.includes('qarun') || r.includes('qatrani')) return 'qarun';
+      return 'all';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('full-catalog-container');
+      const countEl = document.getElementById('match-count');
+      const searchInput = document.getElementById('catalog-search');
+      const catSelect = document.getElementById('category-filter');
+      const regSelect = document.getElementById('region-filter');
+      const sortSelect = document.getElementById('sort-filter');
+
+      const allData = (window.ANOMALIES_DATA && window.ANOMALIES_DATA.discoveries) || [];
+
+      function render() {
+        const q = searchInput.value.toLowerCase().trim();
+        const cat = catSelect.value;
+        const reg = regSelect.value;
+        const sort = sortSelect.value;
+
+        let filtered = allData.filter(item => {
+          if (cat !== 'all' && item.category !== cat) return false;
+          if (reg !== 'all' && (!item.region || !item.region.toLowerCase().includes(reg.toLowerCase()))) return false;
+          if (q) {
+            const matchName = (item.name || '').toLowerCase().includes(q);
+            const matchRegion = (item.region || '').toLowerCase().includes(q);
+            const matchDesc = (item.location_desc || '').toLowerCase().includes(q);
+            const matchCoords = `${item.lat.toFixed(4)},${item.lon.toFixed(4)}`.includes(q);
+            if (!matchName && !matchRegion && !matchDesc && !matchCoords) return false;
+          }
+          return true;
+        });
+
+        // Sorting
+        filtered.sort((a, b) => {
+          if (sort === 'coherence') return (b.coherence || 0) - (a.coherence || 0);
+          if (sort === 'depth') return (b.depth_m || 0) - (a.depth_m || 0);
+          if (sort === 'amp') return (b.amp_db || 0) - (a.amp_db || 0);
+          return (a.rank || 0) - (b.rank || 0);
+        });
+
+        countEl.innerText = filtered.length;
+        container.innerHTML = '';
+
+        if (filtered.length === 0) {
+          container.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:48px 0; color:var(--ink-muted);">
+            No anomalies matched your search criteria.
+          </div>`;
+          return;
+        }
+
+        filtered.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'academic-anomaly-card';
+
+          let catBadge = '<span class="tag-badge tag-hypothesis">RESONANT CAVITY</span>';
+          if (item.category === 'spike') {
+            catBadge = '<span class="tag-badge tag-data">BEDROCK / MEGALITH</span>';
+          } else if (item.category === 'dip') {
+            catBadge = '<span class="tag-badge tag-fact">BURIED SILT / CANAL</span>';
+          }
+
+          const secKey = getSectorKey(item.region);
+          const deepLink = `result_map.html?id=${encodeURIComponent(item.id)}&sector=${encodeURIComponent(secKey)}&lat=${item.lat}&lon=${item.lon}`;
+
+          card.innerHTML = `
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+                ${catBadge}
+                <span class="mono" style="font-size:11px; color:var(--ink-muted);">RANK #${item.rank.toString().padStart(2, '0')}</span>
+              </div>
+              <h4 style="font-size:15px; margin-bottom:6px; color:var(--ink-primary);">${item.name}</h4>
+              <div style="font-size:12px; color:var(--accent-navy); margin-bottom:10px; font-weight:600;">
+                Region: ${item.region}
+              </div>
+              <p style="font-size:12.5px; color:var(--ink-secondary); line-height:1.55; margin-bottom:14px;">${item.location_desc}</p>
+            </div>
+
+            <div style="border-top:1px solid var(--border-subtle); padding-top:12px; font-size:12px;">
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:10px;" class="mono">
+                <div><strong>Est. Depth:</strong> ${item.depth_m ? item.depth_m + ' m' : 'Surface (<1m)'}</div>
+                <div><strong>Coherence:</strong> ${item.coherence ? item.coherence.toFixed(2) : 'N/A'}</div>
+                <div><strong>Frequency:</strong> ${item.freq_hz ? item.freq_hz + ' Hz' : 'Static (DC)'}</div>
+                <div><strong>Amplitude:</strong> ${item.amp_db ? item.amp_db.toFixed(1) + ' dB' : 'N/A'}</div>
+                <div><strong>Elevation:</strong> ${item.elevation_m !== undefined ? item.elevation_m + 'm' : '~30m'}</div>
+                <div><strong>Terrain:</strong> ${item.terrain === 'desert' ? '🏜️ Desert' : '🌾 Valley'}</div>
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+                <span class="mono" style="font-size:11.5px; color:var(--ink-muted);">${item.lat.toFixed(4)}&deg;N, ${item.lon.toFixed(4)}&deg;E</span>
+                <a href="${deepLink}" class="mono" style="font-size:12px; font-weight:700; color:var(--accent-teal);" target="_blank">
+                  Locate on Map &nearr;
+                </a>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      searchInput.addEventListener('input', render);
+      catSelect.addEventListener('change', render);
+      regSelect.addEventListener('change', render);
+      sortSelect.addEventListener('change', render);
+
+      render();
+    });
   </script>
 </body>
 </html>
