@@ -201,7 +201,7 @@
     .legend-scroll-body { padding: 10px 12px; max-height: 360px; overflow-y: auto; }
     .gradient-bar {
       height: 9px; border-radius: 5px; margin-bottom: 5px;
-      background: linear-gradient(to right, #050b14, #004d7a, #008b8b, #00e5ff, #00f0ff, #7cb342, #fbc02d, #ff9100, #ff6d00, #d81b60, #ff007f);
+      background: linear-gradient(to right, #050b14, #004d7a, #008b8b, #00e5ff, #22c55e, #a3e635, #eab308, #f59e0b, #f97316, #d946ef, #ff007f);
       border: 1px solid rgba(255,255,255,0.2);
     }
     .gradient-ticks { display: flex; justify-content: space-between; font-size: 8.5px; color: #94a3b8; font-weight: 600; margin-bottom: 9px; }
@@ -383,10 +383,10 @@
         <div class="gradient-bar"></div>
         <div class="gradient-ticks">
           <span>0 (Water)</span>
-          <span>25 (Silt)</span>
-          <span>50 (Bedrock)</span>
-          <span>75 (Megalith)</span>
-          <span>100 (Void)</span>
+          <span>30 (Silt)</span>
+          <span>64 (Bedrock)</span>
+          <span>78 (Megalith)</span>
+          <span>100 (Cavity)</span>
         </div>
 
         <div class="legend-item">
@@ -398,34 +398,42 @@
         </div>
 
         <div class="legend-item">
-          <div class="legend-swatch" style="background: #ff6d00; border-color: #ff6d00;"></div>
+          <div class="legend-swatch" style="background: #f97316; border-color: #f97316;"></div>
           <div>
-            <div class="legend-label" style="color: #ff9100;">[70 – 87] Dressed Megalithic Masonry</div>
-            <div class="legend-desc">High specular coherence & acute corner reflectors</div>
+            <div class="legend-label" style="color: #f97316;">[74 – 86] Megalithic Masonry & High Structures</div>
+            <div class="legend-desc">High specular dielectric backscatter (σ₀ ≥ 39 dB)</div>
           </div>
         </div>
 
         <div class="legend-item">
-          <div class="legend-swatch" style="background: #7cb342; border-color: #7cb342;"></div>
+          <div class="legend-swatch" style="background: #eab308; border-color: #eab308;"></div>
           <div>
-            <div class="legend-label" style="color: #aed581;">[45 – 69] Native Limestone Bedrock</div>
-            <div class="legend-desc">Undisturbed Mokattam formation baseline platform</div>
+            <div class="legend-label" style="color: #fde047;">[58 – 73] Native Limestone Bedrock</div>
+            <div class="legend-desc">Competent Mokattam formation plateau (σ₀ ≈ 31 – 38 dB)</div>
           </div>
         </div>
 
         <div class="legend-item">
-          <div class="legend-swatch" style="background: #008b8b; border-color: #008b8b;"></div>
+          <div class="legend-swatch" style="background: #22c55e; border-color: #22c55e;"></div>
           <div>
-            <div class="legend-label" style="color: #00e5ff;">[15 – 44] Ancient Silt Deposits & Canals</div>
-            <div class="legend-desc">High dielectric absorption in saturated sediment beds</div>
+            <div class="legend-label" style="color: #4ade80;">[45 – 57] Agricultural Soils & Floodplain</div>
+            <div class="legend-desc">Cultivated Nile floodplain sediments (σ₀ ≈ 23 – 30 dB)</div>
+          </div>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #00e5ff; border-color: #00e5ff;"></div>
+          <div>
+            <div class="legend-label" style="color: #00e5ff;">[24 – 44] Ancient Silt Deposits & Canals</div>
+            <div class="legend-desc">Saturated alluvium / canal depressions in floodplain</div>
           </div>
         </div>
 
         <div class="legend-item">
           <div class="legend-swatch" style="background: #050b14; border-color: #004d7a;"></div>
           <div>
-            <div class="legend-label" style="color: #60a5fa;">[0 – 14] Open Surface Water Decorrelation</div>
-            <div class="legend-desc">Total interferometric decorrelation on modern canals</div>
+            <div class="legend-label" style="color: #60a5fa;">[0 – 22] Open Surface Water</div>
+            <div class="legend-desc">Nile River channel, Lake Qarun & specular absorption (σ₀ &lt; 22 dB)</div>
           </div>
         </div>
       </div>
@@ -436,7 +444,7 @@
           <div class="legend-swatch" style="background: #ff007f; border-color: #ff007f;"></div>
           <div>
             <div class="legend-label" style="color: #ff007f;">Type 1: Subsurface Resonant Cavities</div>
-            <div class="legend-desc">Infrasonic micro-motion acoustic cavity resonance</div>
+            <div class="legend-desc">Infrasonic micro-motion acoustic cavity resonance (0.50 ≤ dm ≤ 3.20, h ≥ 24m)</div>
           </div>
         </div>
 
@@ -444,23 +452,23 @@
           <div class="legend-swatch" style="background: #00e5ff; border-color: #00e5ff;"></div>
           <div>
             <div class="legend-label" style="color: #00e5ff;">Type 2: Subsurface Saturated Silt & Canals</div>
-            <div class="legend-desc">Waterlogged clay-silt deposits with high fluid phase damping</div>
+            <div class="legend-desc">Waterlogged clay-silt deposits with high fluid phase damping (h &lt; 24m)</div>
           </div>
         </div>
 
         <div class="legend-item">
           <div class="legend-swatch" style="background: #ffd600; border-color: #ffd600;"></div>
           <div>
-            <div class="legend-label" style="color: #ffd600;">Type 3: Monoliths & Solid Bedrock</div>
-            <div class="legend-desc">Limestone bedrock platform & high-reflectivity masonry</div>
+            <div class="legend-label" style="color: #ffd600;">Type 3: Megaliths & Bedrock Peaks</div>
+            <div class="legend-desc">High-reflectivity masonry & limestone bedrock peaks (σ₀ ≥ 38.5 dB)</div>
           </div>
         </div>
 
         <div class="legend-item">
           <div class="legend-swatch" style="background: #1d4ed8; border-color: #3b82f6;"></div>
           <div>
-            <div class="legend-label" style="color: #60a5fa;">Type 4: Open Surface Water Decorrelation</div>
-            <div class="legend-desc">Surface water bodies & total InSAR interferometric decorrelation</div>
+            <div class="legend-label" style="color: #60a5fa;">Type 4: Open Surface Water</div>
+            <div class="legend-desc">Nile River channel & water bodies (Copernicus Water Mask)</div>
           </div>
         </div>
       </div>
