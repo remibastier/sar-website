@@ -217,7 +217,8 @@
       const regSelect = document.getElementById('region-filter');
       const sortSelect = document.getElementById('sort-filter');
 
-      const allData = (window.ANOMALIES_DATA && window.ANOMALIES_DATA.discoveries) || [];
+      const sarObj = window.SAR_DATA || window.ANOMALIES_DATA || {};
+      const allData = sarObj.blindDiscoveries || sarObj.discoveries || [];
 
       function render() {
         const q = searchInput.value.toLowerCase().trim();
