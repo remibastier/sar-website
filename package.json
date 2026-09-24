@@ -1,0 +1,8 @@
+{
+  "name": "sar-website",
+  "version": "0.0.1",
+  "description": "Spaceborne SAR Doppler Tomography across the Egyptian Pyramid Corridor",
+  "scripts": {
+    "build": "echo Static build ready"
+  }
+}
