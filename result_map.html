@@ -293,6 +293,10 @@
       <div class="header-subtitle">
         Sentinel-1 multi-temporal radar stack inversion. Orthorectified (Copernicus 30m GLO-30). Standardized continuous survey grid.
       </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:5px; font-size:9.5px; color:#94a3b8; font-family:'JetBrains Mono',monospace;">
+        <span style="background:rgba(14,165,233,0.2); color:#38bdf8; padding:1px 5px; border-radius:3px; font-weight:700;">v0.0.1</span>
+        <span>&copy; 2026 Remi Bastier &bull; All Rights Reserved</span>
+      </div>
     </div>
 
     <!-- PURE DATA ANOMALY EXPLORER -->
@@ -1243,8 +1247,40 @@
       document.getElementById('legend-collapse-btn').innerText = d.classList.contains('collapsed') ? '▸ Expand' : '▾ Collapse';
     }
 
-    // Initial View Setup (Centered on Giza)
-    setSector('giza');
+    // Initial View Setup with Deep-Linking Support
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetSector = urlParams.get('sector');
+    const targetId = urlParams.get('id');
+    const targetLat = parseFloat(urlParams.get('lat'));
+    const targetLon = parseFloat(urlParams.get('lon'));
+
+    if (targetSector && (SECTOR_COORDS[targetSector] || targetSector === 'all')) {
+      setSector(targetSector);
+    } else {
+      setSector('giza');
+    }
+
+    if (targetId) {
+      let targetAnom = null;
+      for (const list of Object.values(regionalData)) {
+        const found = list.find(a => a.id === targetId);
+        if (found) { targetAnom = found; break; }
+      }
+      if (targetAnom) {
+        if (targetId.startsWith('DISCOVERY_')) {
+          setInvestigationMode('unknown');
+        } else {
+          setInvestigationMode('all');
+        }
+        setTimeout(() => {
+          selectMarker(targetAnom.id, [targetAnom.lat, targetAnom.lon]);
+        }, 1400);
+      } else if (!isNaN(targetLat) && !isNaN(targetLon)) {
+        setTimeout(() => {
+          map.flyTo([targetLat, targetLon], 16, { duration: 1.2 });
+        }, 1400);
+      }
+    }
   </script>
 </body>
 </html>

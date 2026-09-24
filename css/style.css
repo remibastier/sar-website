@@ -593,3 +593,82 @@ code, .mono {
   .paper-content { padding: 32px 20px; }
   .academic-stats-row { grid-template-columns: 1fr 1fr; }
 }
+
+/* Collapsible Sidebar & Table Sync Enhancements (v0.0.1) */
+.paper-sidebar {
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), padding 0.25s ease;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+}
+
+.sidebar-collapse-btn {
+  background: var(--paper-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--ink-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  cursor: pointer;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+  width: auto;
+}
+.sidebar-collapse-btn:hover {
+  background: var(--paper-muted-bg);
+  color: var(--ink-primary);
+  border-color: var(--border-strong);
+}
+
+.paper-sidebar.collapsed {
+  width: 48px;
+  min-width: 48px;
+  padding: 16px 6px;
+  overflow: hidden;
+}
+.paper-sidebar.collapsed .sidebar-title,
+.paper-sidebar.collapsed .sidebar-meta,
+.paper-sidebar.collapsed .sidebar-toc,
+.paper-sidebar.collapsed .sidebar-btn span,
+.paper-sidebar.collapsed .sidebar-btn {
+  display: none !important;
+}
+.paper-sidebar.collapsed .sidebar-collapse-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 6px 0;
+}
+
+/* Double Horizontal Scrollbar for Wide Academic Tables */
+.table-scroll-top {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 12px;
+  margin-bottom: 2px;
+  scrollbar-width: thin;
+}
+.table-scroll-top::-webkit-scrollbar {
+  height: 6px;
+}
+.table-scroll-top::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+}
+.table-scroll-top-inner {
+  height: 1px;
+}
+
+/* Chart Container */
+.chart-box-container {
+  background: var(--paper-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  margin: 24px 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}

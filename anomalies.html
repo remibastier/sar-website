@@ -72,27 +72,34 @@
 
   <div class="paper-wrapper">
     <!-- Sticky Left Navigation Pane -->
-    <aside class="paper-sidebar">
+    <aside class="paper-sidebar" id="main-sidebar">
+      <button class="sidebar-collapse-btn" id="sidebar-toggle-btn" onclick="toggleSidebar()" title="Toggle sidebar">
+        &#9664; <span>Collapse</span>
+      </button>
+
       <div class="sidebar-title">Research Whitepaper</div>
       <div class="sidebar-meta">
-        <strong>SAR-EGYPT-2026</strong><br>
-        Anomaly Catalog &bull; 30 Discoveries
+        <strong>SAR-EGYPT-2026</strong> <span class="tag-badge" style="background:#0ea5e9; color:#fff; font-size:9px; padding:1px 4px;">v0.0.1</span><br>
+        40 Discoveries &bull; 8,300 km&sup2; Corridor
       </div>
 
       <nav>
         <ul class="sidebar-toc">
-          <li><a href="index.html">&larr; Return to Main Paper</a></li>
+          <li><a href="index.html#sec-9" style="font-weight:700; color:var(--accent-navy);">&larr; Return to Paper (&sect;9.0)</a></li>
+          <li><a href="index.html#sec-1">1.0 Executive Metrics</a></li>
           <li><a href="index.html#sec-5">5.0 Pyramid Detection Matrix</a></li>
           <li><a href="index.html#sec-7">7.0 Zawyet el-Aryan Spotlight</a></li>
           <li><a href="index.html#sec-8">8.0 Structural Typology Matrix</a></li>
-          <li><a href="result_map.html" target="_blank">10.0 Interactive Map &nearr;</a></li>
+          <li><a href="result_map.html" target="_blank" style="color:var(--accent-teal); font-weight:700;">10.0 Interactive Map &nearr;</a></li>
         </ul>
       </nav>
 
-      <a href="result_map.html" class="sidebar-btn" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15 8 12 12 9 8 12 2"/></svg>
-        Launch Radar Map &nearr;
-      </a>
+      <div style="margin-top:20px;">
+        <a href="result_map.html" class="sidebar-btn" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15 8 12 12 9 8 12 2"/></svg>
+          Launch 83-Cell Radar Map &nearr;
+        </a>
+      </div>
     </aside>
 
     <!-- Main Content Column -->
@@ -146,108 +153,29 @@
 
       <!-- Anomaly Cards Grid -->
       <div id="full-catalog-container" class="catalog-grid"></div>
+    <!-- Academic Footer & Copyright -->
+      <footer style="margin-top: 56px; padding: 24px 0; border-top: 1px solid var(--border-subtle); font-size: 12px; color: var(--ink-muted); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div>
+          &copy; 2026 Remi Bastier &bull; SAR Doppler Tomography Project. All Rights Reserved. Version 0.0.1.
+        </div>
+        <div>
+          Data Source: European Space Agency (ESA) Copernicus Sentinel-1.
+        </div>
+      </footer>
     </main>
   </div>
 
   <script src="js/anomalies-data.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('full-catalog-container');
-      const searchInput = document.getElementById('catalog-search');
-      const catSelect = document.getElementById('category-filter');
-      const regSelect = document.getElementById('region-filter');
-      const sortSelect = document.getElementById('sort-filter');
-      const countEl = document.getElementById('match-count');
-
-      const data = (window.SAR_DATA && window.SAR_DATA.blindDiscoveries) ? window.SAR_DATA.blindDiscoveries : [];
-
-      function render() {
-        const query = searchInput.value.toLowerCase().trim();
-        const cat = catSelect.value;
-        const reg = regSelect.value;
-        const sort = sortSelect.value;
-
-        let filtered = data.filter(item => {
-          if (cat !== 'all' && item.category !== cat) return false;
-          if (reg !== 'all' && !item.region.toLowerCase().includes(reg.toLowerCase())) return false;
-          if (query) {
-            const matchStr = `${item.name} ${item.region} ${item.location_desc} ${item.lat} ${item.lon} ${item.radar_diagnosis}`.toLowerCase();
-            if (!matchStr.includes(query)) return false;
-          }
-          return true;
-        });
-
-        filtered.sort((a, b) => {
-          if (sort === 'rank') return a.rank - b.rank;
-          if (sort === 'coherence') return (b.coherence || 0) - (a.coherence || 0);
-          if (sort === 'depth') return (b.depth_m || 0) - (a.depth_m || 0);
-          if (sort === 'amp') return b.amp_db - a.amp_db;
-          return 0;
-        });
-
-        countEl.innerText = filtered.length;
-        container.innerHTML = '';
-
-        if (filtered.length === 0) {
-          container.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:48px 0; color:var(--ink-muted);">
-            No anomalies matched your search criteria.
-          </div>`;
-          return;
-        }
-
-        filtered.forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'academic-anomaly-card';
-
-          let catBadge = '<span class="tag-badge tag-hypothesis">RESONANT CAVITY</span>';
-          if (item.category === 'spike') {
-            catBadge = '<span class="tag-badge tag-data">BEDROCK / MEGALITH</span>';
-          } else if (item.category === 'dip') {
-            catBadge = '<span class="tag-badge tag-fact">BURIED SILT / CANAL</span>';
-          }
-
-          card.innerHTML = `
-            <div>
-              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
-                ${catBadge}
-                <span class="mono" style="font-size:11px; color:var(--ink-muted);">RANK #${item.rank.toString().padStart(2, '0')}</span>
-              </div>
-              <h4 style="font-size:15px; margin-bottom:6px; color:var(--ink-primary);">${item.name}</h4>
-              <div style="font-size:12px; color:var(--accent-navy); margin-bottom:10px; font-weight:600;">
-                Region: ${item.region}
-              </div>
-              <p style="font-size:12.5px; color:var(--ink-secondary); line-height:1.55; margin-bottom:14px;">${item.location_desc}</p>
-            </div>
-
-            <div style="border-top:1px solid var(--border-subtle); padding-top:12px; font-size:12px;">
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:10px;" class="mono">
-                <div><strong>Est. Depth:</strong> ${item.depth_m ? item.depth_m + ' m' : 'Surface (<1m)'}</div>
-                <div><strong>Coherence:</strong> ${item.coherence ? item.coherence.toFixed(2) : 'N/A'}</div>
-                <div><strong>Frequency:</strong> ${item.freq_hz ? item.freq_hz + ' Hz' : 'Static (DC)'}</div>
-                <div><strong>Amplitude:</strong> ${item.amp_db.toFixed(1)} dB</div>
-                <div><strong>Elevation:</strong> ${item.elevation_m !== undefined ? item.elevation_m + 'm' : '~30m'}</div>
-                <div><strong>Terrain:</strong> ${item.terrain === 'desert' ? '🏜️ Desert' : '🌾 Valley'}</div>
-              </div>
-
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span class="mono" style="font-size:11.5px; color:var(--ink-muted);">${item.lat.toFixed(4)}&deg;N, ${item.lon.toFixed(4)}&deg;E</span>
-                <a href="result_map.html#sector=${encodeURIComponent(item.region)}" class="mono" style="font-size:12px; font-weight:600;" target="_blank">
-                  Locate on Map &nearr;
-                </a>
-              </div>
-            </div>
-          `;
-          container.appendChild(card);
-        });
+    function toggleSidebar() {
+      const sb = document.getElementById('main-sidebar');
+      if (!sb) return;
+      sb.classList.toggle('collapsed');
+      const btn = document.getElementById('sidebar-toggle-btn');
+      if (btn) {
+        btn.innerHTML = sb.classList.contains('collapsed') ? '&#9654;' : '&#9664; <span>Collapse</span>';
       }
-
-      searchInput.addEventListener('input', render);
-      catSelect.addEventListener('change', render);
-      regSelect.addEventListener('change', render);
-      sortSelect.addEventListener('change', render);
-
-      render();
-    });
+    }
   </script>
 </body>
 </html>
