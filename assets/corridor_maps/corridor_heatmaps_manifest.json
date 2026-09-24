@@ -17,6 +17,40 @@
     "height": 320
   },
   {
+    "id": "tilem1_m2",
+    "heatmap_file": "tilem1_m2_heatmap.png",
+    "discrete_file": "tilem1_m2_discrete.png",
+    "bounds": [
+      [
+        29.80483,
+        30.88913
+      ],
+      [
+        29.91002,
+        31.0101
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilem1_m3",
+    "heatmap_file": "tilem1_m3_heatmap.png",
+    "discrete_file": "tilem1_m3_discrete.png",
+    "bounds": [
+      [
+        29.78827,
+        30.78726
+      ],
+      [
+        29.89347,
+        30.90826
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
     "id": "tilem1_p0",
     "heatmap_file": "tilem1_p0_heatmap.png",
     "discrete_file": "tilem1_p0_discrete.png",
@@ -68,6 +102,40 @@
     "height": 320
   },
   {
+    "id": "tilem2_m2",
+    "heatmap_file": "tilem2_m2_heatmap.png",
+    "discrete_file": "tilem2_m2_discrete.png",
+    "bounds": [
+      [
+        29.71619,
+        30.90826
+      ],
+      [
+        29.82138,
+        31.02918
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilem2_m3",
+    "heatmap_file": "tilem2_m3_heatmap.png",
+    "discrete_file": "tilem2_m3_discrete.png",
+    "bounds": [
+      [
+        29.69963,
+        30.80643
+      ],
+      [
+        29.80483,
+        30.92738
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
     "id": "tilem2_p0",
     "heatmap_file": "tilem2_p0_heatmap.png",
     "discrete_file": "tilem2_p0_discrete.png",
@@ -113,6 +181,108 @@
       [
         29.7493,
         31.15001
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilem3_m2",
+    "heatmap_file": "tilem3_m2_heatmap.png",
+    "discrete_file": "tilem3_m2_discrete.png",
+    "bounds": [
+      [
+        29.62755,
+        30.92738
+      ],
+      [
+        29.73274,
+        31.04823
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilem3_m3",
+    "heatmap_file": "tilem3_m3_heatmap.png",
+    "discrete_file": "tilem3_m3_discrete.png",
+    "bounds": [
+      [
+        29.61099,
+        30.82559
+      ],
+      [
+        29.71619,
+        30.94648
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilem3_m4",
+    "heatmap_file": "tilem3_m4_heatmap.png",
+    "discrete_file": "tilem3_m4_discrete.png",
+    "bounds": [
+      [
+        29.59444,
+        30.72383
+      ],
+      [
+        29.69963,
+        30.84474
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilem3_m5",
+    "heatmap_file": "tilem3_m5_heatmap.png",
+    "discrete_file": "tilem3_m5_discrete.png",
+    "bounds": [
+      [
+        29.57788,
+        30.62208
+      ],
+      [
+        29.68308,
+        30.74301
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilem3_m6",
+    "heatmap_file": "tilem3_m6_heatmap.png",
+    "discrete_file": "tilem3_m6_discrete.png",
+    "bounds": [
+      [
+        29.56133,
+        30.52035
+      ],
+      [
+        29.66652,
+        30.64131
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilem3_m7",
+    "heatmap_file": "tilem3_m7_heatmap.png",
+    "discrete_file": "tilem3_m7_discrete.png",
+    "bounds": [
+      [
+        29.54477,
+        30.41863
+      ],
+      [
+        29.64996,
+        30.53962
       ]
     ],
     "width": 320,
@@ -918,6 +1088,23 @@
     "height": 320
   },
   {
+    "id": "tilem9_m1",
+    "heatmap_file": "tilem9_m1_heatmap.png",
+    "discrete_file": "tilem9_m1_discrete.png",
+    "bounds": [
+      [
+        29.11228,
+        31.14326
+      ],
+      [
+        29.21747,
+        31.26373
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
     "id": "tilem9_m2",
     "heatmap_file": "tilem9_m2_heatmap.png",
     "discrete_file": "tilem9_m2_discrete.png",
@@ -1020,6 +1207,40 @@
     "height": 320
   },
   {
+    "id": "tilem9_p0",
+    "heatmap_file": "tilem9_p0_heatmap.png",
+    "discrete_file": "tilem9_p0_discrete.png",
+    "bounds": [
+      [
+        29.12883,
+        31.24482
+      ],
+      [
+        29.23403,
+        31.36526
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilem9_p1",
+    "heatmap_file": "tilem9_p1_heatmap.png",
+    "discrete_file": "tilem9_p1_discrete.png",
+    "bounds": [
+      [
+        29.14539,
+        31.34639
+      ],
+      [
+        29.25058,
+        31.46681
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
     "id": "tilep0_m1",
     "heatmap_file": "tilep0_m1_heatmap.png",
     "discrete_file": "tilep0_m1_discrete.png",
@@ -1031,6 +1252,40 @@
       [
         30.01522,
         31.09292
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilep0_m2",
+    "heatmap_file": "tilep0_m2_heatmap.png",
+    "discrete_file": "tilep0_m2_discrete.png",
+    "bounds": [
+      [
+        29.89347,
+        30.86998
+      ],
+      [
+        29.99866,
+        30.99101
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilep0_m3",
+    "heatmap_file": "tilep0_m3_heatmap.png",
+    "discrete_file": "tilep0_m3_discrete.png",
+    "bounds": [
+      [
+        29.87691,
+        30.76806
+      ],
+      [
+        29.9821,
+        30.88913
       ]
     ],
     "width": 320,
@@ -1082,6 +1337,40 @@
       [
         30.10385,
         31.07385
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilep1_m2",
+    "heatmap_file": "tilep1_m2_heatmap.png",
+    "discrete_file": "tilep1_m2_discrete.png",
+    "bounds": [
+      [
+        29.9821,
+        30.85081
+      ],
+      [
+        30.0873,
+        30.97191
+      ]
+    ],
+    "width": 320,
+    "height": 320
+  },
+  {
+    "id": "tilep1_m3",
+    "heatmap_file": "tilep1_m3_heatmap.png",
+    "discrete_file": "tilep1_m3_discrete.png",
+    "bounds": [
+      [
+        29.96555,
+        30.74885
+      ],
+      [
+        30.07074,
+        30.86998
       ]
     ],
     "width": 320,
