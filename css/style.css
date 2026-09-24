@@ -646,6 +646,19 @@ code, .mono {
   padding: 6px 0;
 }
 
+/* Content Expansion when Sidebar is Collapsed */
+.paper-wrapper.sidebar-collapsed,
+.paper-wrapper:has(.paper-sidebar.collapsed) {
+  max-width: 96vw;
+  width: 96vw;
+}
+.paper-sidebar.collapsed ~ .paper-content,
+.paper-wrapper.sidebar-collapsed .paper-content {
+  max-width: 100%;
+  width: 100%;
+  transition: max-width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Double Horizontal Scrollbar for Wide Academic Tables */
 .table-scroll-top {
   overflow-x: auto;
