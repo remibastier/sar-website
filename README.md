@@ -10,8 +10,8 @@ This repository hosts the static research portal for the [SAR Doppler Tomography
 - **Site Matches & Hypotheses:** What matches for known monuments (Khufu summit apex corner reflector, Khafre casing stones, Saqqara, Meidum) and why deep vertical shafts like the Osiris shaft or claimed 600m shafts are physically undetectable by satellite C-band radar.
 - **Special Case Studies:** Zawyet el-Aryan inside the restricted Egyptian military exclusion zone (massive 21m T-shaped trench, 64 dB specular returns, and virgin desert resonance candidates) and the Hawara Labyrinth canal basin (+211.7% coherence surge).
 - **Architectural Typology Matrix:** Contrasting smooth casing stones, stepped limestone cores, mudbrick erosion, and rock-cut trenches.
-- **Interactive Multi-Region Radar Map:** Fully integrated Leaflet map loaded with dual-mode continuous dB heatmaps, 4-class discrete classifications, and top anomalies across 10 Egyptian sectors.
-- **Unsupervised Anomaly Catalog:** Searchable and filterable database of 30 blind discoveries with estimated depths, frequencies, and coordinates.
+- **Interactive Multi-Region Radar Map:** Fully integrated Leaflet map loaded with dual-mode continuous dB heatmaps, 4-class discrete classifications, and top anomalies across 12 Egyptian sectors (83 standardized cells, 8,300 km²).
+- **Unsupervised Anomaly Catalog:** Searchable and filterable database of 40 blind discoveries with estimated depths, frequencies, and coordinates.
 - **Future Roadmap:** Transition to L-Band SAR (NISAR/ALOS-2) and sub-meter X-band tasking.
 
 ## Structure
@@ -20,8 +20,8 @@ This repository hosts the static research portal for the [SAR Doppler Tomography
 D:\sar-website\
 ├── index.html                  # Main presentation website (dark cyber/academic aesthetic)
 ├── map.html                    # Dedicated fullscreen interactive Leaflet radar map
-├── interactive_radar_map.html  # Standalone interactive radar map viewer
-├── anomalies.html              # Searchable catalog for all 30 blind discoveries
+├── result_map.html  # Standalone interactive radar map viewer
+├── anomalies.html              # Searchable catalog for all 40 blind discoveries
 ├── css\
 │   └── style.css               # Design system (vanilla CSS, responsive, glassmorphism)
 ├── js\
