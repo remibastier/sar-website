@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="rb-logo.jpg" type="image/jpeg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subsurface Anomaly Catalog — SAR Doppler Tomography</title>
@@ -287,9 +288,14 @@
 
               <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
                 <span class="mono" style="font-size:11.5px; color:var(--ink-muted);">${item.lat.toFixed(4)}&deg;N, ${item.lon.toFixed(4)}&deg;E</span>
-                <a href="${deepLink}" class="mono" style="font-size:12px; font-weight:700; color:var(--accent-teal);" target="_blank">
-                  Locate on Map &nearr;
+                <div style="display:flex; gap:14px; align-items:center;">
+                <a href="${deepLink}" class="mono" style="font-size:12px; font-weight:700; color:var(--accent-teal); display:inline-flex; align-items:center; gap:4px;" target="_blank">
+                  <span>📡</span> Locate on Radar Map &nearr;
                 </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=${item.lat},${item.lon}" class="mono" style="font-size:12px; font-weight:700; color:var(--accent-blue); display:inline-flex; align-items:center; gap:4px;" target="_blank">
+                  <span>🗺️</span> Open in Google Maps &nearr;
+                </a>
+              </div>
               </div>
             </div>
           `;
