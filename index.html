@@ -207,8 +207,8 @@
           To achieve noise collapse and isolate true stationary structural dielectric returns from temporal sand transport, we acquired and coregistered six repeat-pass Single Look Complex (SLC) acquisitions from the European Space Agency (ESA) Copernicus Sentinel-1 constellation (Relative Orbit 58, Ascending Pass). The acquisitions form an unbroken, regular 6-day repeat cycle spanning 30 consecutive days across late summer 2026:
         </p>
 
-        <div class="table-responsive" style="margin: 18px 0;">
-          <table class="academic-table" style="font-size: 11.5px;">
+        <div class="table-wrapper">
+          <table class="paper-table">
             <thead>
               <tr>
                 <th>Epoch</th>
@@ -325,9 +325,17 @@
       <section id="sec-4">
         <h2>4.0 Multi-Temporal Analysis: 3-Epoch vs 6-Epoch Extension</h2>
         
-        <h3 id="sec-4-1">4.1 Did Extending from 3 to 6 Epochs Break Our Results?</h3>
+        <h3 id="sec-4-1">4.1 Evolution of the InSAR Processing Baseline (3 Epochs &rarr; 6 Epochs)</h3>
         <p>
-          A central question in interferometric remote sensing is whether expanding the temporal baseline introduces temporal decorrelation that breaks previous findings, or if it stabilizes true physical features.
+          Our remote sensing pipeline was executed in two consecutive methodological phases. In <strong>Phase 1</strong>, the Doppler inversion was initially computed across a <strong>3-epoch baseline</strong> (August 20, August 26, and September 01, 2026; 24 sub-aperture looks). While this initial 3-epoch stack successfully mapped high-contrast surface monuments (such as the Giza pyramids and Dahshur complexes), it simultaneously generated <strong>1,690 low-coherence "void" candidate pixels</strong> across the 10 surveyed regional sectors. In irrigated canal margins (such as the Bahr Yussef adjacent to Hawara) and mobile desert dunes, ephemeral soil moisture fluctuations produced transient phase shifts that closely mimicked subterranean voids.
+        </p>
+        <p>
+          To rigorously test whether these 1,690 anomalies represented genuine subterranean cavities or transient environmental artifacts, we escalated to <strong>Phase 2</strong>: expanding the interferometric stack to a full <strong>6-epoch coregistered series</strong> (ingesting September 07, 13, and 19, 2026; 48 sub-aperture looks across a 30-day baseline).
+        </p>
+
+        <h4 style="margin-top:20px; font-size:15px; color:var(--ink-primary);">Did Extending from 3 to 6 Epochs Break Our Results?</h4>
+        <p>
+          A central question in interferometric remote sensing is whether expanding the temporal baseline introduces temporal decorrelation that breaks established findings, or whether it acts as a decisive physical filter.
         </p>
 
         <div class="academic-callout data-box">
@@ -502,14 +510,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
                 <td><strong>Great Pyramid of Khufu (G1)</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?sector=giza&lat=29.9792&lon=31.1342" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Great+Pyramid+of+Giza" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Giza</td>
                 <td><span class="status-pill status-detected">DETECTED</span></td>
                 <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
                 <td>Apex corner reflector (+74.7 dB, &gamma;=0.76)</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Stripped pyramidion leaves flat platform creating acute dihedral retro-reflection.</td>
-              </tr>
               <tr>
                 <td><strong>Pyramid of Khafre (G2)</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?sector=giza&lat=29.9760&lon=31.1308" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Khafre+Giza" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Giza</td>
@@ -517,7 +523,6 @@
                 <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
                 <td>Specular casing cap vs stepped base</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Intact casing limestone scatters forward; corner base produces high return.</td>
-              </tr>
               <tr>
                 <td><strong>Pyramid of Menkaure (G3)</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?sector=giza&lat=29.9725&lon=31.1283" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Menkaure+Giza" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Giza</td>
@@ -525,217 +530,299 @@
                 <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
                 <td>Granite casing scarp + core stepped tiers</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Dense Aswan granite base creates high dielectric backscatter contrast.</td>
-              </tr>
               <tr>
-                <td><strong>Pyramid of Djedefre</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?sector=aburawash&lat=30.0322&lon=31.0747" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Djedefre+Abu+Rawash" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
+                <td><strong>Pyramid of Djedefre</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?sector=aburawash&lat=30.0322&lon=31.0747" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Djedefre" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Abu Rawash</td>
                 <td><span class="status-pill status-detected">DETECTED</span></td>
                 <td><span class="precision-dots">&bull;&bull;&bull;&omicron;&omicron;</span> 3/5</td>
                 <td>Promontory bedrock crest (+35.2 dB)</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Perched on 150m cliff; core heavily quarried down to central rock pit.</td>
-              </tr>
               <tr>
-                <td><strong>Unfinished Pyramid of Nebka</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.9536,31.1498" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Unfinished Pyramid of Nebka</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=ZAW_UNFINISHED_TRENCH&sector=zawyet&lat=29.940122&lon=31.151556" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Unfinished+Northern+Pyramid+Zawyet+el+Aryan" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Zawyet el-Aryan</td>
                 <td><span class="status-pill status-detected">DETECTED</span></td>
                 <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
                 <td>Specular bedrock floor spike (+64.4 dB)</td>
                 <td><span class="tag-badge tag-fact">FACT</span> 21m T-trench induces shadow/layover and intense floor retro-reflection.</td>
-              </tr>
               <tr>
-                <td><strong>Layer Pyramid (Khaba)</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.9328,31.1611" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Layer Pyramid (Khaba)</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=ZAW_LAYER_PYRAMID&sector=zawyet&lat=29.9328&lon=31.1613" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Layer+Pyramid+Zawyet+el+Aryan" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Zawyet el-Aryan</td>
                 <td><span class="status-pill status-partial">PARTIAL</span></td>
                 <td><span class="precision-dots">&bull;&bull;&omicron;&omicron;&omicron;</span> 2/5</td>
                 <td>Diffuse rubble mound</td>
                 <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Rounded rubble envelope diffuses microwave return into background.</td>
-              </tr>
               <tr>
-                <td><strong>Pyramid of Sahure</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.8978,31.2028" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Pyramid of Sahure</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=ABU_SAHURE&sector=abusir&lat=29.897778&lon=31.206389" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Sahure+Abusir" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Abusir</td>
                 <td><span class="status-pill status-detected">DETECTED</span></td>
                 <td><span class="precision-dots">&bull;&bull;&bull;&omicron;&omicron;</span> 3/5</td>
                 <td>Stepped core blocks vs desert sand</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Rough limestone masonry core contrasts against low-scattering desert sand.</td>
-              </tr>
               <tr>
-                <td><strong>Pyramid of Neferirkare</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.8950,31.2028" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Pyramid of Neferirkare</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=ABU_NEFERIRKARE&sector=abusir&lat=29.894722&lon=31.2025" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Neferirkare+Abusir" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Abusir</td>
                 <td><span class="status-pill status-detected">DETECTED</span></td>
                 <td><span class="precision-dots">&bull;&bull;&bull;&bull;&omicron;</span> 4/5</td>
                 <td>Prominent elevated core tower</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Tallest monument in Abusir; steep limestone tiers generate high backscatter.</td>
-              </tr>
               <tr>
-                <td><strong>Pyramid of Nyuserre</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.8964,31.2039" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Pyramid of Nyuserre</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=ABU_NYUSERRE&sector=abusir&lat=29.896389&lon=31.205278" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Nyuserre+Ini+Abusir" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Abusir</td>
                 <td><span class="status-pill status-detected">DETECTED</span></td>
                 <td><span class="precision-dots">&bull;&bull;&bull;&omicron;&omicron;</span> 3/5</td>
                 <td>Foundation platform &amp; mortuary core</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Visible in dual-pol CPR due to volume-surface scattering transition.</td>
-              </tr>
               <tr>
-                <td><strong>Step Pyramid of Djoser</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?sector=saqqara&lat=29.8713&lon=31.2164" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Step+Pyramid+of+Djoser+Saqqara" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
+                <td><strong>Step Pyramid of Djoser</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=SAQ_DJOSER&sector=saqqara&lat=29.87127&lon=31.216395" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Step+Pyramid+of+Djoser" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Saqqara</td>
                 <td><span class="status-pill status-detected">DETECTED</span></td>
                 <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
                 <td>6-tier stepped corner reflectors (&gamma;=0.68)</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Horizontal limestone step ledges act as continuous dihedral corner reflectors.</td>
-              </tr>
               <tr>
-                <td><strong>Pyramid of Userkaf</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.8736,31.2183" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Pyramid of Userkaf</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?sector=saqqara&lat=29.8736&lon=31.2183" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Userkaf+Saqqara" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Saqqara</td>
                 <td><span class="status-pill status-partial">PARTIAL</span></td>
                 <td><span class="precision-dots">&bull;&bull;&omicron;&omicron;&omicron;</span> 2/5</td>
                 <td>Low-amplitude rubble mound</td>
                 <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Loose core rubble stripped of outer casing blends into desert gravel.</td>
-              </tr>
               <tr>
-                <td><strong>Pyramid of Unas</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.8683,31.2144" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Pyramid of Unas</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=SAQ_UNAS&sector=saqqara&lat=29.868333&lon=31.215556" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Unas+Saqqara" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Saqqara</td>
                 <td><span class="status-pill status-partial">PARTIAL</span></td>
                 <td><span class="precision-dots">&bull;&bull;&omicron;&omicron;&omicron;</span> 2/5</td>
                 <td>Modest elevation scarp</td>
                 <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Severely ruined core cone; aeolian sand drifts smooth corner reflections.</td>
-              </tr>
               <tr>
-                <td><strong>Buried Pyramid (Sekhemkhet)</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.8661,31.2128" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Buried Pyramid (Sekhemkhet)</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="https://www.google.com/maps/search/?api=1&query=Buried+Pyramid+Sekhemkhet+Saqqara" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Saqqara</td>
                 <td><span class="status-pill status-missed">NOT DETECTED</span></td>
                 <td><span class="precision-dots">&omicron;&omicron;&omicron;&omicron;&omicron;</span> 0/5</td>
                 <td>Indistinguishable from sand sheet</td>
                 <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Subterranean unfinished foundation completely sealed under deep desert sand.</td>
-              </tr>
               <tr>
-                <td><strong>Red Pyramid of Sneferu</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.8088,31.2061" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Red Pyramid of Sneferu</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=DAH_RED_PYRAMID&sector=dahshur&lat=29.8088&lon=31.2062" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Red+Pyramid+Dahshur" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Dahshur</td>
                 <td><span class="status-pill status-detected">DETECTED</span></td>
                 <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
                 <td>Uniform limestone backscatter (&sigma;&sub0;=52 dB)</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Shallow 43&deg; slope generates stable, uniform specular backscatter.</td>
-              </tr>
               <tr>
-                <td><strong>Bent Pyramid of Sneferu</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.7903,31.2094" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Bent Pyramid of Sneferu</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=DAH_BENT_PYRAMID&sector=dahshur&lat=29.790278&lon=31.209167" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Bent+Pyramid+Dahshur" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Dahshur</td>
                 <td><span class="status-pill status-detected">DETECTED</span></td>
                 <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
                 <td>Casing slope transition retro-reflection</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Slope inflection (54&deg; to 43&deg;) and intact casing create distinct radar lineament.</td>
-              </tr>
               <tr>
-                <td><strong>Black Pyramid (Amenemhat III)</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.7972,31.2236" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Black Pyramid (Amenemhat III)</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=DAH_BLACK_PYRAMID&sector=dahshur&lat=29.797222&lon=31.222778" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Black+Pyramid+Dahshur" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Dahshur</td>
                 <td><span class="status-pill status-partial">PARTIAL</span></td>
                 <td><span class="precision-dots">&bull;&bull;&omicron;&omicron;&omicron;</span> 2/5</td>
                 <td>Weak absorption mound</td>
                 <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Sun-dried mudbrick core suffers high dielectric absorption and erosion.</td>
-              </tr>
               <tr>
-                <td><strong>Pyramid of Amenemhat I</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.5739,31.2269" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Pyramid of Amenemhat I</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Amenemhat+I+El+Lisht" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Lisht</td>
                 <td><span class="status-pill status-missed">NOT DETECTED</span></td>
                 <td><span class="precision-dots">&omicron;&omicron;&omicron;&omicron;&omicron;</span> 0/5</td>
                 <td>Blends into wadi alluvium</td>
                 <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Collapsed core of loose sand, mudbrick, and limestone chips lacks structural relief.</td>
-              </tr>
               <tr>
-                <td><strong>Pyramid of Senusret I</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.5614,31.2228" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Pyramid of Senusret I</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=LISHT_SENUSRET&sector=lisht&lat=29.56&lon=31.224167" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Senusret+I+El+Lisht" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Lisht</td>
                 <td><span class="status-pill status-detected">DETECTED</span></td>
                 <td><span class="precision-dots">&bull;&bull;&bull;&omicron;&omicron;</span> 3/5</td>
                 <td>Limestone skeleton cross-walls</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Unique grid of radiating limestone skeleton walls provides structural radar contrast.</td>
-              </tr>
               <tr>
-                <td><strong>South &amp; North Mazghuna Pyramids</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.7500,31.2167" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>South &amp; North Mazghuna Pyramids</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="https://www.google.com/maps/search/?api=1&query=Mazghuna+Pyramids+Egypt" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Mazghuna</td>
                 <td><span class="status-pill status-missed">NOT DETECTED</span></td>
                 <td><span class="precision-dots">&omicron;&omicron;&omicron;&omicron;&omicron;</span> 0/5</td>
                 <td>Flat desert alluvial wash</td>
                 <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Superstructures never raised above ground level; subterranean pits silted over.</td>
-              </tr>
               <tr>
-                <td><strong>Pyramid of Meidum (Sneferu)</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.3883,31.1572" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Pyramid of Meidum (Sneferu)</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=MEI_STEP_TOWER&sector=meidum&lat=29.3885&lon=31.1571" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Meidum+Pyramid" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Meidum</td>
                 <td><span class="status-pill status-detected">DETECTED</span></td>
                 <td><span class="precision-dots">&bull;&bull;&bull;&bull;&bull;</span> 5/5</td>
                 <td>Core tower (+50.8 dB) above debris skirt</td>
                 <td><span class="tag-badge tag-fact">FACT</span> Dramatic vertical core tower masonry produces massive dihedral corner returns.</td>
-              </tr>
               <tr>
-                <td><strong>Pyramid of Hawara (Labyrinth)</strong><br><a href="https://www.google.com/maps/search/?api=1&query=29.2728,30.8997" target="_blank" rel="noopener" class="mono" style="font-size:10.5px; color:var(--accent-blue);">Google Maps &nearr;</a></td>
+                <td><strong>Pyramid of Hawara (Labyrinth)</strong><br><span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=HAW_PYRAMID&sector=hawara&lat=29.2729&lon=30.8994" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Hawara+Fayum+Egypt" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span></td>
                 <td>Hawara</td>
                 <td><span class="status-pill status-partial">PARTIAL</span></td>
                 <td><span class="precision-dots">&bull;&bull;&omicron;&omicron;&omicron;</span> 2/5</td>
                 <td>Mudbrick core mound with canal damping</td>
                 <td><span class="tag-badge tag-hypothesis">HYPOTHESIS</span> Mudbrick weathering plus Bahr Wahbi canal moisture dampen radar return.</td>
-              </tr>
             </tbody>
           </table>
         </div>
-        <!-- Pyramid Architectural Typology Radar Response Chart (N = 21) -->
-        <div class="chart-box-container" style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:22px 26px; margin-top:20px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:26px;">
-            <div style="flex:1; min-width:280px;">
-              <h4 style="margin:0 0 8px 0; font-size:15px; color:var(--ink-primary);">
-                Pyramid Architectural Typology &amp; Radar Scattering Distribution (N = 21)
-              </h4>
-              <p style="font-size:13px; color:var(--ink-secondary); margin-bottom:14px; line-height:1.5;">
-                Distribution of surveyed royal pyramids categorized by physical construction typology and corresponding microwave scattering physics:
+        <!-- Separated Radar Performance Breakdown by Architectural Typology (3 Dedicated Donut Charts) -->
+        <div style="margin-top:28px;">
+          <h4 style="margin:0 0 6px 0; font-size:16px; color:var(--ink-primary); font-family:var(--font-serif);">
+            Radar Detection Performance by Architectural Typology (N = 21 Royal Pyramids)
+          </h4>
+          <p style="font-size:13px; color:var(--ink-secondary); margin-bottom:18px; line-height:1.5;">
+            Categorical breakdown of spaceborne radar detection outcomes across all 21 surveyed royal pyramids, stratified by physical building typology and corresponding microwave scattering physics:
+          </p>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+            
+            <!-- Chart 1: Solid Megalithic Stone Pyramids -->
+            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:20px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+                  <div>
+                    <h5 style="margin:0 0 4px 0; font-size:14px; font-weight:700; color:var(--ink-primary);">1. Solid Megalithic Stone</h5>
+                    <span style="font-size:11px; color:var(--ink-secondary);">Smooth Tura Casing &amp; Massive Stone Cores (N = 8)</span>
+                  </div>
+                  <span class="status-pill status-detected" style="font-size:10.5px;">100% DETECTED</span>
+                </div>
+
+                <!-- Donut SVG -->
+                <div style="position:relative; width:130px; height:130px; margin:0 auto 16px auto; display:flex; align-items:center; justify-content:center;">
+                  <svg width="130" height="130" viewBox="0 0 140 140" style="position:absolute; top:0; left:0; transform:rotate(-90deg); filter:drop-shadow(0 2px 6px rgba(0,0,0,0.1));">
+                    <circle cx="70" cy="70" r="44" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="18" />
+                    <!-- 100% Detected (8/8): Arc = 276.46 -->
+                    <circle cx="70" cy="70" r="44" fill="none" stroke="#10b981" stroke-width="18"
+                            stroke-dasharray="276.46 276.46" stroke-dashoffset="0" />
+                  </svg>
+                  <div style="position:relative; z-index:2; text-align:center; pointer-events:none;">
+                    <div style="font-size:22px; font-weight:800; color:#10b981; line-height:1;">8 / 8</div>
+                    <div style="font-size:10px; font-weight:700; color:var(--ink-secondary); text-transform:uppercase; margin-top:2px;">Detected</div>
+                  </div>
+                </div>
+
+                <!-- Legend & Counts -->
+                <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; margin-bottom:14px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#10b981; border-radius:2px;"></span> Detected (5/5 or 4/5):</span>
+                    <strong style="color:#10b981;">8 / 8 (100.0%)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#f59e0b; border-radius:2px;"></span> Partial / Shift:</span>
+                    <span style="color:var(--ink-secondary);">0 / 8 (0.0%)</span>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#ef4444; border-radius:2px;"></span> Not Detected:</span>
+                    <span style="color:var(--ink-secondary);">0 / 8 (0.0%)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Radar Physics Caption -->
+              <p style="font-size:11.5px; line-height:1.5; color:var(--ink-secondary); margin:0; padding-top:10px; border-top:1px dashed var(--border-subtle);">
+                <strong>Scattering Physics:</strong> Khufu, Khafre, Menkaure, Djedefre, Nebka, Red, Bent, Senusret I. Massive limestone casing facets and preserved dihedral corners create acute retro-reflections (+62 to +75 dB), maintaining multi-temporal phase coherence (&gamma;&ge;0.65&ndash;0.76).
               </p>
-              <div style="display:flex; flex-direction:column; gap:10px; font-size:12.5px;">
-                <div style="display:flex; align-items:flex-start; gap:10px;">
-                  <span style="display:inline-block; width:13px; height:13px; background:#10b981; border-radius:3px; margin-top:2px; flex-shrink:0;"></span>
-                  <div>
-                    <strong style="color:var(--ink-primary);">Megalithic Stone Casings &amp; Core Blocks:</strong> 12 / 21 (<strong style="color:#10b981;">57.1%</strong>)<br>
-                    <span style="font-size:11.5px; color:var(--ink-secondary);">Khufu, Khafre, Menkaure, Red, Bent, Djoser Step, Userkaf, Unas, Sahure, Neferirkare, Nyuserre, Djedefre. Acute corner-reflector dihedral scattering (+62 to +75 dB).</span>
-                  </div>
-                </div>
-
-                <div style="display:flex; align-items:flex-start; gap:10px;">
-                  <span style="display:inline-block; width:13px; height:13px; background:#0ea5e9; border-radius:3px; margin-top:2px; flex-shrink:0;"></span>
-                  <div>
-                    <strong style="color:var(--ink-primary);">Stepped Accretion Cores &amp; Exposed Retaining Walls:</strong> 5 / 21 (<strong style="color:#0ea5e9;">23.8%</strong>)<br>
-                    <span style="font-size:11.5px; color:var(--ink-secondary);">Meidum, Layer Pyramid, Sekhemkhet, Nebka Trench, Senusret I. Stepped facet radar scatter &amp; perimeter casing boundaries (+45 to +58 dB).</span>
-                  </div>
-                </div>
-
-                <div style="display:flex; align-items:flex-start; gap:10px;">
-                  <span style="display:inline-block; width:13px; height:13px; background:#f59e0b; border-radius:3px; margin-top:2px; flex-shrink:0;"></span>
-                  <div>
-                    <strong style="color:var(--ink-primary);">Mudbrick Superstructures &amp; Alluvial Cores:</strong> 4 / 21 (<strong style="color:#f59e0b;">19.0%</strong>)<br>
-                    <span style="font-size:11.5px; color:var(--ink-secondary);">Hawara (Amenemhat III), Black Pyramid, Amenemhat I, Mazghuna. High dielectric mudbrick absorption; bedrock foundation &amp; stone enclosures clearly mapped.</span>
-                  </div>
-                </div>
-              </div>
             </div>
 
-            <!-- Vector Architectural Typology Donut Chart -->
-            <div style="flex:0 0 220px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-              <div style="position:relative; width:150px; height:150px; display:flex; align-items:center; justify-content:center;">
-                <svg width="150" height="150" viewBox="0 0 160 160" style="position:absolute; top:0; left:0; transform: rotate(-90deg); filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));">
-                  <circle cx="80" cy="80" r="54" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="22" />
-                  <!-- 1. Megalithic Stone (12/21 = 57.14%): Arc = 0.5714 * 339.29 = 193.87 -->
-                  <circle cx="80" cy="80" r="54" fill="none" stroke="#10b981" stroke-width="22"
-                          stroke-dasharray="193.87 339.29" stroke-dashoffset="0" />
-                  <!-- 2. Stepped Accretion (5/21 = 23.81%): Arc = 0.2381 * 339.29 = 80.78 -->
-                  <circle cx="80" cy="80" r="54" fill="none" stroke="#0ea5e9" stroke-width="22"
-                          stroke-dasharray="80.78 339.29" stroke-dashoffset="-193.87" />
-                  <!-- 3. Mudbrick Core (4/21 = 19.05%): Arc = 0.1905 * 339.29 = 64.64 -->
-                  <circle cx="80" cy="80" r="54" fill="none" stroke="#f59e0b" stroke-width="22"
-                          stroke-dasharray="64.64 339.29" stroke-dashoffset="-274.65" />
-                </svg>
-                <!-- Clean Center Count -->
-                <div style="position:relative; z-index:2; text-align:center; pointer-events:none;">
-                  <div style="font-size:24px; font-weight:800; color:var(--ink-primary); line-height:1;">21 / 21</div>
-                  <div style="font-size:11px; font-weight:600; color:var(--ink-secondary); margin-top:2px;">Pyramids</div>
+            <!-- Chart 2: Stepped Accretion Cores -->
+            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:20px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+                  <div>
+                    <h5 style="margin:0 0 4px 0; font-size:14px; font-weight:700; color:var(--ink-primary);">2. Stepped Accretion Cores</h5>
+                    <span style="font-size:11px; color:var(--ink-secondary);">Stepped Mastaba Tiers &amp; Rubble Infill (N = 9)</span>
+                  </div>
+                  <span class="status-pill status-detected" style="font-size:10.5px; background:rgba(14,165,233,0.12); color:#0284c7; border:1px solid rgba(14,165,233,0.25);">88.9% POSITIVE</span>
+                </div>
+
+                <!-- Donut SVG -->
+                <div style="position:relative; width:130px; height:130px; margin:0 auto 16px auto; display:flex; align-items:center; justify-content:center;">
+                  <svg width="130" height="130" viewBox="0 0 140 140" style="position:absolute; top:0; left:0; transform:rotate(-90deg); filter:drop-shadow(0 2px 6px rgba(0,0,0,0.1));">
+                    <circle cx="70" cy="70" r="44" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="18" />
+                    <!-- 1. Detected (5/9 = 55.56%): Arc = 153.59 -->
+                    <circle cx="70" cy="70" r="44" fill="none" stroke="#10b981" stroke-width="18"
+                            stroke-dasharray="153.59 276.46" stroke-dashoffset="0" />
+                    <!-- 2. Partial (3/9 = 33.33%): Arc = 92.15 -->
+                    <circle cx="70" cy="70" r="44" fill="none" stroke="#f59e0b" stroke-width="18"
+                            stroke-dasharray="92.15 276.46" stroke-dashoffset="-153.59" />
+                    <!-- 3. Not Detected (1/9 = 11.11%): Arc = 30.72 -->
+                    <circle cx="70" cy="70" r="44" fill="none" stroke="#ef4444" stroke-width="18"
+                            stroke-dasharray="30.72 276.46" stroke-dashoffset="-245.74" />
+                  </svg>
+                  <div style="position:relative; z-index:2; text-align:center; pointer-events:none;">
+                    <div style="font-size:22px; font-weight:800; color:var(--ink-primary); line-height:1;">8 / 9</div>
+                    <div style="font-size:10px; font-weight:700; color:var(--accent-teal); text-transform:uppercase; margin-top:2px;">Footprint</div>
+                  </div>
+                </div>
+
+                <!-- Legend & Counts -->
+                <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; margin-bottom:14px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#10b981; border-radius:2px;"></span> Detected (Djoser, Abusir, Meidum):</span>
+                    <strong style="color:#10b981;">5 / 9 (55.6%)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#f59e0b; border-radius:2px;"></span> Partial (Khaba, Userkaf, Unas):</span>
+                    <strong style="color:#f59e0b;">3 / 9 (33.3%)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#ef4444; border-radius:2px;"></span> Buried under Sand (Sekhemkhet):</span>
+                    <strong style="color:#ef4444;">1 / 9 (11.1%)</strong>
+                  </div>
                 </div>
               </div>
-              <!-- Text Label Positioned Completely Below the Donut Chart -->
-              <div style="margin-top:12px; font-size:11.5px; font-weight:700; color:#10b981; letter-spacing:0.5px; text-transform:uppercase; text-align:center;">
-                100% Corridor Survey Complete
-              </div>
+
+              <!-- Radar Physics Caption -->
+              <p style="font-size:11.5px; line-height:1.5; color:var(--ink-secondary); margin:0; padding-top:10px; border-top:1px dashed var(--border-subtle);">
+                <strong>Scattering Physics:</strong> Stepped mastaba tiers produce acute multi-level edge diffraction; stripped casing leaves loose rubble cores creating diffuse scatter rather than specular spikes. Only Sekhemkhet remained hidden due to deep sand overburden.
+              </p>
             </div>
+
+            <!-- Chart 3: Mudbrick Superstructures -->
+            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:20px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+                  <div>
+                    <h5 style="margin:0 0 4px 0; font-size:14px; font-weight:700; color:var(--ink-primary);">3. Mudbrick Superstructures</h5>
+                    <span style="font-size:11px; color:var(--ink-secondary);">Middle Kingdom Nile Silt &amp; Alluvium (N = 4)</span>
+                  </div>
+                  <span class="status-pill status-partial" style="font-size:10.5px;">50.0% BOUNDARY</span>
+                </div>
+
+                <!-- Donut SVG -->
+                <div style="position:relative; width:130px; height:130px; margin:0 auto 16px auto; display:flex; align-items:center; justify-content:center;">
+                  <svg width="130" height="130" viewBox="0 0 140 140" style="position:absolute; top:0; left:0; transform:rotate(-90deg); filter:drop-shadow(0 2px 6px rgba(0,0,0,0.1));">
+                    <circle cx="70" cy="70" r="44" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="18" />
+                    <!-- 1. Partial / Perimeter (2/4 = 50.0%): Arc = 138.23 -->
+                    <circle cx="70" cy="70" r="44" fill="none" stroke="#f59e0b" stroke-width="18"
+                            stroke-dasharray="138.23 276.46" stroke-dashoffset="0" />
+                    <!-- 2. Not Detected (2/4 = 50.0%): Arc = 138.23 -->
+                    <circle cx="70" cy="70" r="44" fill="none" stroke="#ef4444" stroke-width="18"
+                            stroke-dasharray="138.23 276.46" stroke-dashoffset="-138.23" />
+                  </svg>
+                  <div style="position:relative; z-index:2; text-align:center; pointer-events:none;">
+                    <div style="font-size:22px; font-weight:800; color:#f59e0b; line-height:1;">2 / 4</div>
+                    <div style="font-size:10px; font-weight:700; color:var(--ink-secondary); text-transform:uppercase; margin-top:2px;">Perimeter</div>
+                  </div>
+                </div>
+
+                <!-- Legend & Counts -->
+                <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; margin-bottom:14px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#10b981; border-radius:2px;"></span> Detected Core:</span>
+                    <span style="color:var(--ink-secondary);">0 / 4 (0.0%)</span>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#f59e0b; border-radius:2px;"></span> Perimeter Foundation (Hawara, Black):</span>
+                    <strong style="color:#f59e0b;">2 / 4 (50.0%)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#ef4444; border-radius:2px;"></span> Mudbrick Attenuation (Lisht, Mazghuna):</span>
+                    <strong style="color:#ef4444;">2 / 4 (50.0%)</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Radar Physics Caption -->
+              <p style="font-size:11.5px; line-height:1.5; color:var(--ink-secondary); margin:0; padding-top:10px; border-top:1px dashed var(--border-subtle);">
+                <strong>Scattering Physics:</strong> Low-density unfired Nile mudbrick has high dielectric permittivity (&epsilon;<sub>r</sub>&approx;4&ndash;6), absorbing microwave energy. While mudbrick cores yield low backscatter, stone revetments and foundation trenches remain resolvable.
+              </p>
+            </div>
+
           </div>
         </div>
         </section>
@@ -903,7 +990,7 @@
             </div>
             <div class="figure-body">
               <div class="figure-title">
-                <span>Pyramid of Djedefre (Abu Rawash)</span> <a href="https://www.google.com/maps/search/?api=1&query=30.0322,31.0747" target="_blank" rel="noopener" class="mono" style="font-size:11px; color:var(--accent-blue); margin-left:6px;" title="View on Google Maps">Google Maps &nearr;</a>
+                <span>Pyramid of Djedefre (Abu Rawash)</span> <a href="result_map.html?sector=aburawash&lat=30.0322&lon=31.0747" target="_blank" class="mono" style="font-size:11px; color:var(--accent-teal); font-weight:700; margin-left:6px;" title="Locate on Radar Map">Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Djedefre" target="_blank" rel="noopener" class="mono" style="font-size:11px; color:var(--accent-blue); margin-left:6px;" title="Open Official Monument Place Card on Google Maps">Google Maps &nearr;</a>
                 <span class="status-pill status-detected">DETECTED (3/5)</span>
               </div>
               <p class="figure-desc">
@@ -989,11 +1076,22 @@
         <p>
           Classical historians Herodotus (<em>Histories</em>, Book II, 148) and Strabo (<em>Geography</em>, Book XVII) described a colossal funerary labyrinth adjacent to the Pyramid of Hawara containing 12 roofed courtyards and 3,000 rooms, half of which were subterranean. 
         </p>
+        <!-- Historical Architectural Reconstruction of the Egyptian Labyrinth -->
         <div class="figure-full" style="margin: 20px 0;">
-          <img src="assets/img/hawara.jpg" alt="Pyramid of Hawara and Labyrinth Basin" loading="lazy" style="height:320px; object-fit:cover; width:100%; border-radius:4px;">
+          <img src="assets/img/hawara_labyrinth_kircher.jpg" alt="Historical Architectural Reconstruction of the Egyptian Labyrinth of Amenemhat III at Hawara by Athanasius Kircher (1679)" loading="lazy" style="max-height:480px; object-fit:contain; width:100%; border-radius:4px; background:#fdfbf7;">
           <div style="font-size:13px; line-height:1.55; color:var(--ink-secondary); margin-top:8px;">
-            <strong>Figure 7.3: The Pyramid of Hawara and Surrounding Labyrinth Depression.</strong> <span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?sector=hawara&lat=29.274&lon=30.908" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Hawara+Fayum+Egypt" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span><br>
-            Showing the weathered mudbrick superstructure and the vast southern depression where Petrie (1888) and the 2008 Mataha Expedition documented foundation remnants.
+            <strong>Figure 7.3: Historical Architectural Reconstruction of the Egyptian Labyrinth at Hawara (Athanasius Kircher, <em>Turris Babel</em>, 1679).</strong><br>
+            A classical reconstruction based directly on the eyewitness accounts of Herodotus (<em>Histories</em>, Book II, 148) and Strabo (<em>Geography</em>, Book XVII). Herodotus described the monument as surpassing the pyramids themselves, containing 12 colossal roofed peristyle courts (six facing north, six facing south) and 3,000 intricately communicating chambers distributed equally across upper hypostyle halls and subterranean sepulchral crypts adjacent to the pyramid of Amenemhat III.
+            <div class="figure-credit">Historical Copperplate Engraving &bull; Public Domain (Athanasius Kircher, Amsterdam, 1679)</div>
+          </div>
+        </div>
+
+        <!-- Modern Terrain and Archaeological Depression -->
+        <div class="figure-full" style="margin: 20px 0;">
+          <img src="assets/img/hawara.jpg" alt="Pyramid of Hawara and Modern Labyrinth Depression Today" loading="lazy" style="height:320px; object-fit:cover; width:100%; border-radius:4px;">
+          <div style="font-size:13px; line-height:1.55; color:var(--ink-secondary); margin-top:8px;">
+            <strong>Figure 7.4: The Pyramid of Hawara and Surrounding Labyrinth Depression Today.</strong> <span style="display:inline-flex; gap:8px; font-size:11px;"><a href="result_map.html?id=HAW_PYRAMID&sector=hawara&lat=29.2729&lon=30.8994" target="_blank" class="mono" style="color:var(--accent-teal); font-weight:700;">📡 Radar Map &nearr;</a><a href="https://www.google.com/maps/search/?api=1&query=Pyramid+of+Hawara+Fayum+Egypt" target="_blank" rel="noopener" class="mono" style="color:var(--accent-blue);">🏛️ Google Maps &nearr;</a></span><br>
+            Showing the weathered mudbrick pyramid core of Amenemhat III and the vast southern limestone chip depression where Flinders Petrie (1888) and the 2008 Mataha Geo-Radar Expedition identified massive subterranean foundation boundaries.
             <div class="figure-credit">Photo: Remi Bastier &bull; CC BY-SA 4.0</div>
           </div>
         </div>
@@ -1022,7 +1120,7 @@
         <div class="figure-full" style="margin: 20px 0;">
           <img src="assets/img/dream_stele_twin_sphinx.jpg" alt="Archival Drawing of the Dream Stele of Thutmose IV Lunette Depicting Twin Facing Sphinxes" loading="lazy" style="max-height:420px; object-fit:contain; width:100%; border-radius:4px; background:#fbf9f5;">
           <div style="font-size:13px; line-height:1.55; color:var(--ink-secondary); margin-top:8px;">
-            <strong>Figure 7.4: The Dream Stele of Thutmose IV (18th Dynasty Lunette Relief).</strong> <a href="https://www.google.com/maps/search/?api=1&query=29.9753,31.1376" target="_blank" rel="noopener" class="mono" style="font-size:11px; color:var(--accent-blue);">View Sphinx on Google Maps &nearr;</a><br>
+            <strong>Figure 7.5: The Dream Stele of Thutmose IV (18th Dynasty Lunette Relief).</strong> <a href="https://www.google.com/maps/search/?api=1&query=Great+Sphinx+of+Giza" target="_blank" rel="noopener" class="mono" style="font-size:11px; color:var(--accent-blue);">View Great Sphinx on Google Maps &nearr;</a><br>
             Depicting the canonical ancient Egyptian dualism of twin facing Sphinxes (the dual guardian lion deity <em>Aker</em>) resting upon monumental temple pylons, which forms the primary historical premise for investigating a symmetrical southern enclosure partner at Giza.
             <div class="figure-credit">Archaeological Archival Plate &bull; Public Domain Egyptological Reference</div>
           </div>
