@@ -810,7 +810,7 @@
 
     // Change this revision whenever generated rasters change.  ImageOverlay
     // otherwise retains an old PNG with the same filename after a reload.
-    const RASTER_REVISION = '20260926-range-doppler-terrain-v5';
+    const RASTER_REVISION = '20260926-range-doppler-terrain-v6';
     heatmapsManifest.forEach(item => {
       const getRasterUrl = (filename) => 'assets/corridor_maps/' + filename + '?v=' + RASTER_REVISION;
       const b = item.bounds;
