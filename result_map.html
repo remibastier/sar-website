@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>ðŸ“¡</text></svg>">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SAR Doppler Tomography — Multi-Region Radar Survey Map</title>
+  <title>SAR Doppler Tomography â€” Multi-Region Radar Survey Map</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
@@ -193,11 +193,29 @@
     .toolbar-btn.all-active { background: #0284c7 !important; color: #ffffff !important; box-shadow: 0 0 10px rgba(14, 165, 233, 0.5) !important; font-weight: 700; }
     .toolbar-btn.sector-active { background: #2563eb !important; color: #ffffff !important; font-weight: 700; box-shadow: 0 0 10px rgba(37,99,235,0.4); }
 
-    .mode-btn {
+    .mode-select-btn {
       background: rgba(14, 165, 233, 0.15); border: 1px solid #0ea5e9; color: #38bdf8;
       font-weight: 700; padding: 4px 8px; font-size: 10px; border-radius: 5px; cursor: pointer; transition: all 0.2s;
+      outline: none; font-family: inherit;
     }
-    .mode-btn:hover { background: #0ea5e9; color: #ffffff; }
+    .mode-select-btn:hover, .mode-select-btn:focus { background: rgba(14, 165, 233, 0.3); border-color: #38bdf8; color: #ffffff; }
+    .mode-select-btn option { background: #0b0f19; color: #f1f5f9; font-weight: 600; font-size: 11px; padding: 6px; }
+
+    .gradient-bar-coh {
+      height: 9px; border-radius: 5px; margin-bottom: 5px;
+      background: linear-gradient(to right, #050b14, #0b1d3a, #1d4ed8, #0284c7, #f59e0b, #facc15, #fef08a, #ffffff);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .gradient-bar-cpr {
+      height: 9px; border-radius: 5px; margin-bottom: 5px;
+      background: linear-gradient(to right, #041c32, #06b6d4, #10b981, #f59e0b, #ef4444, #ff007f);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .gradient-bar-depth {
+      height: 9px; border-radius: 5px; margin-bottom: 5px;
+      background: linear-gradient(to right, #00f0ff, #10b981, #eab308, #f97316, #ff007f);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
 
     .opacity-control {
       display: flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 600;
@@ -323,7 +341,7 @@
       </div>
       <div class="header-title">
         <span>SAR Doppler Tomography</span>
-        <span class="header-badge" id="mode-badge">GRI 0–100 Continuous</span>
+        <span class="header-badge" id="mode-badge">GRI 0â€“100 Continuous</span>
       </div>
       <div class="header-subtitle">
         Sentinel-1 multi-temporal radar stack inversion. Orthorectified (Copernicus 30m GLO-30). Standardized continuous survey grid.
@@ -338,15 +356,15 @@
     <div class="left-panel" id="left-panel">
       <div class="left-panel-header" onclick="toggleLeftPanel()">
         <div class="left-panel-title">
-          <span id="left-panel-region-title">🎯 Anomalies — Giza</span>
+          <span id="left-panel-region-title">ðŸŽ¯ Anomalies â€” Giza</span>
         </div>
-        <button class="left-collapse-btn" id="left-collapse-btn">▾ Collapse</button>
+        <button class="left-collapse-btn" id="left-collapse-btn">â–¾ Collapse</button>
       </div>
 
       <!-- Active Survey Cells Indicator -->
       <div class="active-cells-bar" id="active-cells-badge">
         <span class="active-cells-label">Active Cells: <span class="active-cells-val" id="active-tiles-list">TILE(+0,-1), TILE(+0,+0), TILE(+0,+1)</span></span>
-        <span class="active-cells-area" id="active-tiles-area">300 km²</span>
+        <span class="active-cells-area" id="active-tiles-area">300 kmÂ²</span>
       </div>
 
       <!-- Quantity Control Bar: Select X Anomalies -->
@@ -367,13 +385,13 @@
           All (20)
         </button>
         <button class="marker-tab-btn" id="tab-spikes" onclick="switchMarkerFilter('spikes')">
-          ⚡ Spikes
+          âš¡ Spikes
         </button>
         <button class="marker-tab-btn" id="tab-dips" onclick="switchMarkerFilter('dips')">
-          🕳️ Dips
+          ðŸ•³ï¸ Dips
         </button>
         <button class="marker-tab-btn" id="tab-resonant" onclick="switchMarkerFilter('resonant')">
-          🧭 Cavities
+          ðŸ§­ Cavities
         </button>
         <button class="marker-tab-btn" id="tab-hide" onclick="switchMarkerFilter('hide')">
           Hide
@@ -387,9 +405,9 @@
           <span class="terrain-filter-count" id="terrain-filter-count">All</span>
         </div>
         <div class="terrain-chips">
-          <button class="terrain-btn active" id="terrain-btn-all" onclick="setTerrainFilter('all')">🌐 All</button>
-          <button class="terrain-btn" id="terrain-btn-desert" onclick="setTerrainFilter('desert')">🏜️ Desert Bedrock</button>
-          <button class="terrain-btn" id="terrain-btn-valley" onclick="setTerrainFilter('valley')">🌾 Valley / Margin</button>
+          <button class="terrain-btn active" id="terrain-btn-all" onclick="setTerrainFilter('all')">ðŸŒ All</button>
+          <button class="terrain-btn" id="terrain-btn-desert" onclick="setTerrainFilter('desert')">ðŸœï¸ Desert Bedrock</button>
+          <button class="terrain-btn" id="terrain-btn-valley" onclick="setTerrainFilter('valley')">ðŸŒ¾ Valley / Margin</button>
         </div>
       </div>
 
@@ -404,16 +422,20 @@
     <div class="toolbar-row">
       <!-- Basemap Selector: Satellite, 3D Terrain, Contours (No Dark) -->
       <div class="btn-group" id="basemap-group">
-        <button class="toolbar-btn active" data-basemap="satellite">🛰️ Satellite</button>
-        <button class="toolbar-btn" data-basemap="hillshade">🏔️ 3D Terrain</button>
-        <button class="toolbar-btn" data-basemap="topo">🗺️ Contours</button>
+        <button class="toolbar-btn active" data-basemap="satellite">ðŸ›°ï¸ Satellite</button>
+        <button class="toolbar-btn" data-basemap="hillshade">ðŸ”ï¸ 3D Terrain</button>
+        <button class="toolbar-btn" data-basemap="topo">ðŸ—ºï¸ Contours</button>
       </div>
 
-      <!-- Mode Selector Button -->
+      <!-- 5-Mode Premier Radar Physics Selector Dropdown -->
       <div class="btn-group">
-        <button class="toolbar-btn mode-btn" id="mode-toggle-btn" onclick="toggleRasterMode()">
-          ⚡ Mode: Continuous GRI
-        </button>
+        <select class="mode-select-btn" id="raster-mode-select" onchange="setRasterMode(this.value)" title="Switch Radar Imagery Physical Rendering Mode">
+          <option value="heatmap" selected>âš¡ Mode 1: Continuous GRI Heatmap</option>
+          <option value="discrete">âš¡ Mode 2: 4-Class Discrete Geomorphology</option>
+          <option value="coherence">âš¡ Mode 3: InSAR Coherence (Phase Stability)</option>
+          <option value="cpr">âš¡ Mode 4: Dual-Pol CPR (Depolarization)</option>
+          <option value="rgb">âš¡ Mode 5: False-Color SAR RGB Composite</option>
+        </select>
       </div>
 
       <!-- Blend Slider & Overlays Toggle -->
@@ -424,7 +446,7 @@
           <span id="opacity-val">80%</span>
         </div>
         <button class="toolbar-btn active" id="toggle-heatmaps-btn" onclick="toggleAllHeatmaps()">Radar Overlays</button>
-        <button class="toolbar-btn" id="toggle-grid-btn" onclick="toggleSurveyGrid()">📐 Survey Grid</button>
+        <button class="toolbar-btn" id="toggle-grid-btn" onclick="toggleSurveyGrid()">ðŸ“ Survey Grid</button>
       </div>
     </div>
 
@@ -432,13 +454,13 @@
     <div class="toolbar-row">
       <div class="btn-group" id="investigation-toggle-group">
         <button class="toolbar-btn unknown-active" id="btn-mode-unknown" onclick="setInvestigationMode('unknown')">
-          🔍 Unknown (90)
+          ðŸ” Unknown (90)
         </button>
         <button class="toolbar-btn" id="btn-mode-known" onclick="setInvestigationMode('known')">
-          🏛️ Known Sites
+          ðŸ›ï¸ Known Sites
         </button>
         <button class="toolbar-btn" id="btn-mode-all" onclick="setInvestigationMode('all')">
-          🌐 Superimpose All
+          ðŸŒ Superimpose All
         </button>
       </div>
     </div>
@@ -470,8 +492,8 @@
   <!-- Bottom-Right Collapsible Legend Dock -->
   <div class="legend-dock" id="legend-dock">
     <div class="legend-header" onclick="toggleLegendCollapse()">
-      <div class="legend-title" id="legend-title-text">GRI [0 – 100] Radar Heatmap</div>
-      <button class="legend-collapse-btn" id="legend-collapse-btn">▾ Collapse</button>
+      <div class="legend-title" id="legend-title-text">GRI [0 â€“ 100] Radar Heatmap</div>
+      <button class="legend-collapse-btn" id="legend-collapse-btn">â–¾ Collapse</button>
     </div>
 
     <div class="legend-scroll-body" id="legend-scroll-body">
@@ -489,7 +511,7 @@
         <div class="legend-item">
           <div class="legend-swatch" style="background: #ff007f; border-color: #ff007f;"></div>
           <div>
-            <div class="legend-label" style="color: #ff007f;">[88 – 100] Subsurface Resonant Cavities</div>
+            <div class="legend-label" style="color: #ff007f;">[88 â€“ 100] Subsurface Resonant Cavities</div>
             <div class="legend-desc">Infrasonic acoustic resonance & subterranean void response</div>
           </div>
         </div>
@@ -497,31 +519,31 @@
         <div class="legend-item">
           <div class="legend-swatch" style="background: #f97316; border-color: #f97316;"></div>
           <div>
-            <div class="legend-label" style="color: #f97316;">[74 – 86] Megalithic Masonry & High Structures</div>
-            <div class="legend-desc">High specular dielectric backscatter (σ₀ ≥ 39 dB)</div>
+            <div class="legend-label" style="color: #f97316;">[74 â€“ 86] Megalithic Masonry & High Structures</div>
+            <div class="legend-desc">High specular dielectric backscatter (Ïƒâ‚€ â‰¥ 39 dB)</div>
           </div>
         </div>
 
         <div class="legend-item">
           <div class="legend-swatch" style="background: #eab308; border-color: #eab308;"></div>
           <div>
-            <div class="legend-label" style="color: #fde047;">[58 – 73] Native Limestone Bedrock</div>
-            <div class="legend-desc">Competent Mokattam formation plateau (σ₀ ≈ 31 – 38 dB)</div>
+            <div class="legend-label" style="color: #fde047;">[58 â€“ 73] Native Limestone Bedrock</div>
+            <div class="legend-desc">Competent Mokattam formation plateau (Ïƒâ‚€ â‰ˆ 31 â€“ 38 dB)</div>
           </div>
         </div>
 
         <div class="legend-item">
           <div class="legend-swatch" style="background: #22c55e; border-color: #22c55e;"></div>
           <div>
-            <div class="legend-label" style="color: #4ade80;">[45 – 57] Agricultural Soils & Floodplain</div>
-            <div class="legend-desc">Cultivated Nile floodplain sediments (σ₀ ≈ 23 – 30 dB)</div>
+            <div class="legend-label" style="color: #4ade80;">[45 â€“ 57] Agricultural Soils & Floodplain</div>
+            <div class="legend-desc">Cultivated Nile floodplain sediments (Ïƒâ‚€ â‰ˆ 23 â€“ 30 dB)</div>
           </div>
         </div>
 
         <div class="legend-item">
           <div class="legend-swatch" style="background: #00e5ff; border-color: #00e5ff;"></div>
           <div>
-            <div class="legend-label" style="color: #00e5ff;">[24 – 44] Ancient Silt Deposits & Canals</div>
+            <div class="legend-label" style="color: #00e5ff;">[24 â€“ 44] Ancient Silt Deposits & Canals</div>
             <div class="legend-desc">Saturated alluvium / canal depressions in floodplain</div>
           </div>
         </div>
@@ -529,8 +551,8 @@
         <div class="legend-item">
           <div class="legend-swatch" style="background: #050b14; border-color: #004d7a;"></div>
           <div>
-            <div class="legend-label" style="color: #60a5fa;">[0 – 22] Open Surface Water</div>
-            <div class="legend-desc">Nile River channel, Lake Qarun & specular absorption (σ₀ &lt; 22 dB)</div>
+            <div class="legend-label" style="color: #60a5fa;">[0 â€“ 22] Open Surface Water</div>
+            <div class="legend-desc">Nile River channel, Lake Qarun & specular absorption (Ïƒâ‚€ &lt; 22 dB)</div>
           </div>
         </div>
       </div>
@@ -550,7 +572,7 @@
           <div class="legend-swatch" style="background: #ff007f; border-color: #ff007f;"></div>
           <div>
             <div class="legend-label" style="color: #ff007f;">Type 1: Subsurface Resonant Cavities</div>
-            <div class="legend-desc">Infrasonic micro-motion acoustic cavity resonance (0.50 ≤ dm ≤ 3.20, h ≥ 24m)</div>
+            <div class="legend-desc">Infrasonic micro-motion acoustic cavity resonance (0.50 â‰¤ dm â‰¤ 3.20, h â‰¥ 24m)</div>
           </div>
         </div>
 
@@ -568,7 +590,7 @@
           <div class="legend-swatch" style="background: #ffd600; border-color: #ffd600;"></div>
           <div>
             <div class="legend-label" style="color: #ffd600;">Type 3: Megaliths & Bedrock Peaks</div>
-            <div class="legend-desc">High-reflectivity masonry & limestone bedrock peaks (σ₀ ≥ 38.5 dB)</div>
+            <div class="legend-desc">High-reflectivity masonry & limestone bedrock peaks (Ïƒâ‚€ â‰¥ 38.5 dB)</div>
           </div>
         </div>
 
@@ -578,6 +600,129 @@
           <div>
             <div class="legend-label" style="color: #60a5fa;">Type 4: Open Surface Water</div>
             <div class="legend-desc">Nile River channel & water bodies (Copernicus Water Mask)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode 3: InSAR Coherence Legend -->
+      <div id="legend-coherence-mode" style="display: none;">
+        <div class="gradient-bar-coh"></div>
+        <div class="gradient-ticks">
+          <span>0.0 (Water)</span>
+          <span>0.30 (Alluvium)</span>
+          <span>0.55 (Dry Bedrock)</span>
+          <span>0.75 (Megalith)</span>
+          <span>1.0 (Specular)</span>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #ffffff; border-color: #ffffff;"></div>
+          <div>
+            <div class="legend-label" style="color: #ffffff;">[0.75 â€“ 1.00] Specular Monoliths & Megaliths</div>
+            <div class="legend-desc">Ultra-stable monolithic limestone core & casing masonry (Î³ â‰¥ 0.75)</div>
+          </div>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #facc15; border-color: #facc15;"></div>
+          <div>
+            <div class="legend-label" style="color: #fde047;">[0.55 â€“ 0.74] Stable Competent Bedrock</div>
+            <div class="legend-desc">Native dry Mokattam limestone plateau & escarpments</div>
+          </div>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #0284c7; border-color: #0284c7;"></div>
+          <div>
+            <div class="legend-label" style="color: #38bdf8;">[0.30 â€“ 0.54] Arid Sand & Desert Soils</div>
+            <div class="legend-desc">Compacted desert reg & ancient wadi sediment matrix</div>
+          </div>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #050b14; border-color: #1d4ed8;"></div>
+          <div>
+            <div class="legend-label" style="color: #60a5fa;">[0.00 â€“ 0.29] Shifting Alluvium & Water</div>
+            <div class="legend-desc">Irrigated cultivation, moist clay slurry & open water (full decorrelation)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode 4: Dual-Pol CPR Legend -->
+      <div id="legend-cpr-mode" style="display: none;">
+        <div class="gradient-bar-cpr"></div>
+        <div class="gradient-ticks">
+          <span>-22 dB (Smooth)</span>
+          <span>-14 dB (Plateau)</span>
+          <span>-10 dB (Rubble)</span>
+          <span>-6 dB (Slurry)</span>
+          <span>-2 dB (Extreme)</span>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #ff007f; border-color: #ff007f;"></div>
+          <div>
+            <div class="legend-label" style="color: #ff007f;">[â‰¥ -6 dB] Severe Volumetric Depolarization</div>
+            <div class="legend-desc">Porous mudbrick slurry, collapsed masonry rubble & dense foliage</div>
+          </div>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #ef4444; border-color: #ef4444;"></div>
+          <div>
+            <div class="legend-label" style="color: #f87171;">[-10 to -6 dB] Porous Rubble & Fractured Debris</div>
+            <div class="legend-desc">Decomposed brick, fractured limestone rubble & talus deposits</div>
+          </div>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #10b981; border-color: #10b981;"></div>
+          <div>
+            <div class="legend-label" style="color: #34d399;">[-14 to -10 dB] Natural Bedrock & Desert Reg</div>
+            <div class="legend-desc">Standard weathered desert plateau & limestone gravel matrix</div>
+          </div>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #06b6d4; border-color: #06b6d4;"></div>
+          <div>
+            <div class="legend-label" style="color: #22d3ee;">[â‰¤ -18 dB] Planar Specular Bedrock</div>
+            <div class="legend-desc">Smooth limestone pavements & specular water surfaces</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode 5: False-Color SAR RGB Legend -->
+      <div id="legend-rgb-mode" style="display: none;">
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #ef4444; border-color: #ef4444;"></div>
+          <div>
+            <div class="legend-label" style="color: #f87171;">Red: VV Backscatter (Dielectric / Megaliths)</div>
+            <div class="legend-desc">Specular return from vertical walls, pyramid casing & dense masonry</div>
+          </div>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #22c55e; border-color: #22c55e;"></div>
+          <div>
+            <div class="legend-label" style="color: #4ade80;">Green: VH Backscatter (Depolarization / Rubble)</div>
+            <div class="legend-desc">Cross-polar volume scattering from porous mudbrick slurry & vegetation</div>
+          </div>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #3b82f6; border-color: #3b82f6;"></div>
+          <div>
+            <div class="legend-label" style="color: #60a5fa;">Blue: InSAR Coherence (Phase Stability)</div>
+            <div class="legend-desc">Multi-temporal phase stability of immovable monolithic limestone bedrock</div>
+          </div>
+        </div>
+
+        <div class="legend-item">
+          <div class="legend-swatch" style="background: #facc15; border-color: #facc15;"></div>
+          <div>
+            <div class="legend-label" style="color: #fde047;">Composite Combinations: Yellow / Cyan / Purple</div>
+            <div class="legend-desc">Yellow = High VV+VH (Dense Rubble Masonry); Purple = Stable Bedrock</div>
           </div>
         </div>
       </div>
@@ -659,10 +804,12 @@
     const anomaliesLayerGroup = L.layerGroup().addTo(map);
     let anomalyMarkerMap = {};
 
-    // 4. Dual-Mode Raster Overlays (Continuous GRI vs 4 Discrete Classes) for ALL 66 TILES
+    // 4. 5-Mode Premier Raster Overlays (GRI, 4 Classes, Coherence, CPR, RGB) for ALL 83 TILES
     const tileOverlays = {};
+    const ALL_OVERLAY_KEYS = ['heatmap', 'cavity', 'silt', 'bedrock', 'water', 'coherence', 'cpr', 'rgb'];
+
     heatmapsManifest.forEach(item => {
-      const getRasterUrl = (filename) => 'assets/corridor_maps/' + filename;
+      const getRasterUrl = (filename) => 'assets/corridor_maps/' + filename + '?v=3';
       const b = item.bounds;
       tileOverlays[item.id] = {
         item: item,
@@ -670,22 +817,23 @@
         cavity: L.imageOverlay(getRasterUrl(item.file_cavity), b, { opacity: 0.80, interactive: false, zIndex: 405 }),
         silt: L.imageOverlay(getRasterUrl(item.file_silt), b, { opacity: 0.80, interactive: false, zIndex: 404 }),
         bedrock: L.imageOverlay(getRasterUrl(item.file_bedrock), b, { opacity: 0.80, interactive: false, zIndex: 402 }),
-        water: L.imageOverlay(getRasterUrl(item.file_water), b, { opacity: 0.80, interactive: false, zIndex: 403 })
+        water: L.imageOverlay(getRasterUrl(item.file_water), b, { opacity: 0.80, interactive: false, zIndex: 403 }),
+        coherence: L.imageOverlay(getRasterUrl(item.id + '_coherence.png'), b, { opacity: 0.80, interactive: false, zIndex: 400 }),
+        cpr: L.imageOverlay(getRasterUrl(item.id + '_cpr.png'), b, { opacity: 0.80, interactive: false, zIndex: 400 }),
+        rgb: L.imageOverlay(getRasterUrl(item.id + '_rgb.png'), b, { opacity: 0.80, interactive: false, zIndex: 400 })
       };
     });
 
-    // Opacity Slider Interaction
+    // Opacity Slider Interaction (Adjusts all 5 modes dynamically)
     const opacitySlider = document.getElementById('opacity-slider');
     const opacityVal = document.getElementById('opacity-val');
     opacitySlider.addEventListener('input', (e) => {
       const val = parseFloat(e.target.value) / 100.0;
       opacityVal.innerText = `${e.target.value}%`;
       Object.values(tileOverlays).forEach(t => {
-        t.heatmap.setOpacity(val);
-        t.cavity.setOpacity(val);
-        t.silt.setOpacity(val);
-        t.bedrock.setOpacity(val);
-        t.water.setOpacity(val);
+        ALL_OVERLAY_KEYS.forEach(k => {
+          if (t[k]) t[k].setOpacity(val);
+        });
       });
     });
 
@@ -698,28 +846,33 @@
         const tileId = tileLookupCleanToId[cleanId] || cleanId;
         const isVisible = overlaysVisible && (!activeTileIds || activeTileIds.includes(tileId));
 
-        if (currentRasterMode === 'heatmap') {
-          // Remove discrete layers if on map
-          if (map.hasLayer(t.cavity)) map.removeLayer(t.cavity);
-          if (map.hasLayer(t.silt)) map.removeLayer(t.silt);
-          if (map.hasLayer(t.bedrock)) map.removeLayer(t.bedrock);
-          if (map.hasLayer(t.water)) map.removeLayer(t.water);
+        if (currentRasterMode === 'discrete') {
+          // Discrete Mode: Remove single continuous raster layers
+          ['heatmap', 'coherence', 'cpr', 'rgb'].forEach(k => {
+            if (map.hasLayer(t[k])) map.removeLayer(t[k]);
+          });
 
-          // Manage continuous heatmap layer
-          if (isVisible) {
-            if (!map.hasLayer(t.heatmap)) t.heatmap.addTo(map);
-          } else {
-            if (map.hasLayer(t.heatmap)) map.removeLayer(t.heatmap);
-          }
-        } else {
-          // Discrete Mode: Remove continuous heatmap layer
-          if (map.hasLayer(t.heatmap)) map.removeLayer(t.heatmap);
-
-          // Manage each class layer individually
+          // Manage each discrete class layer individually
           ['cavity', 'silt', 'bedrock', 'water'].forEach(cls => {
             const layer = t[cls];
             const shouldShow = isVisible && activeClasses[cls];
             if (shouldShow) {
+              if (!map.hasLayer(layer)) layer.addTo(map);
+            } else {
+              if (map.hasLayer(layer)) map.removeLayer(layer);
+            }
+          });
+        } else {
+          // Continuous mode (heatmap, coherence, cpr, rgb)
+          // Remove all discrete class layers
+          ['cavity', 'silt', 'bedrock', 'water'].forEach(cls => {
+            if (map.hasLayer(t[cls])) map.removeLayer(t[cls]);
+          });
+
+          // Toggle only the active raster mode
+          ['heatmap', 'coherence', 'cpr', 'rgb'].forEach(modeKey => {
+            const layer = t[modeKey];
+            if (modeKey === currentRasterMode && isVisible) {
               if (!map.hasLayer(layer)) layer.addTo(map);
             } else {
               if (map.hasLayer(layer)) map.removeLayer(layer);
@@ -752,38 +905,51 @@
       updateRasterLayers();
     }
 
-    // Mode Toggle Function: Continuous GRI vs 4 Discrete Classes
-    function toggleRasterMode() {
-      const btn = document.getElementById('mode-toggle-btn');
+    // 5-Mode Switcher Function
+    function setRasterMode(mode) {
+      currentRasterMode = mode;
       const badge = document.getElementById('mode-badge');
       const titleText = document.getElementById('legend-title-text');
-      const contLegend = document.getElementById('legend-continuous-mode');
-      const discLegend = document.getElementById('legend-discrete-mode');
 
-      if (currentRasterMode === 'heatmap') {
-        currentRasterMode = 'discrete';
-        btn.innerText = '⚡ Mode: 4 Discrete Classes';
-        btn.style.borderColor = '#ffd600';
-        btn.style.color = '#ffd600';
-        badge.innerText = '4 Discrete Classes';
-        badge.style.background = '#eab308';
-        badge.style.color = '#000';
-        titleText.innerText = '4 Discrete Radar Classes';
-        contLegend.style.display = 'none';
-        discLegend.style.display = 'block';
-      } else {
-        currentRasterMode = 'heatmap';
-        btn.innerText = '⚡ Mode: Continuous GRI';
-        btn.style.borderColor = '#0ea5e9';
-        btn.style.color = '#38bdf8';
-        badge.innerText = 'GRI 0–100 Continuous';
-        badge.style.background = '#0ea5e9';
-        badge.style.color = '#fff';
-        titleText.innerText = 'GRI [0 – 100] Radar Heatmap';
-        contLegend.style.display = 'block';
-        discLegend.style.display = 'none';
+      // Update legends visibility
+      const allLegends = ['continuous', 'discrete', 'coherence', 'cpr', 'rgb'];
+      allLegends.forEach(lg => {
+        const el = document.getElementById('legend-' + lg + '-mode');
+        if (el) {
+          const isTarget = (lg === 'continuous' && mode === 'heatmap') || (lg === mode);
+          el.style.display = isTarget ? 'block' : 'none';
+        }
+      });
+
+      // Update Header Badge and Legend Title
+      const modeConfigs = {
+        heatmap: { title: 'GRI [0 â€“ 100] Radar Heatmap', badgeText: 'GRI 0â€“100 Continuous', bg: '#0ea5e9', color: '#fff' },
+        discrete: { title: '4 Discrete Radar Geomorphology Classes', badgeText: '4 Discrete Classes', bg: '#eab308', color: '#000' },
+        coherence: { title: 'InSAR Temporal Coherence (Phase Stability)', badgeText: 'InSAR Coherence [0-1]', bg: '#f59e0b', color: '#000' },
+        cpr: { title: 'Dual-Pol CPR (Cross-Polarization Ratio)', badgeText: 'Dual-Pol CPR [-22 to -2 dB]', bg: '#10b981', color: '#000' },
+        rgb: { title: 'False-Color SAR RGB Composite (VV/VH/Coh)', badgeText: 'False-Color SAR RGB', bg: '#8b5cf6', color: '#fff' }
+      };
+
+      const cfg = modeConfigs[mode] || modeConfigs['heatmap'];
+      if (titleText) titleText.innerText = cfg.title;
+      if (badge) {
+        badge.innerText = cfg.badgeText;
+        badge.style.background = cfg.bg;
+        badge.style.color = cfg.color;
       }
+
+      // Sync select element if changed programmatically
+      const sel = document.getElementById('raster-mode-select');
+      if (sel && sel.value !== mode) sel.value = mode;
+
       updateRasterLayers();
+    }
+
+    function toggleRasterMode() {
+      // Legacy fallback: cycle between modes
+      const order = ['heatmap', 'discrete', 'coherence', 'cpr', 'rgb'];
+      const nextIdx = (order.indexOf(currentRasterMode) + 1) % order.length;
+      setRasterMode(order[nextIdx]);
     }
 
     function toggleAllHeatmaps() {
@@ -792,11 +958,9 @@
         map.removeLayer(heatmapGroup);
         btn.classList.remove('active');
         Object.values(tileOverlays).forEach(t => {
-          if (map.hasLayer(t.heatmap)) map.removeLayer(t.heatmap);
-          if (map.hasLayer(t.cavity)) map.removeLayer(t.cavity);
-          if (map.hasLayer(t.silt)) map.removeLayer(t.silt);
-          if (map.hasLayer(t.bedrock)) map.removeLayer(t.bedrock);
-          if (map.hasLayer(t.water)) map.removeLayer(t.water);
+          ALL_OVERLAY_KEYS.forEach(k => {
+            if (t[k] && map.hasLayer(t[k])) map.removeLayer(t[k]);
+          });
         });
       } else {
         map.addLayer(heatmapGroup);
@@ -902,11 +1066,11 @@
       const info = SECTOR_COORDS[currentSector] || SECTOR_COORDS['all'];
 
       if (investigationMode === 'unknown') {
-        titleElem.innerText = `🔍 Unknown: ${info.title}`;
+        titleElem.innerText = `ðŸ” Unknown: ${info.title}`;
       } else if (investigationMode === 'known') {
-        titleElem.innerText = `🏛️ Known: ${info.title}`;
+        titleElem.innerText = `ðŸ›ï¸ Known: ${info.title}`;
       } else {
-        titleElem.innerText = `🌐 Superimposed: ${info.title}`;
+        titleElem.innerText = `ðŸŒ Superimposed: ${info.title}`;
       }
     }
 
@@ -914,14 +1078,14 @@
     function renderPopupContent(a) {
       const isBlind = a.id && a.id.startsWith('DISCOVERY_');
       let badgeBg = isBlind ? '#0369a1' : '#0284c7';
-      let badgeTitle = isBlind ? '🌊 BLIND: BURIED CANAL' : '🕳️ SUBSURFACE CANAL / DIP';
+      let badgeTitle = isBlind ? 'ðŸŒŠ BLIND: BURIED CANAL' : 'ðŸ•³ï¸ SUBSURFACE CANAL / DIP';
 
       if (a.category === 'spike') {
         badgeBg = isBlind ? '#b45309' : '#d97706';
-        badgeTitle = isBlind ? '⚡ BLIND: MEGALITHIC FEATURE' : '🏛️ SPECULAR MEGALITHIC SPIKE';
+        badgeTitle = isBlind ? 'âš¡ BLIND: MEGALITHIC FEATURE' : 'ðŸ›ï¸ SPECULAR MEGALITHIC SPIKE';
       } else if (a.category === 'resonant') {
         badgeBg = isBlind ? '#9333ea' : '#be123c';
-        badgeTitle = isBlind ? '🧭 BLIND: SUBTERRANEAN CAVITY' : '🧭 KNOWN CAVITY RESONATOR';
+        badgeTitle = isBlind ? 'ðŸ§­ BLIND: SUBTERRANEAN CAVITY' : 'ðŸ§­ KNOWN CAVITY RESONATOR';
       }
 
       const diffLabel = (a.diff_db !== undefined && a.diff_db >= 0) ? `+${a.diff_db.toFixed(1)} dB` : `${(a.diff_db || 0).toFixed(1)} dB`;
@@ -931,7 +1095,7 @@
       return `
         <div class="popup-card">
           <span class="popup-badge" style="background: ${badgeBg}; color: #ffffff;">
-            ${badgeTitle} • Rank #${a.rank || 1}
+            ${badgeTitle} â€¢ Rank #${a.rank || 1}
           </span>
           <div class="popup-title">${a.name}</div>
           ${a.region ? `
@@ -988,7 +1152,7 @@
           </div>
           <div class="popup-desc">${a.location_desc || ''}</div>
           <a class="popup-link" href="https://maps.google.com/?q=${a.lat},${a.lon}" target="_blank">
-            ↗ Open in Google Maps Satellite
+            â†— Open in Google Maps Satellite
           </a>
         </div>
       `;
@@ -1015,18 +1179,18 @@
         let color = '#00e5ff'; // Electric Cyan for Dips / Canals
         let radius = 8;
         let badgeBg = isBlind ? '#0369a1' : '#0284c7';
-        let badgeTitle = isBlind ? '🌊 BLIND: BURIED CANAL' : '🕳️ SUBSURFACE CANAL / DIP';
+        let badgeTitle = isBlind ? 'ðŸŒŠ BLIND: BURIED CANAL' : 'ðŸ•³ï¸ SUBSURFACE CANAL / DIP';
 
         if (a.category === 'spike') {
           color = '#ffd600'; // Pure Gold Yellow for Megaliths / Bedrock
           radius = 9;
           badgeBg = isBlind ? '#b45309' : '#d97706';
-          badgeTitle = isBlind ? '⚡ BLIND: MEGALITHIC FEATURE' : '🏛️ SPECULAR MEGALITHIC SPIKE';
+          badgeTitle = isBlind ? 'âš¡ BLIND: MEGALITHIC FEATURE' : 'ðŸ›ï¸ SPECULAR MEGALITHIC SPIKE';
         } else if (a.category === 'resonant') {
           color = '#ff007f'; // Radiant Neon Pink for Cavities / Voids
           radius = 10;
           badgeBg = isBlind ? '#9333ea' : '#be123c';
-          badgeTitle = isBlind ? '🧭 BLIND: SUBTERRANEAN CAVITY' : '🧭 KNOWN CAVITY RESONATOR';
+          badgeTitle = isBlind ? 'ðŸ§­ BLIND: SUBTERRANEAN CAVITY' : 'ðŸ§­ KNOWN CAVITY RESONATOR';
         }
 
         const marker = L.circleMarker([a.lat, a.lon], {
@@ -1064,11 +1228,11 @@
       const nRes = activeDataset.filter(a => a.category === 'resonant').length;
 
       document.getElementById('tab-all').innerText = `All (${nTotal})`;
-      document.getElementById('tab-spikes').innerText = `⚡ Spikes (${nSpikes})`;
-      document.getElementById('tab-dips').innerText = `🕳️ Dips (${nDips})`;
+      document.getElementById('tab-spikes').innerText = `âš¡ Spikes (${nSpikes})`;
+      document.getElementById('tab-dips').innerText = `ðŸ•³ï¸ Dips (${nDips})`;
       const tabRes = document.getElementById('tab-resonant');
       if (tabRes) {
-        tabRes.innerText = `🧭 Cavities (${nRes})`;
+        tabRes.innerText = `ðŸ§­ Cavities (${nRes})`;
         tabRes.style.display = nRes > 0 ? 'inline-block' : 'none';
         if (nRes === 0 && currentFilter === 'resonant') {
           currentFilter = 'all';
@@ -1117,17 +1281,17 @@
 
         if (a.category === 'spike') {
           badgeBg = isBlind ? '#b45309' : '#d97706';
-          badgeText = isBlind ? '⚡ BLIND MEGALITH' : '🏛️ KNOWN MONUMENT';
+          badgeText = isBlind ? 'âš¡ BLIND MEGALITH' : 'ðŸ›ï¸ KNOWN MONUMENT';
           diffColor = '#ffd600';
           diffText = `+${a.diff_db.toFixed(1)} dB`;
         } else if (a.category === 'resonant') {
           badgeBg = isBlind ? '#9333ea' : '#be123c';
-          badgeText = isBlind ? '🧭 UNKNOWN CAVITY' : '🧭 KNOWN CAVITY';
+          badgeText = isBlind ? 'ðŸ§­ UNKNOWN CAVITY' : 'ðŸ§­ KNOWN CAVITY';
           diffColor = '#ff007f';
           diffText = `${a.diff_db.toFixed(1)} dB`;
         } else {
           badgeBg = isBlind ? '#0369a1' : '#0284c7';
-          badgeText = isBlind ? '🌊 BLIND CANAL' : '🕳️ PALEO-CHANNEL';
+          badgeText = isBlind ? 'ðŸŒŠ BLIND CANAL' : 'ðŸ•³ï¸ PALEO-CHANNEL';
           diffColor = '#00e5ff';
           diffText = `${a.diff_db.toFixed(1)} dB`;
         }
@@ -1136,7 +1300,7 @@
         card.className = 'marker-card';
         card.id = `card-${a.id}`;
         const terrainClass = a.terrain === 'desert' ? 'terrain-tag-desert' : (a.terrain === 'urban' ? 'terrain-tag-urban' : 'terrain-tag-valley');
-        const terrainText = a.terrain === 'desert' ? '🏜️ Desert Bedrock' : (a.terrain === 'urban' ? '🏙️ Urban Area' : '🌾 Valley Margin');
+        const terrainText = a.terrain === 'desert' ? 'ðŸœï¸ Desert Bedrock' : (a.terrain === 'urban' ? 'ðŸ™ï¸ Urban Area' : 'ðŸŒ¾ Valley Margin');
 
         card.innerHTML = `
           <div class="marker-card-header">
@@ -1146,9 +1310,9 @@
             </span>
           </div>
           <div style="display: flex; gap: 4px; align-items: center; margin-bottom: 2px;">
-            ${a.region ? `<span style="font-size: 8.5px; color: #38bdf8;">📍 ${a.region}</span>` : ''}
+            ${a.region ? `<span style="font-size: 8.5px; color: #38bdf8;">ðŸ“ ${a.region}</span>` : ''}
             <span class="terrain-tag ${terrainClass}">
-              ${terrainText} • ${a.elevation_m || 0}m
+              ${terrainText} â€¢ ${a.elevation_m || 0}m
             </span>
           </div>
           <div class="marker-card-metrics">
@@ -1201,7 +1365,7 @@
       if (leftPanel && leftPanel.classList.contains('collapsed')) {
         leftPanel.classList.remove('collapsed');
         const cbtn = document.getElementById('left-collapse-btn');
-        if (cbtn) cbtn.innerText = '▾ Collapse';
+        if (cbtn) cbtn.innerText = 'â–¾ Collapse';
       }
 
       // 2. Highlight card and smoothly scroll it into center view
@@ -1306,10 +1470,10 @@
       const badgeArea = document.getElementById('active-tiles-area');
       if (!activeTileIds) {
         badgeList.innerText = `All ${tilePolygons.length} Corridor Tiles`;
-        badgeArea.innerText = `${tilePolygons.length * 100} km²`;
+        badgeArea.innerText = `${tilePolygons.length * 100} kmÂ²`;
       } else {
         badgeList.innerText = activeTileIds.join(', ');
-        badgeArea.innerText = `${activeTileIds.length * 100} km²`;
+        badgeArea.innerText = `${activeTileIds.length * 100} kmÂ²`;
       }
 
       updatePanelTitle();
@@ -1332,13 +1496,13 @@
     function toggleLeftPanel() {
       const p = document.getElementById('left-panel');
       p.classList.toggle('collapsed');
-      document.getElementById('left-collapse-btn').innerText = p.classList.contains('collapsed') ? '▸ Expand' : '▾ Collapse';
+      document.getElementById('left-collapse-btn').innerText = p.classList.contains('collapsed') ? 'â–¸ Expand' : 'â–¾ Collapse';
     }
 
     function toggleLegendCollapse() {
       const d = document.getElementById('legend-dock');
       d.classList.toggle('collapsed');
-      document.getElementById('legend-collapse-btn').innerText = d.classList.contains('collapsed') ? '▸ Expand' : '▾ Collapse';
+      document.getElementById('legend-collapse-btn').innerText = d.classList.contains('collapsed') ? 'â–¸ Expand' : 'â–¾ Collapse';
     }
 
     // Helper to extract params from either query string or hash fragment
@@ -1461,7 +1625,7 @@
             .setContent(`
               <div class="popup-card">
                 <span class="popup-badge" style="background: #0284c7; color: #fff;">RADAR SURVEY TARGET</span>
-                <div class="popup-title">Survey Location (${targetLat.toFixed(4)}°N, ${targetLon.toFixed(4)}°E)</div>
+                <div class="popup-title">Survey Location (${targetLat.toFixed(4)}Â°N, ${targetLon.toFixed(4)}Â°E)</div>
                 <div class="popup-metric">
                   <span class="popup-metric-label">Coordinates (WGS84)</span>
                   <span class="popup-metric-val">${targetLat.toFixed(6)}, ${targetLon.toFixed(6)}</span>
@@ -1476,3 +1640,4 @@
   </script>
 </body>
 </html>
+
