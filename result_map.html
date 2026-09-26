@@ -808,8 +808,11 @@
     const tileOverlays = {};
     const ALL_OVERLAY_KEYS = ['heatmap', 'cavity', 'silt', 'bedrock', 'water', 'coherence', 'cpr', 'rgb'];
 
+    // Change this revision whenever generated rasters change.  ImageOverlay
+    // otherwise retains an old PNG with the same filename after a reload.
+    const RASTER_REVISION = '20260926-coregistered-vv-stack';
     heatmapsManifest.forEach(item => {
-      const getRasterUrl = (filename) => 'assets/corridor_maps/' + filename + '?v=3';
+      const getRasterUrl = (filename) => 'assets/corridor_maps/' + filename + '?v=' + RASTER_REVISION;
       const b = item.bounds;
       tileOverlays[item.id] = {
         item: item,
@@ -1589,6 +1592,13 @@
 
     setSector(targetSector);
 
+    // Browsers may restore a <select>'s previous value after script startup.
+    // The map itself intentionally opens in Mode 1, so synchronise every
+    // user-facing mode control after that restoration has occurred.
+    window.addEventListener('pageshow', (event) => {
+      if (!event.persisted) setRasterMode('heatmap');
+    }, { once: true });
+
     if (targetAnom) {
       currentFilter = 'all';
       currentTerrainFilter = 'all';
@@ -1640,4 +1650,3 @@
   </script>
 </body>
 </html>
-
