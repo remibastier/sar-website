@@ -841,7 +841,9 @@
 
     // Update Raster Layers based on current mode, active sector, and discrete class checkboxes
     function updateRasterLayers() {
-      const activeTileIds = SECTOR_TILES[currentSector];
+      // All Corridor restores the complete radar mosaic. Region selections
+      // still isolate their retained archaeological tile and marker set.
+      const activeTileIds = currentSector === 'all' ? null : SECTOR_TILES[currentSector];
       const overlaysVisible = map.hasLayer(heatmapGroup);
 
       Object.entries(tileOverlays).forEach(([cleanId, t]) => {
