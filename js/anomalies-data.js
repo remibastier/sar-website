@@ -1,5 +1,5 @@
 // SAR Doppler Tomography Dataset & Anomalies Database
-// Synchronized from 15-Tile Continuous Survey Corridor
+// Synchronized from 16-Tile Continuous Survey Corridor (1,600 km²)
 // Two-Pillar Research Architecture:
 // 1. Ground-Truth Benchmark Matrix (35 Defined Monuments: Royal Pyramids, Sphinxes, Harbors)
 // 2. Curated Blind Discoveries (100 High-Confidence Targets: 74 Resonant Cavities + 26 Megalithic Peaks)
