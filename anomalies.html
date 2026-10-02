@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subsurface Anomaly Catalog — SAR Doppler Tomography</title>
-  <meta name="description" content="Academic geospatial catalog of 40 unsupervised blind discoveries and regional anomalies detected by Sentinel-1 C-Band Doppler Tomography along Egypt's pyramid corridor.">
+  <meta name="description" content="Academic geospatial catalog of 135 physical radar targets (100 curated blind discoveries + 35 benchmark monuments) detected by Sentinel-1 C-Band Doppler Tomography along Egypt's pyramid corridor.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,17 +84,17 @@
 
       <div class="sidebar-title">Research Whitepaper</div>
       <div class="sidebar-meta">
-        <strong>SAR-EGYPT-2026</strong> <span class="tag-badge" style="background:#0ea5e9; color:#fff; font-size:9px; padding:1px 4px;">v0.0.1</span><br>
-        40 Discoveries &bull; 8,300 km&sup2; Corridor
+        <strong>SAR-EGYPT-2026</strong> <span class="tag-badge" style="background:#0ea5e9; color:#fff; font-size:9px; padding:1px 4px;">v0.0.3</span><br>
+        135 Calibrated Targets &bull; 15 Retained Survey Tiles
       </div>
 
       <nav style="margin-top: 24px;">
-        <a href="index.html#sec-9" class="sidebar-btn" style="background:var(--accent-navy); color:#ffffff; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
-          <span>&larr;</span> Return to Paper (&sect;9.0)
+        <a href="index.html#sec-10" class="sidebar-btn" style="background:var(--accent-navy); color:#ffffff; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+          <span>&larr;</span> Return to Paper (&sect;10.0)
         </a>
         <a href="result_map.html" class="sidebar-btn" target="_blank" style="background:#0d9488; color:#ffffff; font-weight:600; display:flex; align-items:center; gap:8px;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15 8 12 12 9 8 12 2"/></svg>
-          Launch 83-Cell Map &nearr;
+          Launch Interactive Map &nearr;
         </a>
       </nav>
     </aside>
@@ -103,40 +103,38 @@
     <main class="paper-content">
       <header class="paper-header" style="margin-bottom: 32px; padding-bottom: 20px;">
         <div class="paper-badge">Appendix B &bull; Geospatial Catalog</div>
-        <h1 style="font-size: 30px;">Catalog of 40 Unsupervised Subsurface Discoveries</h1>
+        <h1 style="font-size: 30px;">Catalog of 135 Subsurface Radar Targets</h1>
         <p style="font-size: 14.5px; color: var(--ink-secondary); margin-bottom: 0;">
-          Statistical anomalies detected by multi-temporal Sentinel-1 C-band Doppler Tomography outside known monumental boundaries across the 8,300 km&sup2; survey corridor.
+          Multi-temporal Sentinel-1 C-band Doppler Tomography catalog across the 15 retained survey corridor tiles: 35 Ground-Truth Benchmark Monuments (all 21 royal pyramids, sphinxes, Hawara Labyrinth, harbors) + 100 Curated Blind Discoveries.
         </p>
       </header>
 
       <!-- Search & Filters -->
       <div class="catalog-search-bar">
-        <input type="text" id="catalog-search" class="catalog-input" placeholder="Search by region, category, or coordinates (e.g. Zawyet, Meidum, 29.92)...">
+        <input type="text" id="catalog-search" class="catalog-input" placeholder="Search by monument name, category, region, or coordinates (e.g. Khufu, Hawara, 29.92)...">
         
         <select id="category-filter" class="catalog-select">
-          <option value="all">All Categories</option>
-          <option value="resonant">Resonant Cavities (16–20m depth)</option>
-          <option value="spike">Bedrock / Megalithic Spikes (&lt;1m)</option>
-          <option value="dip">Buried Nile Silt Channels</option>
+          <option value="all">All Targets (135)</option>
+          <option value="monument">🏛️ Benchmark Monuments (35)</option>
+          <option value="spike">🟡 Bedrock / Megalithic Peaks (26)</option>
+          <option value="resonant">🔴 Subterranean Resonant Cavities (74)</option>
         </select>
 
         <select id="region-filter" class="catalog-select">
-          <option value="all">All Regions</option>
-          <option value="Zawyet">Zawyet el-Aryan</option>
-          <option value="Meidum">Meidum Bench</option>
-          <option value="Saqqara">Saqqara West</option>
-          <option value="Dahshur">Dahshur Basin</option>
-          <option value="Giza">Giza West Plateau</option>
-          <option value="Hawara">Hawara Plateau</option>
-          <option value="Abu Rawash">Abu Rawash</option>
-          <option value="Abusir">Abusir</option>
-          <option value="Lisht">Lisht &amp; Mazghuna</option>
-          <option value="Gerzeh">Gerzeh</option>
-          <option value="Qarun">Lake Qarun &amp; Gebel Qatrani</option>
+          <option value="all">All Survey Sectors</option>
+          <option value="Giza">Giza Necropolis</option>
+          <option value="Zawyet">Zawyet-Abusir</option>
+          <option value="Saqqara">Saqqara</option>
+          <option value="Dahshur">Dahshur</option>
+          <option value="Mazghuna">Mazghuna</option>
+          <option value="Lisht">Lisht</option>
+          <option value="Meidum">Meidum</option>
+          <option value="Hawara">Hawara</option>
+          <option value="Widan">Widan el-Faras / Qasr el-Sagha</option>
         </select>
 
         <select id="sort-filter" class="catalog-select">
-          <option value="rank">Sort: Rank (1 to 40)</option>
+          <option value="rank">Sort: Rank / Confidence</option>
           <option value="coherence">Highest Coherence (&gamma;)</option>
           <option value="depth">Estimated Depth</option>
           <option value="amp">Backscatter Amplitude (dB)</option>
@@ -144,7 +142,7 @@
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; font-size:13px; color:var(--ink-muted);">
-        <div>Displaying <strong id="match-count" style="color:var(--accent-navy);">40</strong> anomaly candidates</div>
+        <div>Displaying <strong id="match-count" style="color:var(--accent-navy);">450</strong> anomaly candidates</div>
         <div class="mono" style="font-size:11.5px;">6-EPOCH ORBIT 58 &bull; &gamma; &ge; 0.15</div>
       </div>
 
@@ -154,7 +152,7 @@
       <!-- Academic Footer & Copyright -->
       <footer style="margin-top: 56px; padding: 24px 0; border-top: 1px solid var(--border-subtle); font-size: 12px; color: var(--ink-muted); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
         <div>
-          &copy; 2026 Remi Bastier &bull; SAR Doppler Tomography Project. All Rights Reserved. Version 0.0.1.
+          &copy; 2026 Remi Bastier &bull; SAR Doppler Tomography Project. All Rights Reserved. Version 0.0.2.
         </div>
         <div>
           Data Source: European Space Agency (ESA) Copernicus Sentinel-1.
@@ -185,19 +183,15 @@
 
     function getSectorKey(region) {
       const r = (region || '').toLowerCase();
-      if (r.includes('rawash')) return 'aburawash';
       if (r.includes('giza')) return 'giza';
-      if (r.includes('zawyet')) return 'zawyet';
-      if (r.includes('abusir')) return 'abusir';
+      if (r.includes('zawyet') || r.includes('abusir')) return 'zawyet_abusir';
       if (r.includes('saqqara')) return 'saqqara';
       if (r.includes('dahshur')) return 'dahshur';
       if (r.includes('mazghuna')) return 'mazghuna';
       if (r.includes('lisht')) return 'lisht';
-      if (r.includes('gerzeh')) return 'gerzeh';
       if (r.includes('meidum')) return 'meidum';
       if (r.includes('hawara')) return 'hawara';
-      if (r.includes('biahmu')) return 'biahmu';
-      if (r.includes('qarun') || r.includes('qatrani')) return 'qarun';
+      if (r.includes('widan') || r.includes('sagha') || r.includes('qarun') || r.includes('dimai')) return 'widan';
       return 'all';
     }
 
@@ -210,7 +204,7 @@
       const sortSelect = document.getElementById('sort-filter');
 
       const sarObj = window.SAR_DATA || window.ANOMALIES_DATA || {};
-      const allData = sarObj.blindDiscoveries || sarObj.discoveries || [];
+      const allData = sarObj.allAnomalies || sarObj.blindDiscoveries || sarObj.discoveries || [];
 
       function render() {
         const q = searchInput.value.toLowerCase().trim();
@@ -253,8 +247,14 @@
           const card = document.createElement('div');
           card.className = 'academic-anomaly-card';
 
+          const isMon = item.category === 'monument' || item.is_known;
           let catBadge = '<span class="tag-badge tag-hypothesis">RESONANT CAVITY</span>';
-          if (item.category === 'spike') {
+          if (isMon) {
+            const isYes = item.verdict === 'YES';
+            catBadge = isYes ?
+              '<span class="tag-badge" style="background:#15803d; color:#fff; font-weight:700;">🏛️ BENCHMARK: YES (CONFIRMED)</span>' :
+              '<span class="tag-badge" style="background:#b45309; color:#fff; font-weight:700;">⚠️ BENCHMARK: PARTIAL (DIFFUSE)</span>';
+          } else if (item.category === 'spike') {
             catBadge = '<span class="tag-badge tag-data">BEDROCK / MEGALITH</span>';
           } else if (item.category === 'dip') {
             catBadge = '<span class="tag-badge tag-fact">BURIED SILT / CANAL</span>';
@@ -263,27 +263,38 @@
           const secKey = getSectorKey(item.region);
           const deepLink = `result_map.html?id=${encodeURIComponent(item.id)}&sector=${encodeURIComponent(secKey)}&lat=${item.lat}&lon=${item.lon}`;
 
+          const metricsGrid = isMon ? `
+            <div><strong>Verdict:</strong> <span style="color:${item.verdict === 'YES' ? '#10b981' : '#f59e0b'}; font-weight:700;">${item.verdict || 'YES'}</span></div>
+            <div><strong>Coherence:</strong> ${item.coherence ? item.coherence.toFixed(2) : 'N/A'}</div>
+            <div><strong>Local Prom:</strong> +${(item.prominence_db || item.diff_db || 0).toFixed(1)} dB</div>
+            <div><strong>Amplitude:</strong> ${item.amp_db ? item.amp_db.toFixed(1) + ' dB' : 'N/A'}</div>
+            <div><strong>Apex Offset:</strong> ${(item.match_distance_m || 0).toFixed(0)} m</div>
+            <div><strong>Elevation:</strong> ${item.elevation_m !== undefined ? item.elevation_m + 'm' : '~30m'}</div>
+          ` : `
+            <div><strong>Est. Depth:</strong> ${item.depth_m ? item.depth_m + ' m' : 'Surface (<1m)'}</div>
+            <div><strong>Coherence:</strong> ${item.coherence ? item.coherence.toFixed(2) : 'N/A'}</div>
+            <div><strong>Frequency:</strong> ${item.freq_hz ? item.freq_hz + ' Hz' : 'Static (DC)'}</div>
+            <div><strong>Amplitude:</strong> ${item.amp_db ? item.amp_db.toFixed(1) + ' dB' : 'N/A'}</div>
+            <div><strong>Elevation:</strong> ${item.elevation_m !== undefined ? item.elevation_m + 'm' : '~30m'}</div>
+            <div><strong>Terrain:</strong> ${item.terrain === 'desert' ? '🏜️ Desert' : '🌾 Valley'}</div>
+          `;
+
           card.innerHTML = `
             <div>
               <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
                 ${catBadge}
-                <span class="mono" style="font-size:11px; color:var(--ink-muted);">RANK #${item.rank.toString().padStart(2, '0')}</span>
+                <span class="mono" style="font-size:11px; color:var(--ink-muted);">${isMon ? 'BENCHMARK #' + item.rank : 'DISCOVERY #' + item.rank.toString().padStart(2, '0')}</span>
               </div>
               <h4 style="font-size:15px; margin-bottom:6px; color:var(--ink-primary);">${item.name}</h4>
               <div style="font-size:12px; color:var(--accent-navy); margin-bottom:10px; font-weight:600;">
-                Region: ${item.region}
+                Region: ${item.region} ${isMon ? `(${item.typology || 'Stone'})` : ''}
               </div>
               <p style="font-size:12.5px; color:var(--ink-secondary); line-height:1.55; margin-bottom:14px;">${item.location_desc}</p>
             </div>
 
             <div style="border-top:1px solid var(--border-subtle); padding-top:12px; font-size:12px;">
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:10px;" class="mono">
-                <div><strong>Est. Depth:</strong> ${item.depth_m ? item.depth_m + ' m' : 'Surface (<1m)'}</div>
-                <div><strong>Coherence:</strong> ${item.coherence ? item.coherence.toFixed(2) : 'N/A'}</div>
-                <div><strong>Frequency:</strong> ${item.freq_hz ? item.freq_hz + ' Hz' : 'Static (DC)'}</div>
-                <div><strong>Amplitude:</strong> ${item.amp_db ? item.amp_db.toFixed(1) + ' dB' : 'N/A'}</div>
-                <div><strong>Elevation:</strong> ${item.elevation_m !== undefined ? item.elevation_m + 'm' : '~30m'}</div>
-                <div><strong>Terrain:</strong> ${item.terrain === 'desert' ? '🏜️ Desert' : '🌾 Valley'}</div>
+                ${metricsGrid}
               </div>
 
               <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
